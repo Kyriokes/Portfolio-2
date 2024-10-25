@@ -3,8 +3,10 @@
 import { useState } from "react";
 import About from "./components/About";
 import Header from "./components/Header";
-import Interest from "./components/Interest";
 import ContactForm from "./components/ContactForm";
+import Pdf from "./components/Pdf";
+import Skills from "./assets/skills";
+import { Proyects } from "./components/Proyects";
 
 export default function Home() {
     const [activeTab, setActiveTab] = useState<string>("about");
@@ -22,7 +24,7 @@ export default function Home() {
     return (
         <div className="relative min-h-screen">
             <div className="absolute inset-0 backdrop-blur-lg"></div>
-            <div className="relative z-10 flex flex-col p-4 bg-black bg-opacity-70 rounded-2xl min-h-screen ">
+            <div className="relative z-10 flex flex-col p-4 bg-black bg-opacity-80 rounded-2xl min-h-screen">
                 <Header setActiveTab={handleTabChange} />
                 <div className="relative flex-grow">
                     <div
@@ -33,8 +35,10 @@ export default function Home() {
                         }`}
                     >
                         {activeTab === "about" && <About />}
-                        {activeTab === "interests" && <Interest />}
+                        {activeTab === "skills" && <Skills />}
+                        {activeTab === "proyects" && <Proyects />}
                         {activeTab === "contact" && <ContactForm />}
+                        {activeTab === "pdf" && <Pdf />}
                     </div>
                 </div>
             </div>

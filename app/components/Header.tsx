@@ -29,19 +29,31 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => (
         <nav className="flex items-start w-full mt-5">
             <button
                 onClick={() => setActiveTab("about")}
-                className="py-2.5 px-2.5 bg-[#6b694379] text-white border border-[#00000079] cursor-pointer hover:bg-[#8b631d7c] rounded-tl-2xl"
+                className="py-2.5 px-2.5 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c] rounded-tl-2xl"
             >
                 Sobre mí
             </button>
             <button
-                onClick={() => setActiveTab("interests")}
-                className="py-2.5 px-2.5 bg-[#6b694379] text-white border border-[#00000079] cursor-pointer hover:bg-[#8b631d7c]"
+                onClick={() => setActiveTab("proyects")}
+                className="py-2.5 px-2.5 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c]"
             >
-                Intereses
+                Proyectos
+            </button>
+            <button
+                onClick={() => setActiveTab("skills")}
+                className="py-2.5 px-2.5 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c]"
+            >
+                Skills
+            </button>
+            <button
+                onClick={() => setActiveTab("pdf")}
+                className="py-2.5 px-2.5 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c]"
+            >
+                Curriculum
             </button>
             <button
                 onClick={() => setActiveTab("contact")}
-                className="py-2.5 px-2.5 bg-[#6b694379] text-white border border-[#00000079] cursor-pointer hover:bg-[#8b631d7c] rounded-tr-2xl"
+                className="py-2.5 px-2.5 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c] rounded-tr-2xl"
             >
                 Contacto
             </button>
