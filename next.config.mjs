@@ -9,6 +9,7 @@ const nextConfig = {
             "yt3.googleusercontent.com",
             "upload.wikimedia.org",
             "github-production-user-asset-6210df.s3.amazonaws.com",
+            "porfoliosergiofb.vercel.app",
         ],
     },
 };
