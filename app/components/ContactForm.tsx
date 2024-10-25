@@ -108,7 +108,7 @@ const ContactForm: React.FC = () => {
                                 </div>
                             </div>
                             <div className="md:flex md:items-center">
-                                <div className="md:w-1/3">
+                                <div className="md:w-1/3 ml-auto">
                                     <button
                                         className="w-32 shadow bg-cTeal hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                         type="submit"
@@ -117,7 +117,6 @@ const ContactForm: React.FC = () => {
                                         Enviar
                                     </button>
                                 </div>
-                                <div className="md:w-2/3"></div>
                             </div>
                         </form>
                     </div>
