@@ -23,8 +23,8 @@ export default function Home() {
 
     return (
         <div className="relative min-h-screen">
-            <div className="absolute inset-0 backdrop-blur-lg"></div>
-            <div className="relative z-10 flex flex-col p-4 bg-black bg-opacity-80 rounded-2xl min-h-screen">
+            <div className="absolute inset-0 backdrop-blur-lg m-2"></div>
+            <div className="relative z-10 flex flex-col p-4 bg-black bg-opacity-80 rounded-2xl min-h-screen ">
                 <Header setActiveTab={handleTabChange} />
                 <div className="relative flex-grow">
                     <div
