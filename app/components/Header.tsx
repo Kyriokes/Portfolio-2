@@ -2,21 +2,33 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import clsx from "clsx";
 
 interface HeaderProps {
     setActiveTab: (tab: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
-    const [windowWidth, setWindowWidth] = useState(
-        typeof window !== "undefined" ? window.innerWidth : 0
-    );
+const useWindowWidth = () => {
+    const [windowWidth, setWindowWidth] = useState(0);
 
     useEffect(() => {
         const handleResize = () => setWindowWidth(window.innerWidth);
+
+        handleResize();
+
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+    return windowWidth;
+};
+
+const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
+    const windowWidth = useWindowWidth();
+
+    if (windowWidth === 0) {
+        return null;
+    }
 
     const tabs = [
         { label: "Sobre mí", tab: "about" },
@@ -27,23 +39,21 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
     ];
 
     const getButtonClass = (index: number) => {
-        const baseClass =
-            "py-2 px-2 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c] text-xs sm:text-sm md:text-base flex-grow lg:flex-grow-0 transition-all duration-300 ease-in-out";
         const isFirstTab = index === 0;
         const isLastTab = index === tabs.length - 1;
 
-        if (windowWidth <= 320) {
-            if (isFirstTab) return `${baseClass} rounded-tl-2xl`;
-            if (index === 2) return `${baseClass} rounded-tr-2xl`;
-        } else if (windowWidth <= 385) {
-            if (isFirstTab) return `${baseClass} rounded-tl-2xl`;
-            if (index === 3) return `${baseClass} rounded-tr-2xl`;
-        } else {
-            if (isFirstTab) return `${baseClass} rounded-tl-2xl`;
-            if (isLastTab) return `${baseClass} rounded-tr-2xl`;
-        }
-
-        return baseClass;
+        return clsx(
+            "py-2 px-2 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c] text-xs sm:text-sm md:text-base flex-grow lg:flex-grow-0 transition-all duration-300 ease-in-out",
+            {
+                "rounded-tl-2xl": isFirstTab,
+                "rounded-tr-2xl":
+                    windowWidth <= 320
+                        ? index === 2
+                        : windowWidth <= 385
+                        ? index === 3
+                        : isLastTab,
+            }
+        );
     };
 
     return (
@@ -55,6 +65,7 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                     width={1080}
                     height={720}
                     className="rounded-full w-64 h-64 mb-4 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[23em] lg:h-[23em] lg:mr-4"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
                 <div className="font-['Segoe_UI',Tahoma,Geneva,Verdana,sans-serif] text-center lg:text-left text-xl shadow-[1px_0px_1px_#000,0px_1px_1px_#00000050,2px_1px_1px_#000,1px_2px_1px_#00000050,3px_2px_1px_#000,2px_3px_1px_#00000050,4px_3px_1px_#000,3px_4px_1px_#00000050,5px_4px_1px_#000,4px_5px_1px_#00000050,6px_5px_1px_#000,5px_6px_1px_#00000050,7px_6px_1px_#000] m-4 sm:text-2xl md:text-3xl lg:text-2xl">
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl">
@@ -74,6 +85,7 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                             key={item.tab}
                             onClick={() => setActiveTab(item.tab)}
                             className={getButtonClass(index)}
+                            aria-label={`Go to ${item.label}`}
                         >
                             {item.label}
                         </button>
