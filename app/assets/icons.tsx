@@ -429,7 +429,7 @@ export function NeonIcon({ className = "h-8 w-8" }: IconProps) {
     return (
         <Image
             className={className}
-            src="https://yt3.googleusercontent.com/PCC9a0H4mCzn4HyQn8IydElbZ7lkeXXVS8oIInO93wWc4p65qNuN-XYWM0Ima9_kG_EXZEdhzQ=s900-c-k-c0x00ffffff-no-rj"
+            src="https://avatars.githubusercontent.com/u/77690634?v=4"
             alt="Neon"
             width={32}
             height={32}
