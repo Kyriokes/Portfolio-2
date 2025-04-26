@@ -25,7 +25,7 @@ import {
     GitHubIcon,
     NPMIcon,
     YARNIcon,
-    NeonIcon,
+    //NeonIcon,
     BlenderIcon,
     FireBaseIcon,
     SupaBaseIcon,
