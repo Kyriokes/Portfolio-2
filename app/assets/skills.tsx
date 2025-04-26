@@ -210,10 +210,10 @@ const Skills: React.FC = () => {
             { icon: ExpressIcon, name: "Express" },
             { icon: NestIcon, name: "NestJS" },
             { icon: PrismaIcon, name: "Prisma" },
-            { icon: PostgreSQLIcon, name: "PostgreSQL" },
             { icon: FireBaseIcon, name: "Firebase" },
             { icon: SupaBaseIcon, name: "Supabase" },
-            { icon: NeonIcon, name: "Neon" },
+            { icon: PostgreSQLIcon, name: "PostgreSQL" },
+            //{ icon: NeonIcon, name: "Neon" },
         ],
         tools: [
             { icon: GitIcon, name: "Git" },
