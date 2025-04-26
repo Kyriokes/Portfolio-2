@@ -26,6 +26,74 @@ import {
     TailwindIcon,
     VSCodeIcon,
 } from "../assets/icons";
+import { useLang } from "../context/LangContext";
+
+const projectsTranslations = {
+    es: {
+        pokemon: {
+            description: `
+                Mi primer proyecto es una aplicación que permite crear y buscar Pokémon, 
+                ofreciendo una experiencia interactiva y divertida. Utilicé una combinación 
+                de React y Express, junto con una base de datos PostgreSQL, para desarrollar 
+                esta aplicación desde cero. Cabe aclarar que al estar montado en un servicio 
+                gratuito de hosting, la experiencia puede resultar un poco lenta.
+            `,
+        },
+        chillingTime: {
+            description: `
+                En este proyecto grupal, contribuí a la primera versión de una página web 
+                dedicada a reservas para espacios VIP en aeropuertos. Mi enfoque principal 
+                estuvo en el desarrollo del backend, donde trabajé con tecnologías como 
+                JavaScript, PostgreSQL, Prisma y Node.js para asegurar un sólido sistema de 
+                gestión de reservas y usuarios. Además, colaboré en aspectos del frontend 
+                utilizando Next.js, HTML y Tailwind CSS para crear una interfaz de usuario 
+                atractiva y funcional.
+            `,
+        },
+        bastardos: {
+            description: `
+                En este proyecto desarrollado para el servidor Bastardos del juego DayZ, 
+                creé una página web personalizada que permite a los jugadores consultar sus 
+                estadísticas de forma actualizada. La página está conectada al servidor del 
+                juego mediante la plataforma CFTools, lo que garantiza que los datos se 
+                reflejen en tiempo real. Además, el sitio cuenta con una sección dedicada a 
+                las reglas del juego, un podio con los jugadores más destacados y enlaces a 
+                las redes sociales oficiales del servidor para una experiencia de comunidad completa.
+            `,
+        },
+    },
+    en: {
+        pokemon: {
+            description: `
+                My first project is an app that allows you to create and search for Pokémon, 
+                offering an interactive and fun experience. I used a combination of React and 
+                Express, along with a PostgreSQL database, to develop this app from scratch. 
+                It's worth mentioning that since it's hosted on a free service, the experience 
+                may be a little slow.
+            `,
+        },
+        chillingTime: {
+            description: `
+                In this group project, I contributed to the first version of a website 
+                dedicated to booking VIP spaces at airports. My main focus was on backend 
+                development, where I worked with technologies like JavaScript, PostgreSQL, 
+                Prisma, and Node.js to ensure a solid booking and user management system. 
+                Additionally, I collaborated on frontend aspects using Next.js, HTML, and 
+                Tailwind CSS to create an attractive and functional user interface.
+            `,
+        },
+        bastardos: {
+            description: `
+                In this project developed for the Bastardos server in DayZ, I created a 
+                custom website that allows players to check their up-to-date statistics. The 
+                site is connected to the game server via the CFTools platform, ensuring real-time 
+                data reflection. The website also features a dedicated section for game rules, 
+                a podium with top players, and links to the server's official social media for a 
+                full community experience.
+            `,
+        },
+    },
+};
 
 const iconComponents = {
     JavaScriptIcon,
@@ -51,14 +119,14 @@ interface ProjectData {
     description: string;
     url: string;
     technologies: (keyof typeof iconComponents)[];
+    id: string; // Identificador único
 }
 
 const projectsData: ProjectData[] = [
     {
         title: "Pokemon",
         image: pokemon,
-        description:
-            "Mi primer proyecto es una aplicación que permite crear y buscar Pokémon, ofreciendo una experiencia interactiva y divertida. Utilicé una combinación de React y Express, junto con una base de datos PostgreSQL, para desarrollar esta aplicación desde cero. Cabe aclarar que al estar montado en un servicio gratuito de hosting la experiencia puede resultar un poco lenta",
+        description: "",
         url: "https://pokemonappbysfb-omega.vercel.app/",
         technologies: [
             "JavaScriptIcon",
@@ -74,12 +142,12 @@ const projectsData: ProjectData[] = [
             "GitHubIcon",
             "NPMIcon",
         ],
+        id: "pokemon", // Identificador único
     },
     {
         title: "ChillingTime",
         image: ctime,
-        description:
-            "En este proyecto grupal, contribuí a la primera versión de una página web dedicada a reservas para espacios VIP en aeropuertos. Mi enfoque principal estuvo en el desarrollo del backend, donde trabajé con tecnologías como JavaScript, PostgreSQL, Prisma y Node.js para asegurar un sólido sistema de gestión de reservas y usuarios. Además, colaboré en aspectos del frontend utilizando Next.js, HTML y Tailwind CSS para crear una interfaz de usuario atractiva y funcional.",
+        description: "",
         url: "https://chillingtime.co/",
         technologies: [
             "JavaScriptIcon",
@@ -94,12 +162,12 @@ const projectsData: ProjectData[] = [
             "GitHubIcon",
             "NPMIcon",
         ],
+        id: "chillingTime", // Identificador único
     },
     {
         title: "Bastardos server web page",
         image: bastar2,
-        description:
-            "En este proyecto desarrollado para el servidor Bastardos del juego DayZ, creé una página web personalizada que permite a los jugadores consultar sus estadísticas de forma actualizada. La página está conectada al servidor del juego mediante la plataforma CFTools, lo que garantiza que los datos se reflejen en tiempo real. Además, el sitio cuenta con una sección dedicada a las reglas del juego, un podio con los jugadores más destacados y enlaces a las redes sociales oficiales del servidor para una experiencia de comunidad completa.",
+        description: "",
         url: "https://bastar2.vercel.app/",
         technologies: [
             "JavaScriptIcon",
@@ -112,6 +180,7 @@ const projectsData: ProjectData[] = [
             "GitHubIcon",
             "NPMIcon",
         ],
+        id: "bastardos", // Identificador único
     },
 ];
 
@@ -124,11 +193,17 @@ const Project = ({
     isVisible: boolean;
     onToggle: () => void;
 }) => {
+    const { lang } = useLang();
+    const projectTranslation =
+        projectsTranslations[lang][
+            project.id as keyof (typeof projectsTranslations)[typeof lang]
+        ];
+
     return (
         <div className="mb-8">
             <div
                 onClick={onToggle}
-                className="flex justify-between items-center mt-10 mb-4 cursor-pointer"
+                className="flex justify-between items-center mt-1 mb-4 cursor-pointer"
             >
                 <h2 className="text-xl font-bold">{project.title}</h2>
                 <button className="border p-1">
@@ -157,7 +232,7 @@ const Project = ({
                         </div>
                     </div>
                     <p className="text-sm font-bold text-center">
-                        {project.description}
+                        {projectTranslation.description}
                     </p>
                 </article>
             )}
@@ -181,7 +256,7 @@ export const Proyects = () => {
     };
 
     return (
-        <div className="grid grid-rows-subgrid gap-4 text-white">
+        <div className="grid grid-rows-subgrid gap-4 text-white bg-black bg-opacity-70">
             {projectsData.map((project) => (
                 <Project
                     key={project.title}

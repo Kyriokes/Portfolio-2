@@ -1,57 +1,83 @@
 "use client";
 
-
 import { useRef, FormEvent } from "react";
 import emailjs from "@emailjs/browser";
 import Swal from "sweetalert2";
 import { GitHubIcon, Linkedin, WhatsApp } from "../assets/icons";
+import { useLang } from "../context/LangContext"; // Asegúrate de usar el contexto de idioma
 
 const ContactForm: React.FC = () => {
+    const form = useRef<HTMLFormElement>(null);
+    const { lang } = useLang(); // Obtenemos el idioma desde el contexto
 
-	const form = useRef<HTMLFormElement>(null);
+    // Traducciones de textos
+    const formTexts = {
+        es: {
+            contactTitle: "Contáctame",
+            email: "ferrari8986@gmail.com",
+            nameLabel: "Nombre y Apellido",
+            emailLabel: "E-mail",
+            messageLabel: "Motivo de contacto",
+            submitButton: "Enviar",
+            socialTitle: "Mis Redes",
+            emailSuccessTitle: "¡Email enviado!",
+            emailSuccessText: "Pronto estaremos en contacto",
+        },
+        en: {
+            contactTitle: "Contact Me",
+            email: "ferrari8986@gmail.com",
+            nameLabel: "Full Name",
+            emailLabel: "E-mail",
+            messageLabel: "Reason for Contact",
+            submitButton: "Send",
+            socialTitle: "My Social Networks",
+            emailSuccessTitle: "Email Sent!",
+            emailSuccessText: "I will contact you soon",
+        },
+    };
 
-	const sendEmail = (e: FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
+    const sendEmail = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
 
-		if (form.current) {
-			emailjs
-				.sendForm("service_ybkx9o9", "template_ov8bcak", form.current, {
-					publicKey: "HPOdzduDO6Ab5e_Ro",
-				})
-				.then(
-					() => {
-						console.log("SUCCESS!");
-						if (form.current) {
-							form.current.reset();
-						}
-						Swal.fire({
-							title: "Email enviado!",
-							text: "pronto estaremos en contacto",
-							icon: "success",
-							confirmButtonColor: "#1F7A8C",
-							color: "#EAE6E5",
-							background: "#1C2321",
-							iconColor: "#90A955",
-						});
-					},
-					(error) => {
-						console.log("FAILED...", error.text);
-					}
-				);
-		} else {
-			console.error("Form is not available.");
-		}
-	};
+        if (form.current) {
+            emailjs
+                .sendForm("service_ybkx9o9", "template_ov8bcak", form.current, {
+                    publicKey: "HPOdzduDO6Ab5e_Ro",
+                })
+                .then(
+                    () => {
+                        console.log("SUCCESS!");
+                        if (form.current) {
+                            form.current.reset();
+                        }
+                        Swal.fire({
+                            title: formTexts[lang].emailSuccessTitle,
+                            text: formTexts[lang].emailSuccessText,
+                            icon: "success",
+                            confirmButtonColor: "#1F7A8C",
+                            color: "#EAE6E5",
+                            background: "#1C2321",
+                            iconColor: "#90A955",
+                        });
+                    },
+                    (error) => {
+                        console.log("FAILED...", error.text);
+                    }
+                );
+        } else {
+            console.error("Form is not available.");
+        }
+    };
 
-	return (
+    return (
         <div className="p-5 bg-black bg-opacity-50 text-white text-center overflow-x-hidden overflow-y-auto box-border border-t-2 border-black">
             <div className="relative w-full my-10">
                 <div className="w-full relative pb-2 my-10">
                     <h1 className="text-4xl text-center mb-4 align-text-bottom font-bold lg:text-6xl">
-                        Contáctame
+                        {formTexts[lang].contactTitle}
                     </h1>
                     <p className="text-center text-2xl my-6">
-                        ferrari8986@gmail.com
+                        {formTexts[lang].email}
                     </p>
 
                     <div className="m-1 w-full flex justify-center">
@@ -66,7 +92,7 @@ const ContactForm: React.FC = () => {
                                         className="block uppercase tracking-wide text-xs font-bold mb-2"
                                         htmlFor="grid-password"
                                     >
-                                        Nombre y Apellido
+                                        {formTexts[lang].nameLabel}
                                     </label>
                                     <input
                                         className="text-black appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -79,10 +105,10 @@ const ContactForm: React.FC = () => {
                             <div className="flex flex-wrap -mx-3 mb-6">
                                 <div className="w-full px-3">
                                     <label
-                                        className="block uppercase tracking-wide  text-xs font-bold mb-2"
+                                        className="block uppercase tracking-wide text-xs font-bold mb-2"
                                         htmlFor="grid-password"
                                     >
-                                        E-mail
+                                        {formTexts[lang].emailLabel}
                                     </label>
                                     <input
                                         className="text-black appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
@@ -95,10 +121,10 @@ const ContactForm: React.FC = () => {
                             <div className="flex flex-wrap -mx-3 mb-6">
                                 <div className="w-full px-3">
                                     <label
-                                        className="block uppercase tracking-wide  text-xs font-bold mb-2"
+                                        className="block uppercase tracking-wide text-xs font-bold mb-2"
                                         htmlFor="grid-password"
                                     >
-                                        Motivo de contacto
+                                        {formTexts[lang].messageLabel}
                                     </label>
                                     <textarea
                                         className="text-black no-resize appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
@@ -114,17 +140,16 @@ const ContactForm: React.FC = () => {
                                         type="submit"
                                         value="Send"
                                     >
-                                        Enviar
+                                        {formTexts[lang].submitButton}
                                     </button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <h2 className="text-xl font-bold text-center">
-                        {" "}
-                        Mis Redes{" "}
+                        {formTexts[lang].socialTitle}
                     </h2>
-                    <div className="mx-auto  p-3 gap-x-20 gap-y-6 flex flex-wrap justify-center">
+                    <div className="mx-auto p-3 gap-x-20 gap-y-6 flex flex-wrap justify-center">
                         <a
                             className="flex items-center w-20 h-20"
                             href="https://github.com/Kyriokes"

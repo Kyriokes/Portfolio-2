@@ -436,3 +436,62 @@ export function NeonIcon({ className = "h-8 w-8" }: IconProps) {
         />
     );
 }
+
+export function CsharpIcon({ className = "h-8 w-8" }: IconProps) {
+    return (
+        <Image
+            className={className}
+            src="https://raw.githubusercontent.com/bablubambal/All_logo_and_pictures/7c0ac2ceb9f9d24992ec393d11fa7337d2f92466/programming%20languages/c%23.svg"
+            alt="C#"
+            width={32}
+            height={32}
+        />
+    );
+}
+
+export function FireBaseIcon({ className = "h-8 w-8" }: IconProps) {
+    return (
+        <Image
+            className={className}
+            src="https://raw.githubusercontent.com/bablubambal/All_logo_and_pictures/7c0ac2ceb9f9d24992ec393d11fa7337d2f92466/cloud/firebase.svg"
+            alt="FireBase"
+            width={32}
+            height={32}
+        />
+    );
+}
+export function SupaBaseIcon({ className = "h-8 w-8" }: IconProps) {
+    return (
+        <Image
+            className={className}
+            src="https://raw.githubusercontent.com/BekCodingAddict/Icons/ad230fdf76196aa3fc47625aa7db1fa4c1d014dd/icons/supabase/supabase-original.svg"
+            alt="SupaBase"
+            width={32}
+            height={32}
+        />
+    );
+}
+
+export function ArgIcon() {
+    return (
+        <Image
+            
+            src="https://raw.githubusercontent.com/giift/npm-country-flags/9fa8aa88fd70374776eda19b8cc57d5a74b01849/assets/svg/ar.svg"
+            alt="Arg"
+            width={32}
+            height={32}
+        />
+    );
+}
+
+export function UsaIcon() {
+    return (
+        <Image
+            
+            src="https://raw.githubusercontent.com/giift/npm-country-flags/9fa8aa88fd70374776eda19b8cc57d5a74b01849/assets/svg/us.svg"
+            alt="Usa"
+            width={32}
+            height={32}
+        />
+    );
+}
