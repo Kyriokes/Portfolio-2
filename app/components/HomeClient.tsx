@@ -7,6 +7,8 @@ import ContactForm from "./ContactForm";
 import Pdf from "./Pdf";
 import Skills from "../assets/skills";
 import { Proyects } from "./Proyects";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function HomeClient() {
     const [activeTab, setActiveTab] = useState<string>("about");
@@ -42,6 +44,18 @@ export default function HomeClient() {
                     </div>
                 </div>
             </div>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={true}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+            />
         </div>
     );
 }

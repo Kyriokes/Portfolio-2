@@ -4,7 +4,10 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { useLang } from "../context/LangContext";
-import { ArgIcon, UsaIcon } from "../assets/icons";
+// import { ArgIcon, UsaIcon } from "../assets/icons";
+import esp from "../assets/spn.png"
+import eng from "../assets/uk.png"
+
 
 interface HeaderProps {
     setActiveTab: (tab: string) => void;
@@ -100,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                     )}
                     aria-label="Cambiar a Castellano"
                 >
-                    <ArgIcon/>
+                    <Image src={esp} alt="Español" width={24} height={24} />
                 </button>
                 <button
                     onClick={() => setLang("en")}
@@ -110,7 +113,7 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                     )}
                     aria-label="Change to English"
                 >
-                    <UsaIcon/>
+                    <Image src={eng} alt="English" width={24} height={24} />
                 </button>
             </div>
             <div className="flex flex-col items-center lg:flex-row lg:items-start w-full">

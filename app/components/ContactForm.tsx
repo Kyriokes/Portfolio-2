@@ -1,16 +1,21 @@
 "use client";
 
-import { useRef, FormEvent } from "react";
+import { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import Swal from "sweetalert2";
 import { GitHubIcon, Linkedin, WhatsApp } from "../assets/icons";
-import { useLang } from "../context/LangContext"; // Asegúrate de usar el contexto de idioma
+import { useLang } from "../context/LangContext";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+
 
 const ContactForm: React.FC = () => {
-    const form = useRef<HTMLFormElement>(null);
-    const { lang } = useLang(); // Obtenemos el idioma desde el contexto
+    const formRef = useRef<HTMLFormElement>(null);
+    const { lang } = useLang();
 
-    // Traducciones de textos
     const formTexts = {
         es: {
             contactTitle: "Contáctame",
@@ -22,6 +27,9 @@ const ContactForm: React.FC = () => {
             socialTitle: "Mis Redes",
             emailSuccessTitle: "¡Email enviado!",
             emailSuccessText: "Pronto estaremos en contacto",
+            user_name: "Nombre muy corto",
+            user_email: "Email inválido",
+            message: "El mensaje es muy corto",
         },
         en: {
             contactTitle: "Contact Me",
@@ -33,39 +41,46 @@ const ContactForm: React.FC = () => {
             socialTitle: "My Social Networks",
             emailSuccessTitle: "Email Sent!",
             emailSuccessText: "I will contact you soon",
+            user_name: "Name too short",
+            user_email: "Invalid Email",
+            message: "The message is too short",
         },
     };
 
-    const sendEmail = (e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const ContactSchema = z.object({
+        user_name: z.string().min(2, formTexts[lang].user_name),
+        user_email: z.string().email(formTexts[lang].user_email),
+        message: z.string().min(10, formTexts[lang].message),
+    });
 
-        if (form.current) {
-            emailjs
-                .sendForm("service_ybkx9o9", "template_ov8bcak", form.current, {
-                    publicKey: "HPOdzduDO6Ab5e_Ro",
-                })
-                .then(
-                    () => {
-                        console.log("SUCCESS!");
-                        if (form.current) {
-                            form.current.reset();
-                        }
-                        Swal.fire({
-                            title: formTexts[lang].emailSuccessTitle,
-                            text: formTexts[lang].emailSuccessText,
-                            icon: "success",
-                            confirmButtonColor: "#1F7A8C",
-                            color: "#EAE6E5",
-                            background: "#1C2321",
-                            iconColor: "#90A955",
-                        });
-                    },
-                    (error) => {
-                        console.log("FAILED...", error.text);
-                    }
-                );
-        } else {
-            console.error("Form is not available.");
+    type ContactFormData = z.infer<typeof ContactSchema>;
+
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm<ContactFormData>({
+        resolver: zodResolver(ContactSchema),
+    });
+
+    const onSubmit = async (data: ContactFormData) => {
+        try {
+            await emailjs.send("service_ybkx9o9", "template_ov8bcak", data, {
+                publicKey: "HPOdzduDO6Ab5e_Ro",
+            });
+
+            toast.success(formTexts[lang].emailSuccessText, {
+                position: "bottom-right",
+                theme: "dark",
+            });
+
+            reset();
+        } catch{
+            toast.error("Hubo un error al enviar el mensaje", {
+                position: "bottom-right",
+                theme: "dark",
+            });
         }
     };
 
@@ -82,63 +97,62 @@ const ContactForm: React.FC = () => {
 
                     <div className="m-1 w-full flex justify-center">
                         <form
+                            ref={formRef}
+                            onSubmit={handleSubmit(onSubmit)}
                             className="w-full max-w-lg justify-center"
-                            ref={form}
-                            onSubmit={sendEmail}
                         >
-                            <div className="flex flex-wrap -mx-3 mb-6">
-                                <div className="w-full px-3">
-                                    <label
-                                        className="block uppercase tracking-wide text-xs font-bold mb-2"
-                                        htmlFor="grid-password"
-                                    >
-                                        {formTexts[lang].nameLabel}
-                                    </label>
-                                    <input
-                                        className="text-black appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="nick"
-                                        type="text"
-                                        name="user_name"
-                                    />
-                                </div>
+                            <div className="mb-6">
+                                <label className="block uppercase tracking-wide text-xs font-bold mb-2">
+                                    {formTexts[lang].nameLabel}
+                                </label>
+                                <input
+                                    {...register("user_name")}
+                                    className="text-black appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="text"
+                                />
+                                {errors.user_name && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.user_name.message}
+                                    </p>
+                                )}
                             </div>
-                            <div className="flex flex-wrap -mx-3 mb-6">
-                                <div className="w-full px-3">
-                                    <label
-                                        className="block uppercase tracking-wide text-xs font-bold mb-2"
-                                        htmlFor="grid-password"
-                                    >
-                                        {formTexts[lang].emailLabel}
-                                    </label>
-                                    <input
-                                        className="text-black appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                                        id="email"
-                                        type="email"
-                                        name="user_email"
-                                    />
-                                </div>
+
+                            <div className="mb-6">
+                                <label className="block uppercase tracking-wide text-xs font-bold mb-2">
+                                    {formTexts[lang].emailLabel}
+                                </label>
+                                <input
+                                    {...register("user_email")}
+                                    className="text-black appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                                    type="email"
+                                />
+                                {errors.user_email && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.user_email.message}
+                                    </p>
+                                )}
                             </div>
-                            <div className="flex flex-wrap -mx-3 mb-6">
-                                <div className="w-full px-3">
-                                    <label
-                                        className="block uppercase tracking-wide text-xs font-bold mb-2"
-                                        htmlFor="grid-password"
-                                    >
-                                        {formTexts[lang].messageLabel}
-                                    </label>
-                                    <textarea
-                                        className="text-black no-resize appearance-none block w-full bg-gray-200  border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
-                                        id="message"
-                                        name="message"
-                                    ></textarea>
-                                </div>
+
+                            <div className="mb-6">
+                                <label className="block uppercase tracking-wide text-xs font-bold mb-2">
+                                    {formTexts[lang].messageLabel}
+                                </label>
+                                <textarea
+                                    {...register("message")}
+                                    className="text-black no-resize appearance-none block w-full bg-gray-200 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500 h-48 resize-none"
+                                />
+                                {errors.message && (
+                                    <p className="text-red-500 text-sm mt-1">
+                                        {errors.message.message}
+                                    </p>
+                                )}
                             </div>
+
                             <div className="md:flex md:items-center">
                                 <div className="md:w-1/3 ml-auto">
                                     <button
                                         className="w-32 shadow bg-cTeal hover:bg-teal-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                         type="submit"
-                                        value="Send"
                                     >
                                         {formTexts[lang].submitButton}
                                     </button>
@@ -146,7 +160,8 @@ const ContactForm: React.FC = () => {
                             </div>
                         </form>
                     </div>
-                    <h2 className="text-xl font-bold text-center">
+
+                    <h2 className="text-xl font-bold text-center mt-10">
                         {formTexts[lang].socialTitle}
                     </h2>
                     <div className="mx-auto p-3 gap-x-20 gap-y-6 flex flex-wrap justify-center">
@@ -154,6 +169,7 @@ const ContactForm: React.FC = () => {
                             className="flex items-center w-20 h-20"
                             href="https://github.com/Kyriokes"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <GitHubIcon x={20} y={20} />
                         </a>
@@ -161,6 +177,7 @@ const ContactForm: React.FC = () => {
                             className="flex items-center w-20 h-20"
                             href="https://www.linkedin.com/in/sergiofb/"
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <Linkedin />
                         </a>
@@ -168,6 +185,7 @@ const ContactForm: React.FC = () => {
                             className="flex items-center w-20 h-20"
                             href={`https://wa.me/5491535040982?text=%C2%A1Hola%20Sergio,%20me%20contacto%20con%20vos%20desde%20tu%20porfolio!%0AMe%20llamo:%0ATe%20contacto%20respecto%20a%20...`}
                             target="_blank"
+                            rel="noopener noreferrer"
                         >
                             <WhatsApp />
                         </a>
