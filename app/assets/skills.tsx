@@ -25,13 +25,11 @@ import {
     GitHubIcon,
     NPMIcon,
     YARNIcon,
-    //NeonIcon,
     BlenderIcon,
     FireBaseIcon,
     SupaBaseIcon,
-
 } from "./icons";
-import { useLang } from "../context/LangContext"; // Asumo que ya usas el context de idioma
+import { useLang } from "../context/LangContext";
 
 interface IconWithTooltipProps {
     Icon: React.ComponentType;
@@ -54,11 +52,11 @@ const TechnologyItem: React.FC<{
     name: string;
     description: string;
 }> = ({ icon: Icon, name, description }) => (
-    <div className="flex-1">
+    <div className="flex-1 bg-gray-800 bg-opacity-80 rounded-lg p-2">
         <IconWithTooltip Icon={Icon} name={name} />
-        <div className="flex-1">
-            <h2>{name}</h2>
-            <p className="flex-1">{description}</p>
+        <div className="flex-1 mt-2">
+            <h2 className="text-white text-base font-semibold">{name}</h2>
+            <p className="text-sm text-gray-300">{description}</p>
         </div>
     </div>
 );
@@ -213,7 +211,6 @@ const Skills: React.FC = () => {
             { icon: FireBaseIcon, name: "Firebase" },
             { icon: SupaBaseIcon, name: "Supabase" },
             { icon: PostgreSQLIcon, name: "PostgreSQL" },
-            //{ icon: NeonIcon, name: "Neon" },
         ],
         tools: [
             { icon: GitIcon, name: "Git" },
@@ -227,12 +224,8 @@ const Skills: React.FC = () => {
     };
 
     return (
-        <div className="space-y-8 text-white bg-black bg-opacity-70">
-            {/* Slider */}
-            <div
-                className="embla overflow-hidden bg-black bg-opacity-70"
-                ref={emblaRef}
-            >
+        <div className="space-y-8 text-white bg-gray-800 bg-opacity-80 rounded-xl p-4">
+            <div className="embla overflow-hidden" ref={emblaRef}>
                 <div className="embla__container flex">
                     {Object.values(sections)
                         .flat()
@@ -251,16 +244,13 @@ const Skills: React.FC = () => {
                 </div>
             </div>
 
-            {/* Sections */}
             <div className="text-center px-4">
                 <h2 className="text-2xl font-bold mb-4">
                     {sectionTitles[lang].technologies}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-
-                    {/* Frontend */}
                     <div className="space-y-2">
-                        <h3 className="text-xl font-semibold mb-4">
+                        <h3 className="text-xl font-semibold text-white mb-4">
                             {sectionTitles[lang].frontend}
                         </h3>
                         {sections.frontend.map((tech) => (
@@ -276,10 +266,8 @@ const Skills: React.FC = () => {
                             />
                         ))}
                     </div>
-
-                    {/* Lenguajes */}
                     <div className="space-y-2">
-                        <h3 className="text-xl font-semibold mb-4">
+                        <h3 className="text-xl font-semibold text-white mb-4">
                             {sectionTitles[lang].languages}
                         </h3>
                         {sections.languages.map((tech) => (
@@ -295,9 +283,8 @@ const Skills: React.FC = () => {
                             />
                         ))}
                     </div>
-                    {/* Backend */}
                     <div className="space-y-2">
-                        <h3 className="text-xl font-semibold mb-4">
+                        <h3 className="text-xl font-semibold text-white mb-4">
                             {sectionTitles[lang].backend}
                         </h3>
                         {sections.backend.map((tech) => (
@@ -313,10 +300,8 @@ const Skills: React.FC = () => {
                             />
                         ))}
                     </div>
-
-                    {/* Herramientas */}
                     <div className="space-y-2 md:col-span-2 lg:col-span-1">
-                        <h3 className="text-xl font-semibold mb-4">
+                        <h3 className="text-xl font-semibold text-white mb-4">
                             {sectionTitles[lang].tools}
                         </h3>
                         {sections.tools.map((tech) => (

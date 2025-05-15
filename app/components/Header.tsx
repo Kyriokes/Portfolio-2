@@ -4,12 +4,11 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import clsx from "clsx";
 import { useLang } from "../context/LangContext";
-// import { ArgIcon, UsaIcon } from "../assets/icons";
-import esp from "../assets/spn.png"
-import eng from "../assets/uk.png"
-
+import esp from "../assets/spn.png";
+import eng from "../assets/uk.png";
 
 interface HeaderProps {
+    activeTab: string;
     setActiveTab: (tab: string) => void;
 }
 
@@ -58,7 +57,7 @@ const presentation = {
     },
 };
 
-const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
+const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     const windowWidth = useWindowWidth();
     const { lang, setLang } = useLang();
 
@@ -75,12 +74,15 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
     ];
 
     const getButtonClass = (index: number) => {
+        const tab = tabs[index].tab;
+        const isActive = tab === activeTab;
         const isFirstTab = index === 0;
         const isLastTab = index === tabs.length - 1;
 
         return clsx(
-            "py-2 px-2 bg-black bg-opacity-80 text-white border border-black cursor-pointer hover:bg-[#8b631d7c] text-xs sm:text-sm md:text-base flex-grow lg:flex-grow-0 transition-all duration-300 ease-in-out",
+            "py-2 px-2 bg-gray-900 bg-opacity-90 text-white border border-gray-700 cursor-pointer hover:bg-gray-700 text-xs sm:text-sm md:text-base flex-grow lg:flex-grow-0 transition-all duration-300 ease-in-out",
             {
+                "bg-sky-700": isActive,
                 "rounded-tl-2xl": isFirstTab,
                 "rounded-tr-2xl":
                     windowWidth <= 320
@@ -98,8 +100,13 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                 <button
                     onClick={() => setLang("es")}
                     className={clsx(
-                        "mb-2 px-3 py-1 bg-black bg-opacity-80 text-white rounded-md text-xs",
-                        { "opacity-50": lang !== "es" }
+                        "m-0.5 px-3 py-1 rounded-md text-xs transition-colors",
+                        {
+                            "bg-gray-700 text-white hover:bg-gray-600":
+                                lang === "es",
+                            "bg-gray-800 text-gray-400 hover:bg-gray-700":
+                                lang !== "es",
+                        }
                     )}
                     aria-label="Cambiar a Castellano"
                 >
@@ -108,8 +115,13 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                 <button
                     onClick={() => setLang("en")}
                     className={clsx(
-                        "mb-2 px-3 py-1 bg-black bg-opacity-80 text-white rounded-md text-xs",
-                        { "opacity-50": lang !== "en" }
+                        "m-0.5 px-3 py-1 rounded-md text-xs transition-colors",
+                        {
+                            "bg-gray-700 text-white hover:bg-gray-600":
+                                lang === "en",
+                            "bg-gray-800 text-gray-400 hover:bg-gray-700":
+                                lang !== "en",
+                        }
                     )}
                     aria-label="Change to English"
                 >
@@ -127,9 +139,9 @@ const Header: React.FC<HeaderProps> = ({ setActiveTab }) => {
                 />
                 <div className="font-['Segoe_UI',Tahoma,Geneva,Verdana,sans-serif] text-center lg:text-left text-xl m-4 sm:text-2xl md:text-3xl lg:text-2xl p-4">
                     <h1 className="uppercase text-4xl sm:text-5xl md:text-6xl lg:text-4xl p-2">
-                        Sergio
-                        <br /> Ferrari
-                        <br /> Bryce
+                        <span className="block">Sergio</span>
+                        <span className="block">Ferrari</span>
+                        <span className="block">Bryce</span>
                     </h1>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl p-2">
                         <span className="block lg:ml-0">
