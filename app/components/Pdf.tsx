@@ -30,7 +30,7 @@ const Pdf: React.FC = () => {
     };
 
     const openPdfInNewWindow = () => {
-        window.open("/CV.pdf", "_blank");
+        window.open("/CV_SERGIO_FERRARI_BRYCE.pdf", "_blank");
     };
 
     return (
@@ -39,7 +39,7 @@ const Pdf: React.FC = () => {
                 <div className="text-red-500 mb-4">{pdfError}</div>
             ) : (
                 <Document
-                    file="/CV.pdf"
+                    file="/CV_SERGIO_FERRARI_BRYCE.pdf"
                     onLoadSuccess={onDocumentLoadSuccess}
                     onLoadError={onDocumentLoadError}
                     className="flex items-center overflow-x-scroll max-w-max"

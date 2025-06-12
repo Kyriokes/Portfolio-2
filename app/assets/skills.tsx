@@ -30,16 +30,30 @@ import {
     SupaBaseIcon,
 } from "./icons";
 import { useLang } from "../context/LangContext";
+import Image from "next/image";
+import expertBadge from "./expert.png";
 
 interface IconWithTooltipProps {
     Icon: React.ComponentType;
     name: string;
+    expert?: boolean;
 }
 
-const IconWithTooltip: React.FC<IconWithTooltipProps> = ({ Icon, name }) => (
+const IconWithTooltip: React.FC<IconWithTooltipProps> = ({
+    Icon,
+    name,
+    expert,
+}) => (
     <div className="group relative inline-block">
         <div className="w-16 h-16 flex justify-center items-center">
             <Icon />
+            {expert && (
+                <Image
+                    src={expertBadge}
+                    alt="Expert"
+                    className="absolute top-0 right-0 w-5 h-5"
+                />
+            )}
         </div>
         <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
             {name}
@@ -51,9 +65,10 @@ const TechnologyItem: React.FC<{
     icon: React.ComponentType;
     name: string;
     description: string;
-}> = ({ icon: Icon, name, description }) => (
+    expert?: boolean;
+}> = ({ icon: Icon, name, description, expert }) => (
     <div className="flex-1 bg-gray-800 bg-opacity-80 rounded-lg p-2">
-        <IconWithTooltip Icon={Icon} name={name} />
+        <IconWithTooltip Icon={Icon} name={name} expert={expert} />
         <div className="flex-1 mt-2">
             <h2 className="text-white text-base font-semibold">{name}</h2>
             <p className="text-sm text-gray-300">{description}</p>
@@ -83,6 +98,11 @@ const Skills: React.FC = () => {
             tools: "Tools",
             technologies: "Technologies",
         },
+    };
+
+    const expertTexts = {
+        es: "Iconos con esta insignia marcan tecnologías donde tengo mayor dominio.",
+        en: "Icons with this badge indicate technologies I'm most proficient in.",
     };
 
     const techDescriptions = {
@@ -190,36 +210,36 @@ const Skills: React.FC = () => {
 
     const sections = {
         languages: [
-            { icon: JavaScriptIcon, name: "JavaScript" },
-            { icon: TypeScriptIcon, name: "TypeScript" },
-            { icon: CsharpIcon, name: "C#" },
+            { icon: JavaScriptIcon, name: "JavaScript", expert: true },
+            { icon: TypeScriptIcon, name: "TypeScript", expert: true },
+            { icon: CsharpIcon, name: "C#", expert: false },
         ],
         frontend: [
-            { icon: ReactIcon, name: "React" },
-            { icon: HTMLIcon, name: "HTML" },
-            { icon: CSSIcon, name: "CSS" },
-            { icon: NextIcon, name: "NextJS" },
-            { icon: ViteIcon, name: "Vite" },
-            { icon: TailwindIcon, name: "TailwindCSS" },
-            { icon: ReduxIcon, name: "Redux" },
+            { icon: ReactIcon, name: "React", expert: true },
+            { icon: HTMLIcon, name: "HTML", expert: true },
+            { icon: CSSIcon, name: "CSS", expert: true },
+            { icon: NextIcon, name: "NextJS", expert: true },
+            { icon: ViteIcon, name: "Vite", expert: true },
+            { icon: TailwindIcon, name: "TailwindCSS", expert: true },
+            { icon: ReduxIcon, name: "Redux", expert: false },
         ],
         backend: [
-            { icon: NodeJSIcon, name: "NodeJS" },
-            { icon: ExpressIcon, name: "Express" },
-            { icon: NestIcon, name: "NestJS" },
-            { icon: PrismaIcon, name: "Prisma" },
-            { icon: FireBaseIcon, name: "Firebase" },
-            { icon: SupaBaseIcon, name: "Supabase" },
-            { icon: PostgreSQLIcon, name: "PostgreSQL" },
+            { icon: NodeJSIcon, name: "NodeJS", expert: true },
+            { icon: ExpressIcon, name: "Express", expert: true },
+            { icon: NestIcon, name: "NestJS", expert: false },
+            { icon: PrismaIcon, name: "Prisma", expert: true },
+            { icon: FireBaseIcon, name: "Firebase", expert: false },
+            { icon: SupaBaseIcon, name: "Supabase", expert: true },
+            { icon: PostgreSQLIcon, name: "PostgreSQL", expert: true },
         ],
         tools: [
-            { icon: GitIcon, name: "Git" },
-            { icon: GitHubIcon, name: "GitHub" },
-            { icon: VSCodeIcon, name: "VSCode" },
-            { icon: NPMIcon, name: "NPM" },
-            { icon: YARNIcon, name: "Yarn" },
-            { icon: UnityIcon, name: "Unity" },
-            { icon: BlenderIcon, name: "Blender" },
+            { icon: GitIcon, name: "Git", expert: true },
+            { icon: GitHubIcon, name: "GitHub", expert: true },
+            { icon: VSCodeIcon, name: "VSCode", expert: true },
+            { icon: NPMIcon, name: "NPM", expert: true },
+            { icon: YARNIcon, name: "Yarn", expert: false },
+            { icon: UnityIcon, name: "Unity", expert: false },
+            { icon: BlenderIcon, name: "Blender", expert: false },
         ],
     };
 
@@ -248,6 +268,17 @@ const Skills: React.FC = () => {
                 <h2 className="text-2xl font-bold mb-4">
                     {sectionTitles[lang].technologies}
                 </h2>
+
+                <div className="flex items-center justify-center gap-2 text-sm text-gray-300 mb-6">
+                    <Image
+                        src={expertBadge}
+                        alt="Expert badge"
+                        width={20}
+                        height={20}
+                    />
+                    <span>{expertTexts[lang]}</span>
+                </div>
+
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <div className="space-y-2">
                         <h3 className="text-xl font-semibold text-white mb-4">
@@ -258,6 +289,7 @@ const Skills: React.FC = () => {
                                 key={tech.name}
                                 icon={tech.icon}
                                 name={tech.name}
+                                expert={tech.expert}
                                 description={
                                     techDescriptions[
                                         tech.name as keyof typeof techDescriptions
@@ -275,6 +307,7 @@ const Skills: React.FC = () => {
                                 key={tech.name}
                                 icon={tech.icon}
                                 name={tech.name}
+                                expert={tech.expert}
                                 description={
                                     techDescriptions[
                                         tech.name as keyof typeof techDescriptions
@@ -292,6 +325,7 @@ const Skills: React.FC = () => {
                                 key={tech.name}
                                 icon={tech.icon}
                                 name={tech.name}
+                                expert={tech.expert}
                                 description={
                                     techDescriptions[
                                         tech.name as keyof typeof techDescriptions
@@ -309,6 +343,7 @@ const Skills: React.FC = () => {
                                 key={tech.name}
                                 icon={tech.icon}
                                 name={tech.name}
+                                expert={tech.expert}
                                 description={
                                     techDescriptions[
                                         tech.name as keyof typeof techDescriptions
