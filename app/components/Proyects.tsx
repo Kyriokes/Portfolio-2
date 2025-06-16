@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import pokemon from "../assets/pokemon.jpg";
 import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
+import eco from "../assets/eco.jpg";
 import {
     ArrowA,
     ArrowD,
@@ -14,6 +15,7 @@ import {
     GitHubIcon,
     GitIcon,
     HTMLIcon,
+    TypeScriptIcon,
     JavaScriptIcon,
     NextIcon,
     NodeJSIcon,
@@ -24,6 +26,8 @@ import {
     ReduxIcon,
     TailwindIcon,
     VSCodeIcon,
+    SupaBaseIcon,
+    ViteIcon,
 } from "../assets/icons";
 import { useLang } from "../context/LangContext";
 
@@ -44,6 +48,15 @@ const projectsTranslations = {
                 En este proyecto desarrollado para el servidor Bastardos del juego DayZ, creé una página web personalizada que permite a los jugadores consultar sus estadísticas de forma actualizada. La página está conectada al servidor del juego mediante la plataforma CFTools, lo que garantiza que los datos se reflejen en tiempo real. Además, el sitio cuenta con una sección dedicada a las reglas del juego, un podio con los jugadores más destacados y enlaces a las redes sociales oficiales del servidor para una experiencia de comunidad completa.
             `,
         },
+        ecoShop: {
+            description: `
+            EcoShop es una plataforma de ecommerce fullstack que estoy desarrollando actualmente como proyecto personal. Utiliza React con TypeScript y Tailwind CSS para el frontend, y Node.js con Express, Prisma y PostgreSQL para el backend. 
+        
+            Ya se encuentran funcionando partes clave como el registro e inicio de sesión de usuarios con JWT, la visualización de productos y la gestión del carrito de compras. Próximamente, migraré el sistema de autenticación a Auth0 para mejorar la seguridad y escalabilidad. También estoy trabajando en la integración con Stripe para permitir pagos reales en la plataforma.
+        
+            Cuenta con un panel administrativo en desarrollo para la gestión de productos y usuarios. Es un proyecto en progreso que refleja mi capacidad para diseñar arquitecturas modernas, trabajar con tecnologías de backend y frontend, e incorporar servicios de terceros como Auth0 y Stripe.
+            `,
+        },
     },
     en: {
         pokemon: {
@@ -61,11 +74,21 @@ const projectsTranslations = {
                 In this project developed for the Bastardos server in DayZ, I created a custom website that allows players to check their up-to-date statistics. The site is connected to the game server via the CFTools platform, ensuring real-time data reflection. The website also features a dedicated section for game rules, a podium with top players, and links to the server's official social media for a full community experience.
             `,
         },
+        ecoShop: {
+            description: `
+            EcoShop is a fullstack ecommerce platform I'm currently developing as a personal project. It uses React with TypeScript and Tailwind CSS for the frontend, and Node.js with Express, Prisma, and PostgreSQL for the backend.
+        
+            Key features are already working, including user registration and login with JWT, product browsing, and shopping cart management. I'm currently transitioning the authentication system to Auth0 for improved security and scalability, and working on integrating Stripe to enable real payment processing.
+        
+            The admin panel is under development for managing products and users. This is a work-in-progress project that showcases my ability to design modern architectures, work across the full stack, and integrate third-party services like Auth0 and Stripe.
+            `,
+        },
     },
 };
 
 const iconComponents = {
     JavaScriptIcon,
+    TypeScriptIcon,
     PostgreSQLIcon,
     ExpressIcon,
     ReactIcon,
@@ -80,6 +103,8 @@ const iconComponents = {
     PrismaIcon,
     NextIcon,
     TailwindIcon,
+    SupaBaseIcon,
+    ViteIcon,
 };
 
 interface ProjectData {
@@ -92,6 +117,28 @@ interface ProjectData {
 }
 
 const projectsData: ProjectData[] = [
+    {
+        title: "Generic e-commerce",
+        image: eco,
+        description: "",
+        url: "https://ecommerce-front-ten-olive.vercel.app/",
+        technologies: [
+            "TypeScriptIcon",
+            "PostgreSQLIcon",
+            "PrismaIcon",
+            "ExpressIcon",
+            "SupaBaseIcon",
+            "ReactIcon",
+            "ViteIcon",
+            "HTMLIcon",
+            "TailwindIcon",
+            "VSCodeIcon",
+            "GitIcon",
+            "GitHubIcon",
+            "NPMIcon",
+        ],
+        id: "ecoShop",
+    },
     {
         title: "Bastardos server web page",
         image: bastar2,
@@ -152,6 +199,7 @@ const projectsData: ProjectData[] = [
         id: "pokemon",
     },
 ];
+
 
 const Project = ({
     project,

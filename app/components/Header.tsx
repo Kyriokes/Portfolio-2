@@ -47,12 +47,12 @@ const tabsTranslations = {
 const presentation = {
     es: {
         text: "Desarrollador Full Stack.",
-        text1: "Enfocado en crear soluciones",
+        text1: "Creo soluciones",
         text2: "ágiles, modernas y escalables.",
     },
     en: {
         text: "Full Stack Developer.",
-        text1: "Focused on building",
+        text1: "I build",
         text2: "agile, modern, and scalable solutions.",
     },
 };
