@@ -118,7 +118,7 @@ interface ProjectData {
 
 const projectsData: ProjectData[] = [
     {
-        title: "Generic e-commerce",
+        title: "EcoShop (WIP)",
         image: eco,
         description: "",
         url: "https://ecommerce-front-ten-olive.vercel.app/",

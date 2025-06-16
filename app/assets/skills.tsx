@@ -211,26 +211,26 @@ const Skills: React.FC = () => {
     const sections = {
         languages: [
             { icon: JavaScriptIcon, name: "JavaScript", expert: true },
-            { icon: TypeScriptIcon, name: "TypeScript", expert: true },
+            { icon: TypeScriptIcon, name: "TypeScript", expert: false },
             { icon: CsharpIcon, name: "C#", expert: false },
         ],
         frontend: [
-            { icon: ReactIcon, name: "React", expert: true },
+            { icon: ReactIcon, name: "React", expert: false },
             { icon: HTMLIcon, name: "HTML", expert: true },
             { icon: CSSIcon, name: "CSS", expert: true },
-            { icon: NextIcon, name: "NextJS", expert: true },
-            { icon: ViteIcon, name: "Vite", expert: true },
-            { icon: TailwindIcon, name: "TailwindCSS", expert: true },
+            { icon: NextIcon, name: "NextJS", expert: false },
+            { icon: ViteIcon, name: "Vite", expert: false },
+            { icon: TailwindIcon, name: "TailwindCSS", expert: false },
             { icon: ReduxIcon, name: "Redux", expert: false },
         ],
         backend: [
             { icon: NodeJSIcon, name: "NodeJS", expert: true },
             { icon: ExpressIcon, name: "Express", expert: true },
-            { icon: NestIcon, name: "NestJS", expert: false },
             { icon: PrismaIcon, name: "Prisma", expert: true },
-            { icon: FireBaseIcon, name: "Firebase", expert: false },
             { icon: SupaBaseIcon, name: "Supabase", expert: true },
             { icon: PostgreSQLIcon, name: "PostgreSQL", expert: true },
+            { icon: NestIcon, name: "NestJS", expert: false },
+            { icon: FireBaseIcon, name: "Firebase", expert: false },
         ],
         tools: [
             { icon: GitIcon, name: "Git", expert: true },
