@@ -57,6 +57,17 @@ const presentation = {
     },
 };
 
+const phrases = {
+    es: {
+        text: "¡Lo básico es lo más importante!",
+        author: "autor de",
+    },
+    en: {
+        text: "The basics are the most important!",
+        author: "author of",
+    },
+};
+
 const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
     const windowWidth = useWindowWidth();
     const { lang, setLang } = useLang();
@@ -128,7 +139,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                     <Image src={eng} alt="English" width={24} height={24} />
                 </button>
             </div>
-            <div className="flex flex-col items-center lg:flex-row lg:items-start w-full">
+            <div className="flex flex-col items-center lg:flex-row  w-full">
                 <Image
                     src="/profile.jpg"
                     alt="Profile Picture"
@@ -137,23 +148,48 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                     className="rounded-full w-64 h-64 mb-4 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[23em] lg:h-[23em] lg:mr-4"
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                 />
-                <div className="font-['Segoe_UI',Tahoma,Geneva,Verdana,sans-serif] text-center lg:text-left text-xl m-4 sm:text-2xl md:text-3xl lg:text-2xl p-4">
-                    <h1 className="uppercase text-4xl sm:text-5xl md:text-6xl lg:text-4xl p-2">
-                        <span className="block">Sergio</span>
-                        <span className="block">Ferrari</span>
-                        <span className="block">Bryce</span>
-                    </h1>
-                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl p-2">
-                        <span className="block lg:ml-0">
-                            {presentation[lang].text}
-                        </span>
-                        <span className="block lg:ml-4">
-                            {presentation[lang].text1}
-                        </span>
-                        <span className="block lg:ml-8">
-                            {presentation[lang].text2}
-                        </span>
-                    </h2>
+                <div className="relative w-full">
+                    <div className="flex flex-col justify-between flex-grow h-full">
+                        <div className="font-['Segoe_UI',Tahoma,Geneva,Verdana,sans-serif] text-center lg:text-left text-xl m-4 sm:text-2xl md:text-3xl lg:text-2xl p-4">
+                            <h1 className="uppercase text-4xl sm:text-5xl md:text-6xl lg:text-4xl p-2">
+                                <span className="block">Sergio</span>
+                                <span className="block">Ferrari</span>
+                                <span className="block">Bryce</span>
+                            </h1>
+                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl p-2">
+                                <span className="block lg:ml-0">
+                                    {presentation[lang].text}
+                                </span>
+                                <span className="block lg:ml-4">
+                                    {presentation[lang].text1}
+                                </span>
+                                <span className="block lg:ml-8">
+                                    {presentation[lang].text2}
+                                </span>
+                            </h2>
+                        </div>
+                        <div>
+                            <div className="text-right text-sm text-white leading-snug mb-4 mr-4 lg:absolute lg:bottom-0 lg:right-6 lg:mb-0 lg:mr-0 lg:w-64">
+                                <p className="text-xl sm:text-2xl mb-2 text-gray-300">
+                                    「基礎が大事だ！」
+                                </p>
+                                <p className="text-gray-300 mb-1">
+                                    {phrases[lang].text}
+                                </p>
+                                <p className="text-xs sm:text-sm text-gray-400">
+                                    <a
+                                        href="https://wikipedia.org/wiki/Takehiko_Inoue"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-sky-400 underline hover:text-sky-300 transition-colors"
+                                    >
+                                        Takehiko Inoue
+                                    </a>
+                                    , {phrases[lang].author} <em>Slam Dunk</em>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <nav className="flex flex-wrap justify-start items-start w-full mt-5">
