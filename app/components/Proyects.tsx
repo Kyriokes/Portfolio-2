@@ -7,7 +7,6 @@ import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
 import eco from "../assets/eco.jpg";
 import {
-    ArrowA,
     ArrowD,
     ArrowU,
     CSSIcon,
@@ -140,7 +139,7 @@ const projectsData: ProjectData[] = [
         id: "ecoShop",
     },
     {
-        title: "Bastardos server web page",
+        title: "Bastardos server web page 2024",
         image: bastar2,
         description: "",
         url: "https://bastar2.vercel.app/",
@@ -200,7 +199,6 @@ const projectsData: ProjectData[] = [
     },
 ];
 
-
 const Project = ({
     project,
     isVisible,
@@ -243,11 +241,15 @@ const Project = ({
                             objectFit="cover"
                             className="brightness-50 rounded"
                         />
-                        <div className="absolute inset-0 flex items-center justify-center">
-                            <ArrowA />
-                            <p className="absolute text-2xl font-bold text-center text-white">
-                                tap
-                            </p>
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                            <Image
+                                src="/hand-pointer.png"
+                                alt="Toca o haz click"
+                                width={64}
+                                height={64}
+                                className="opacity-80 drop-shadow-lg"
+                                priority
+                            />
                         </div>
                     </div>
                     <p className="text-sm font-medium text-gray-300 text-center whitespace-pre-line">
@@ -266,12 +268,12 @@ const Project = ({
 };
 
 export const Proyects = () => {
-    const [visibleProjects, setVisibleProjects] = useState<{
-        [key: string]: boolean;
-    }>({});
+    const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
+        null
+    );
 
-    const toggleProjectVisibility = (title: string) => {
-        setVisibleProjects((prev) => ({ ...prev, [title]: !prev[title] }));
+    const toggleProjectVisibility = (id: string) => {
+        setSelectedProjectId((prev) => (prev === id ? null : id));
     };
 
     return (
@@ -280,7 +282,7 @@ export const Proyects = () => {
                 <Project
                     key={project.title}
                     project={project}
-                    isVisible={visibleProjects[project.title] || false}
+                    isVisible={selectedProjectId === project.title}
                     onToggle={() => toggleProjectVisibility(project.title)}
                 />
             ))}
