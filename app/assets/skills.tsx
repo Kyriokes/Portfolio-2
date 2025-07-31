@@ -3,38 +3,44 @@
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-import {
-    JavaScriptIcon,
-    TypeScriptIcon,
-    CsharpIcon,
-    NestIcon,
-    PostgreSQLIcon,
-    ExpressIcon,
-    PrismaIcon,
-    ReactIcon,
-    ReduxIcon,
-    ViteIcon,
-    NextIcon,
-    HTMLIcon,
-    CSSIcon,
-    TailwindIcon,
-    VSCodeIcon,
-    NodeJSIcon,
-    UnityIcon,
-    GitIcon,
-    GitHubIcon,
-    NPMIcon,
-    YARNIcon,
-    BlenderIcon,
-    FireBaseIcon,
-    SupaBaseIcon,
-} from "./icons";
+
+// All icons as string paths (SVGs and PNGs)
+const BlenderIcon = "/icons/BlenderIcon.svg";
+const CsharpIcon = "/icons/CsharpIcon.svg";
+const SupaBaseIcon = "/icons/SupaBaseIcon.svg";
+const FireBaseIcon = "/icons/FireBaseIcon.svg";
+const NestIcon = "/icons/NestIcon.png";
+
+// PNGs as string paths
+const JavaScriptIcon = "/icons/JavaScriptIcon.png";
+const TypeScriptIcon = "/icons/TypeScriptIcon.png";
+const ReactIcon = "/icons/ReactIcon.png";
+const HTMLIcon = "/icons/HTMLIcon.png";
+const CSSIcon = "/icons/CSSIcon.png";
+const NextIcon = "/icons/NextIcon.png";
+const ViteIcon = "/icons/ViteIcon.png";
+const TailwindIcon = "/icons/TailwindIcon.png";
+const ReduxIcon = "/icons/ReduxIcon.png";
+const NodeJSIcon = "/icons/NodeJSIcon.png";
+const ExpressIcon = "/icons/ExpressIcon.png";
+const PrismaIcon = "/icons/PrismaIcon.png";
+const PostgreSQLIcon = "/icons/PostgreSQLIcon.png";
+const GitIcon = "/icons/GitIcon.png";
+const GitHubIcon = "/icons/GitHubIcon.png";
+const VSCodeIcon = "/icons/VSCodeIcon.png";
+const NPMIcon = "/icons/NPMIcon.png";
+const YARNIcon = "/icons/YARNIcon.png";
+const UnityIcon = "/icons/UnityIcon.png";
+const NeonIcon = "/icons/NeonIcon.png";
+
 import { useLang } from "../context/LangContext";
 import Image from "next/image";
 import expertBadge from "./expert.png";
 
+type IconType = React.ComponentType<{ className?: string }> | string;
+
 interface IconWithTooltipProps {
-    Icon: React.ComponentType;
+    Icon: IconType;
     name: string;
     expert?: boolean;
 }
@@ -46,7 +52,11 @@ const IconWithTooltip: React.FC<IconWithTooltipProps> = ({
 }) => (
     <div className="group relative inline-block">
         <div className="w-16 h-16 flex justify-center items-center">
-            <Icon />
+            {typeof Icon === "string" ? (
+                <Image src={Icon} alt={name} width={48} height={48} />
+            ) : (
+                <Icon className="w-12 h-12" />
+            )}
             {expert && (
                 <Image
                     src={expertBadge}
@@ -61,14 +71,21 @@ const IconWithTooltip: React.FC<IconWithTooltipProps> = ({
     </div>
 );
 
-const TechnologyItem: React.FC<{
-    icon: React.ComponentType;
+interface TechnologyItemProps {
+    icon: IconType;
     name: string;
     description: string;
     expert?: boolean;
-}> = ({ icon: Icon, name, description, expert }) => (
+}
+
+const TechnologyItem: React.FC<TechnologyItemProps> = ({
+    icon,
+    name,
+    description,
+    expert,
+}) => (
     <div className="flex-1 bg-gray-800 bg-opacity-80 rounded-lg p-2">
-        <IconWithTooltip Icon={Icon} name={name} expert={expert} />
+        <IconWithTooltip Icon={icon} name={name} expert={expert} />
         <div className="flex-1 mt-2">
             <h2 className="text-white text-base font-semibold">{name}</h2>
             <p className="text-sm text-gray-300">{description}</p>
@@ -227,6 +244,7 @@ const Skills: React.FC = () => {
             { icon: NodeJSIcon, name: "NodeJS", expert: true },
             { icon: ExpressIcon, name: "Express", expert: true },
             { icon: PrismaIcon, name: "Prisma", expert: true },
+            { icon: NeonIcon, name: "Neon", expert: true },
             { icon: SupaBaseIcon, name: "Supabase", expert: true },
             { icon: PostgreSQLIcon, name: "PostgreSQL", expert: true },
             { icon: NestIcon, name: "NestJS", expert: false },

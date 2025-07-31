@@ -6,28 +6,7 @@ import pokemon from "../assets/pokemon.jpg";
 import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
 import eco from "../assets/eco.jpg";
-import {
-    ArrowD,
-    ArrowU,
-    CSSIcon,
-    ExpressIcon,
-    GitHubIcon,
-    GitIcon,
-    HTMLIcon,
-    TypeScriptIcon,
-    JavaScriptIcon,
-    NextIcon,
-    NodeJSIcon,
-    NPMIcon,
-    PostgreSQLIcon,
-    PrismaIcon,
-    ReactIcon,
-    ReduxIcon,
-    TailwindIcon,
-    VSCodeIcon,
-    SupaBaseIcon,
-    ViteIcon,
-} from "../assets/icons";
+import { ArrowD, ArrowU, BlenderIcon } from "../assets/icons";
 import { useLang } from "../context/LangContext";
 
 const projectsTranslations = {
@@ -85,25 +64,27 @@ const projectsTranslations = {
     },
 };
 
-const iconComponents = {
-    JavaScriptIcon,
-    TypeScriptIcon,
-    PostgreSQLIcon,
-    ExpressIcon,
-    ReactIcon,
-    ReduxIcon,
-    HTMLIcon,
-    CSSIcon,
-    VSCodeIcon,
-    NodeJSIcon,
-    GitIcon,
-    GitHubIcon,
-    NPMIcon,
-    PrismaIcon,
-    NextIcon,
-    TailwindIcon,
-    SupaBaseIcon,
-    ViteIcon,
+// Map of technology name to icon file name (for PNGs)
+const techIconMap: Record<string, string> = {
+    JavaScriptIcon: "/icons/JavaScriptIcon.png",
+    TypeScriptIcon: "/icons/TypeScriptIcon.png",
+    PostgreSQLIcon: "/icons/PostgreSQLIcon.png",
+    ExpressIcon: "/icons/ExpressIcon.png",
+    ReactIcon: "/icons/ReactIcon.png",
+    ReduxIcon: "/icons/ReduxIcon.png",
+    HTMLIcon: "/icons/HTMLIcon.png",
+    CSSIcon: "/icons/CSSIcon.png",
+    VSCodeIcon: "/icons/VSCodeIcon.png",
+    NodeJSIcon: "/icons/NodeJSIcon.png",
+    GitIcon: "/icons/GitIcon.png",
+    GitHubIcon: "/icons/GitHubIcon.png",
+    NPMIcon: "/icons/NPMIcon.png",
+    PrismaIcon: "/icons/PrismaIcon.png",
+    NextIcon: "/icons/NextIcon.png",
+    TailwindIcon: "/icons/TailwindIcon.png",
+    ViteIcon: "/icons/ViteIcon.png",
+    SupaBaseIcon: "/icons/SupaBaseIcon.svg", // SVG, handled below
+    BlenderIcon: "svg-component", // handled below
 };
 
 interface ProjectData {
@@ -111,7 +92,7 @@ interface ProjectData {
     image: StaticImageData;
     description: string;
     url: string;
-    technologies: (keyof typeof iconComponents)[];
+    technologies: string[];
     id: string;
 }
 
@@ -227,6 +208,44 @@ const Project = ({
                     {isVisible ? <ArrowU /> : <ArrowD />}
                 </button>
             </div>
+
+            <div className="flex flex-wrap gap-2 mt-4">
+                {project.technologies.map((techRaw) => {
+                    const tech = String(techRaw);
+                    // Special case: BlenderIcon as React component
+                    if (tech === "BlenderIcon") {
+                        return <BlenderIcon key={tech} className="w-8 h-8" />;
+                    }
+                    // Special case: SupaBaseIcon as SVG (not PNG)
+                    if (tech === "SupaBaseIcon") {
+                        return (
+                            <Image
+                                key={tech}
+                                src={techIconMap[tech]}
+                                alt={tech}
+                                width={32}
+                                height={32}
+                                className="w-8 h-8"
+                            />
+                        );
+                    }
+                    // Default: PNG icons
+                    const iconSrc = techIconMap[tech];
+                    if (iconSrc) {
+                        return (
+                            <Image
+                                key={tech}
+                                src={iconSrc}
+                                alt={tech}
+                                width={32}
+                                height={32}
+                                className="w-8 h-8"
+                            />
+                        );
+                    }
+                    return null;
+                })}
+            </div>
             {isVisible && (
                 <article className="space-y-4">
                     <div className="relative w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-1/3 aspect-[16/9] max-w-lg mx-auto">
@@ -257,12 +276,6 @@ const Project = ({
                     </p>
                 </article>
             )}
-            <div className="flex flex-wrap gap-2 mt-4">
-                {project.technologies.map((tech) => {
-                    const IconComponent = iconComponents[tech];
-                    return <IconComponent key={tech} />;
-                })}
-            </div>
         </div>
     );
 };
