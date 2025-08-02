@@ -32,6 +32,7 @@ const NPMIcon = "/icons/NPMIcon.png";
 const YARNIcon = "/icons/YARNIcon.png";
 const UnityIcon = "/icons/UnityIcon.png";
 const NeonIcon = "/icons/NeonIcon.png";
+const PNPMIcon = "/icons/PNPMIcon.png";
 
 import { useLang } from "../context/LangContext";
 import Image from "next/image";
@@ -200,8 +201,12 @@ const Skills: React.FC = () => {
             en: "Extensible and configurable code editor.",
         },
         NPM: {
-            es: "Gestor de paquetes para JavaScript.",
-            en: "Package manager for JavaScript.",
+            es: "Gestor de paquetes para JavaScript, el más utilizado por defecto con Node.js.",
+            en: "JavaScript package manager, the default used with Node.js.",
+        },
+        PNPM: {
+            es: "Gestor de paquetes para JavaScript, enfocado en eficiencia y almacenamiento compartido.",
+            en: "JavaScript package manager focused on speed and shared storage.",
         },
         Yarn: {
             es: "Gestor de paquetes rápido y seguro.",
@@ -255,6 +260,7 @@ const Skills: React.FC = () => {
             { icon: GitHubIcon, name: "GitHub", expert: true },
             { icon: VSCodeIcon, name: "VSCode", expert: true },
             { icon: NPMIcon, name: "NPM", expert: true },
+            { icon: PNPMIcon, name: "PNPM", expert: false },
             { icon: YARNIcon, name: "Yarn", expert: false },
             { icon: UnityIcon, name: "Unity", expert: false },
             { icon: BlenderIcon, name: "Blender", expert: false },

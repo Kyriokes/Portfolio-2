@@ -5,6 +5,7 @@ import Image, { StaticImageData } from "next/image";
 import pokemon from "../assets/pokemon.jpg";
 import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
+import bastardos from "../assets/bastardos.jpg";
 import eco from "../assets/eco.jpg";
 import { ArrowD, ArrowU } from "../assets/icons";
 import { useLang } from "../context/LangContext";
@@ -23,13 +24,23 @@ const projectsTranslations = {
         },
         bastardos: {
             description: `
-                En este proyecto desarrollado para el servidor Bastardos del juego DayZ, creé una página web personalizada que permite a los jugadores consultar sus estadísticas de forma actualizada. La página está conectada al servidor del juego mediante la plataforma CFTools, lo que garantiza que los datos se reflejen en tiempo real. Además, el sitio cuenta con una sección dedicada a las reglas del juego, un podio con los jugadores más destacados y enlaces a las redes sociales oficiales del servidor para una experiencia de comunidad completa.
-            `,
+        Desarrollé la primera versión de una plataforma web para la comunidad del servidor Bastardos del juego DayZ. Utilicé React.js para construir una interfaz dinámica y personalizada, conectada a los datos del servidor mediante la plataforma CFTools.
+
+        La web permitía consultar estadísticas de los jugadores en tiempo real, acceder a las reglas del servidor y ver un podio con los más destacados. También incluía enlaces a las redes sociales oficiales para fortalecer el sentido de comunidad. Este desarrollo se realizó en colaboración directa con el cliente y fue ajustado a sus necesidades específicas.
+    `,
         },
+        bastardos2: {
+            description: `
+        En 2025, el mismo cliente volvió a contratarme para desarrollar una nueva versión completa de la plataforma. Esta vez, el proyecto incluyó funcionalidades de e-commerce, un panel administrativo avanzado y autenticación con Steam.
+
+        Rehice el sitio desde cero utilizando Next.js y Neon como base de datos. Además de replicar las funcionalidades anteriores, integré pagos a través de PayPal, herramientas de gestión y personalización para el administrador, y una interfaz más robusta. También implementé un sistema para que los jugadores pudieran consultar su historial de compras y sus estadísticas del juego de forma personalizada.
+    `,
+        },
+
         ecoShop: {
             description: `
-            EcoShop es una plataforma de ecommerce fullstack que estoy desarrollando actualmente como proyecto personal. Utiliza React con TypeScript y Tailwind CSS para el frontend, y Node.js con Express, Prisma y PostgreSQL para el backend. 
-        
+            EcoShop es una plataforma de ecommerce fullstack que estoy desarrollando actualmente como proyecto personal. Utiliza React con TypeScript y Tailwind CSS para el frontend, y Node.js con Express, Prisma y PostgreSQL para el backend.
+
             Ya se encuentran funcionando partes clave como el registro e inicio de sesión de usuarios con JWT, la visualización de productos y la gestión del carrito de compras. Próximamente, migraré el sistema de autenticación a Auth0 para mejorar la seguridad y escalabilidad. También estoy trabajando en la integración con Stripe para permitir pagos reales en la plataforma.
         
             Cuenta con un panel administrativo en desarrollo para la gestión de productos y usuarios. Es un proyecto en progreso que refleja mi capacidad para diseñar arquitecturas modernas, trabajar con tecnologías de backend y frontend, e incorporar servicios de terceros como Auth0 y Stripe.
@@ -49,9 +60,19 @@ const projectsTranslations = {
         },
         bastardos: {
             description: `
-                In this project developed for the Bastardos server in DayZ, I created a custom website that allows players to check their up-to-date statistics. The site is connected to the game server via the CFTools platform, ensuring real-time data reflection. The website also features a dedicated section for game rules, a podium with top players, and links to the server's official social media for a full community experience.
-            `,
+        I developed the first version of a web platform for the Bastardos DayZ server community. Using React.js, I built a dynamic and customized interface connected to the game server’s data through the CFTools platform.
+
+        The site allowed players to view real-time statistics, access the server rules, and check a leaderboard featuring the top players. It also included links to the server’s official social media to strengthen community engagement. This project was carried out in close collaboration with the client and tailored to their specific needs.
+    `,
         },
+        bastardos2: {
+            description: `
+        In 2025, the same client rehired me to develop a fully redesigned version of the platform. This time, the project included e-commerce features, a comprehensive admin panel, and Steam-based authentication.
+
+        I rebuilt the entire site from scratch using Next.js and Neon as the database. In addition to reimplementing previous functionalities, I integrated PayPal payments, management and customization tools for the admin, and a more robust interface. I also added features that allow players to view their purchase history and in-game statistics in a personalized way.
+    `,
+        },
+
         ecoShop: {
             description: `
             EcoShop is a fullstack ecommerce platform I'm currently developing as a personal project. It uses React with TypeScript and Tailwind CSS for the frontend, and Node.js with Express, Prisma, and PostgreSQL for the backend.
@@ -79,12 +100,14 @@ const techIconMap: Record<string, string> = {
     GitIcon: "/icons/GitIcon.png",
     GitHubIcon: "/icons/GitHubIcon.png",
     NPMIcon: "/icons/NPMIcon.png",
+    PNPMIcon: "/icons/PNPMIcon.png",
     PrismaIcon: "/icons/PrismaIcon.png",
     NextIcon: "/icons/NextIcon.png",
     TailwindIcon: "/icons/TailwindIcon.png",
     ViteIcon: "/icons/ViteIcon.png",
     SupaBaseIcon: "/icons/SupaBaseIcon.svg", // SVG, handled below
     BlenderIcon: "/icons/BlenderIcon.svg", // handled below
+    NeonIcon: "/icons/NeonIcon.png",
 };
 
 interface ProjectData {
@@ -97,6 +120,27 @@ interface ProjectData {
 }
 
 const projectsData: ProjectData[] = [
+    {
+        title: "Bastardos server e-commerce 2025",
+        image: bastar2,
+        description: "",
+        url: "https://bastardos-e-commerce.vercel.app/",
+        technologies: [
+            "TypeScriptIcon",
+            "PostgreSQLIcon",
+            "PrismaIcon",
+            "NeonIcon",
+            "NextIcon",
+            "ReactIcon",
+            "HTMLIcon",
+            "TailwindIcon",
+            "VSCodeIcon",
+            "GitIcon",
+            "GitHubIcon",
+            "PNPMIcon",
+        ],
+        id: "bastardos2",
+    },
     {
         title: "EcoShop (WIP)",
         image: eco,
@@ -121,7 +165,7 @@ const projectsData: ProjectData[] = [
     },
     {
         title: "Bastardos server web page 2024",
-        image: bastar2,
+        image: bastardos,
         description: "",
         url: "https://bastar2.vercel.app/",
         technologies: [
