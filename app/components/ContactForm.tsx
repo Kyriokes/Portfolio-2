@@ -2,7 +2,10 @@
 
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import { GitHubIcon, Linkedin, WhatsApp } from "../assets/icons";
+import GitHubIcon from "../../public/icons/github.svg";
+import Linkedin from "../../public/icons/linkedin.svg";
+import WhatsApp from "../../public/icons/whatsapp.svg";
+
 import { useLang } from "../context/LangContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
