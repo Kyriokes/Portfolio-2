@@ -6,7 +6,7 @@ import pokemon from "../assets/pokemon.jpg";
 import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
 import eco from "../assets/eco.jpg";
-import { ArrowD, ArrowU, BlenderIcon } from "../assets/icons";
+import { ArrowD, ArrowU } from "../assets/icons";
 import { useLang } from "../context/LangContext";
 
 const projectsTranslations = {
@@ -84,7 +84,7 @@ const techIconMap: Record<string, string> = {
     TailwindIcon: "/icons/TailwindIcon.png",
     ViteIcon: "/icons/ViteIcon.png",
     SupaBaseIcon: "/icons/SupaBaseIcon.svg", // SVG, handled below
-    BlenderIcon: "svg-component", // handled below
+    BlenderIcon: "/icons/BlenderIcon.svg", // handled below
 };
 
 interface ProjectData {
@@ -212,12 +212,8 @@ const Project = ({
             <div className="flex flex-wrap gap-2 mt-4">
                 {project.technologies.map((techRaw) => {
                     const tech = String(techRaw);
-                    // Special case: BlenderIcon as React component
-                    if (tech === "BlenderIcon") {
-                        return <BlenderIcon key={tech} className="w-8 h-8" />;
-                    }
-                    // Special case: SupaBaseIcon as SVG (not PNG)
-                    if (tech === "SupaBaseIcon") {
+                    // Special case: BlenderIcon or SupaBaseIcon as React component
+                    if (tech === "BlenderIcon" || tech === "SupaBaseIcon") {
                         return (
                             <Image
                                 key={tech}

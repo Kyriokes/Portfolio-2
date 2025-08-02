@@ -2,16 +2,13 @@
 
 import { useRef } from "react";
 import emailjs from "@emailjs/browser";
-import GitHubIcon from "../../public/icons/github.svg";
-import Linkedin from "../../public/icons/linkedin.svg";
-import WhatsApp from "../../public/icons/whatsapp.svg";
-
 import { useLang } from "../context/LangContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Image from "next/image";
 
 const ContactForm: React.FC = () => {
     const formRef = useRef<HTMLFormElement>(null);
@@ -167,9 +164,11 @@ const ContactForm: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <GitHubIcon
-                            x={20}
-                            y={20}
+                        <Image
+                            src="/icons/githubicon.png"
+                            alt="GitHub"
+                            width={80}
+                            height={80}
                             className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"
                         />
                     </a>
@@ -179,7 +178,13 @@ const ContactForm: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <Linkedin className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"/>
+                        <Image
+                            src="/icons/linkedin.svg"
+                            alt="LinkedIn"
+                            width={80}
+                            height={80}
+                            className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"
+                        />
                     </a>
                     <a
                         className="flex items-center w-20 h-20"
@@ -187,7 +192,13 @@ const ContactForm: React.FC = () => {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        <WhatsApp className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"/>
+                        <Image
+                            src="/icons/whatsapp.svg"
+                            alt="WhatsApp"
+                            width={80}
+                            height={80}
+                            className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"
+                        />
                     </a>
                 </div>
             </div>
