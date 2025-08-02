@@ -165,7 +165,7 @@ const ContactForm: React.FC = () => {
                         rel="noopener noreferrer"
                     >
                         <Image
-                            src="/icons/githubicon.png"
+                            src="/icons/GitHubIcon.png"
                             alt="GitHub"
                             width={80}
                             height={80}
@@ -179,7 +179,7 @@ const ContactForm: React.FC = () => {
                         rel="noopener noreferrer"
                     >
                         <Image
-                            src="/icons/linkedin.svg"
+                            src="/icons/Linkedin.svg"
                             alt="LinkedIn"
                             width={80}
                             height={80}
@@ -193,7 +193,7 @@ const ContactForm: React.FC = () => {
                         rel="noopener noreferrer"
                     >
                         <Image
-                            src="/icons/whatsapp.svg"
+                            src="/icons/WhatsApp.svg"
                             alt="WhatsApp"
                             width={80}
                             height={80}
