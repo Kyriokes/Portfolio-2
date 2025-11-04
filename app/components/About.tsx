@@ -5,7 +5,7 @@ import { useLang } from "../context/LangContext";
 
 const aboutTranslations = {
     es: {
-        title: "Soy Full Stack Developer con experiencia Freelance en proyectos desarrollados en JavaScript",
+        title: "Soy Full Stack Developer con experiencia Freelance en proyectos desarrollados con JavaScript",
         paragraph1: ` 
     Trabajo con React, Next.js, Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite y Prisma. 
     Mi formación multidisciplinaria y gusto por la lógica, la planificación y la organización potencian mi desempeño como desarrollador.
@@ -44,7 +44,7 @@ const aboutTranslations = {
         `,
     },
     en: {
-        title: "I am a Full Stack Developer with Freelance experience in projects developed in JavaScript",
+        title: "I am a Full Stack Developer with Freelance experience in projects developed with JavaScript",
         paragraph1: ` 
     I work with React, Next.js, Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite and Prisma. 
     My multidisciplinary background and taste for logic, planning, and organization enhance my performance as a developer.
