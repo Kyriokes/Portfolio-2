@@ -5,16 +5,13 @@ import { useLang } from "../context/LangContext";
 
 const aboutTranslations = {
     es: {
-        title: "Soy Backend Developer con experiencia Full Stack especializado en JavaScript",
-        paragraph1: `
-    Desarrollador Backend con experiencia Full Stack y enfoque en JavaScript. 
-    Trabajo con Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite y Prisma. 
-    También tengo experiencia con tecnologías Frontend como React y Next.js. 
-    Mi formación multidisciplinaria y pasión por la lógica, la planificación y la organización potencian mi desempeño como desarrollador.
+        title: "Soy Full Stack Developer con experiencia Freelance en proyectos desarrollados en JavaScript",
+        paragraph1: ` 
+    Trabajo con React, Next.js, Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite y Prisma. 
+    Mi formación multidisciplinaria y gusto por la lógica, la planificación y la organización potencian mi desempeño como desarrollador.
     `,
         paragraph2: `
     Me interesa crecer dentro de un equipo de trabajo estable, con buenas prácticas y espacio para aportar mis habilidades. 
-    Estoy abierto a roles Full Stack o QA que involucren trabajo backend, pero mi foco profesional está en el desarrollo del lado del servidor y bases de datos.
     `,
         experienceTitle: "Experiencia Laboral",
         experience1Title: "Desarrollador Full Stack Freelance - Comunidad DayZ",
@@ -47,16 +44,13 @@ const aboutTranslations = {
         `,
     },
     en: {
-        title: "I am a Backend Developer with Full Stack experience, specialized in JavaScript",
-        paragraph1: `
-    Backend Developer with Full Stack experience and focus on JavaScript. 
-    I work with Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite, and Prisma. 
-    I also have experience with frontend technologies such as React and Next.js. 
-    My multidisciplinary background and passion for logic, planning, and organization enhance my performance as a developer.
+        title: "I am a Full Stack Developer with Freelance experience in projects developed in JavaScript",
+        paragraph1: ` 
+    I work with React, Next.js, Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite and Prisma. 
+    My multidisciplinary background and taste for logic, planning, and organization enhance my performance as a developer.
     `,
         paragraph2: `
-    I'm looking to grow within a stable team that values good practices and where I can contribute my skills. 
-    I'm open to Full Stack or QA roles where backend development is involved, but my main professional focus is on server-side development and databases.
+    I am interested in growing within a stable team, with good practices and space to contribute my skills. 
     `,
         experienceTitle: "Professional Experience",
         experience1Title: "Freelance Full Stack Developer - DayZ Community",
@@ -64,15 +58,15 @@ const aboutTranslations = {
             "Designed and developed a web platform from scratch using React.js and Node.js.",
             "Implemented databases to manage real-time game information.",
         ],
-        experience2Title: "Code Analyst - RemoteTasks",
+        experience2Title: "Code Reviewer - RemoteTasks",
         experience2Description: [
             "Analyzed AI-generated code, ensuring quality and technical accuracy.",
             "Reviewed web development-related responses.",
         ],
         experience3Title: "Teaching Assistant - Henry Bootcamp",
         experience3Description: [
-            "Assisted students with technical exercises and encouraged group collaboration.",
-            "Suggested improvements to teaching processes.",
+            "Guided students in technical exercises and promoted group collaboration.",
+            "Proposed improvements to the bootcamp's educational processes.",
         ],
         technologiesTitle: "Technologies",
         technologies: [
