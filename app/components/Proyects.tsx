@@ -253,7 +253,7 @@ const Project = ({
                 </button>
             </div>
 
-            <div className="flex flex-wrap gap-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-2 mb-2">
                 {project.technologies.map((techRaw) => {
                     const tech = String(techRaw);
                     // Special case: BlenderIcon or SupaBaseIcon as React component
