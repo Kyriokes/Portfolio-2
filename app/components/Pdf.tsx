@@ -3,10 +3,27 @@
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 import { ArrowL, ArrowR } from "../assets/icons";
+import { useLang } from "../context/LangContext";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;
 
+const pdfData = {
+    es: {
+        file: "/CV_SERGIO_FERRARI_BRYCE.pdf",
+        buttonLabel: "Abrir CV",
+        errorMessage: "Error al cargar el PDF. Por favor, intente nuevamente más tarde.",
+    },
+    en: {
+        file: "/CV_SERGIO_FERRARI_BRYCE_EN.pdf",
+        buttonLabel: "Open CV",
+        errorMessage: "Failed to load PDF. Please try again later.",
+    },
+};
+
 const Pdf: React.FC = () => {
+    const { lang } = useLang();
+    const { file, buttonLabel, errorMessage } = pdfData[lang];
+
     const [numPages, setNumPages] = useState<number>();
     const [pageNumber, setPageNumber] = useState<number>(1);
     const [pdfError, setPdfError] = useState<string | null>(null);
@@ -18,7 +35,7 @@ const Pdf: React.FC = () => {
 
     const onDocumentLoadError = (error: Error) => {
         console.error("Failed to load PDF", error);
-        setPdfError("Failed to load PDF. Please try again later.");
+        setPdfError(errorMessage);
     };
 
     const goToPreviousPage = () => {
@@ -30,7 +47,7 @@ const Pdf: React.FC = () => {
     };
 
     const openPdfInNewWindow = () => {
-        window.open("/CV_SERGIO_FERRARI_BRYCE.pdf", "_blank");
+        window.open(file, "_blank");
     };
 
     return (
@@ -39,7 +56,7 @@ const Pdf: React.FC = () => {
                 <div className="text-red-500 mb-4">{pdfError}</div>
             ) : (
                 <Document
-                    file="/CV_SERGIO_FERRARI_BRYCE.pdf"
+                    file={file}
                     onLoadSuccess={onDocumentLoadSuccess}
                     onLoadError={onDocumentLoadError}
                     className="flex items-center overflow-x-scroll max-w-max"
@@ -70,7 +87,7 @@ const Pdf: React.FC = () => {
                     className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
                     onClick={openPdfInNewWindow}
                 >
-                    Abrir CV
+                    {buttonLabel}
                 </button>
             </div>
         </div>
