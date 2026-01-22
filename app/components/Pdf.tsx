@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
-import { ArrowL, ArrowR } from "../assets/icons";
+import { ArrowL, ArrowR } from "./Icons";
 import { useLang } from "../context/LangContext";
 
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`;

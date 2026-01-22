@@ -3,37 +3,7 @@
 import React from "react";
 import useEmblaCarousel from "embla-carousel-react";
 import Autoplay from "embla-carousel-autoplay";
-
-// All icons as string paths (SVGs and PNGs)
-const BlenderIcon = "/icons/BlenderIcon.svg";
-const CsharpIcon = "/icons/CsharpIcon.svg";
-const SupaBaseIcon = "/icons/SupaBaseIcon.svg";
-const FireBaseIcon = "/icons/FireBaseIcon.svg";
-const NestIcon = "/icons/NestIcon.png";
-
-// PNGs as string paths
-const JavaScriptIcon = "/icons/JavaScriptIcon.png";
-const TypeScriptIcon = "/icons/TypeScriptIcon.png";
-const ReactIcon = "/icons/ReactIcon.png";
-const HTMLIcon = "/icons/HTMLIcon.png";
-const CSSIcon = "/icons/CSSIcon.png";
-const NextIcon = "/icons/NextIcon.png";
-const ViteIcon = "/icons/ViteIcon.png";
-const TailwindIcon = "/icons/TailwindIcon.png";
-const ReduxIcon = "/icons/ReduxIcon.png";
-const NodeJSIcon = "/icons/NodeJSIcon.png";
-const ExpressIcon = "/icons/ExpressIcon.png";
-const PrismaIcon = "/icons/PrismaIcon.png";
-const PostgreSQLIcon = "/icons/PostgreSQLIcon.png";
-const GitIcon = "/icons/GitIcon.png";
-const GitHubIcon = "/icons/GitHubIcon.png";
-const VSCodeIcon = "/icons/VSCodeIcon.png";
-const NPMIcon = "/icons/NPMIcon.png";
-const YARNIcon = "/icons/YARNIcon.png";
-const UnityIcon = "/icons/UnityIcon.png";
-const NeonIcon = "/icons/NeonIcon.png";
-const PNPMIcon = "/icons/PNPMIcon.png";
-
+import { ICONS } from "../data/icons";
 import { useLang } from "../context/LangContext";
 import Image from "next/image";
 import expertBadge from "../assets/expert.png";
@@ -228,42 +198,47 @@ const Skills: React.FC = () => {
             es: "Plataforma de código abierto que proporciona una alternativa a Firebase, con bases de datos PostgreSQL, autenticación y almacenamiento de archivos.",
             en: "An open-source platform providing an alternative to Firebase, with PostgreSQL databases, authentication, and file storage.",
         },
+        Trae: {
+            es: "IDE potenciado por IA que agiliza el desarrollo de software.",
+            en: "AI-powered IDE that streamlines software development.",
+        },
     };
 
     const sections = {
         languages: [
-            { icon: JavaScriptIcon, name: "JavaScript", expert: true },
-            { icon: TypeScriptIcon, name: "TypeScript", expert: false },
-            { icon: CsharpIcon, name: "C#", expert: false },
+            { icon: ICONS.JavaScript, name: "JavaScript", expert: true },
+            { icon: ICONS.TypeScript, name: "TypeScript", expert: false },
+            { icon: ICONS.Csharp, name: "C#", expert: false },
         ],
         frontend: [
-            { icon: ReactIcon, name: "React", expert: false },
-            { icon: HTMLIcon, name: "HTML", expert: true },
-            { icon: CSSIcon, name: "CSS", expert: true },
-            { icon: NextIcon, name: "NextJS", expert: false },
-            { icon: ViteIcon, name: "Vite", expert: false },
-            { icon: TailwindIcon, name: "TailwindCSS", expert: false },
-            { icon: ReduxIcon, name: "Redux", expert: false },
+            { icon: ICONS.React, name: "React", expert: false },
+            { icon: ICONS.HTML, name: "HTML", expert: true },
+            { icon: ICONS.CSS, name: "CSS", expert: true },
+            { icon: ICONS.Next, name: "NextJS", expert: false },
+            { icon: ICONS.Vite, name: "Vite", expert: false },
+            { icon: ICONS.Tailwind, name: "TailwindCSS", expert: false },
+            { icon: ICONS.Redux, name: "Redux", expert: false },
         ],
         backend: [
-            { icon: NodeJSIcon, name: "NodeJS", expert: true },
-            { icon: ExpressIcon, name: "Express", expert: true },
-            { icon: PrismaIcon, name: "Prisma", expert: true },
-            { icon: NeonIcon, name: "Neon", expert: true },
-            { icon: SupaBaseIcon, name: "Supabase", expert: true },
-            { icon: PostgreSQLIcon, name: "PostgreSQL", expert: true },
-            { icon: NestIcon, name: "NestJS", expert: false },
-            { icon: FireBaseIcon, name: "Firebase", expert: false },
+            { icon: ICONS.NodeJS, name: "NodeJS", expert: true },
+            { icon: ICONS.Express, name: "Express", expert: true },
+            { icon: ICONS.Prisma, name: "Prisma", expert: true },
+            { icon: ICONS.Neon, name: "Neon", expert: true },
+            { icon: ICONS.SupaBase, name: "Supabase", expert: true },
+            { icon: ICONS.PostgreSQL, name: "PostgreSQL", expert: true },
+            { icon: ICONS.Nest, name: "NestJS", expert: false },
+            { icon: ICONS.FireBase, name: "Firebase", expert: false },
         ],
         tools: [
-            { icon: GitIcon, name: "Git", expert: true },
-            { icon: GitHubIcon, name: "GitHub", expert: true },
-            { icon: VSCodeIcon, name: "VSCode", expert: true },
-            { icon: NPMIcon, name: "NPM", expert: true },
-            { icon: PNPMIcon, name: "PNPM", expert: false },
-            { icon: YARNIcon, name: "Yarn", expert: false },
-            { icon: UnityIcon, name: "Unity", expert: false },
-            { icon: BlenderIcon, name: "Blender", expert: false },
+            { icon: ICONS.Git, name: "Git", expert: true },
+            { icon: ICONS.GitHub, name: "GitHub", expert: true },
+            { icon: ICONS.VSCode, name: "VSCode", expert: true },
+            { icon: ICONS.NPM, name: "NPM", expert: true },
+            { icon: ICONS.PNPM, name: "PNPM", expert: false },
+            { icon: ICONS.YARN, name: "Yarn", expert: false },
+            { icon: ICONS.Unity, name: "Unity", expert: false },
+            { icon: ICONS.Blender, name: "Blender", expert: false },
+            { icon: ICONS.Trae, name: "Trae", expert: true },
         ],
     };
 
@@ -303,7 +278,7 @@ const Skills: React.FC = () => {
                     <span>{expertTexts[lang]}</span>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
                     <div className="space-y-2">
                         <h3 className="text-xl font-semibold text-white mb-4">
                             {sectionTitles[lang].frontend}
@@ -358,7 +333,7 @@ const Skills: React.FC = () => {
                             />
                         ))}
                     </div>
-                    <div className="space-y-2 md:col-span-2 lg:col-span-1">
+                    <div className="space-y-2 lg:col-span-1">
                         <h3 className="text-xl font-semibold text-white mb-4">
                             {sectionTitles[lang].tools}
                         </h3>

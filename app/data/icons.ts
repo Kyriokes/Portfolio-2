@@ -1,0 +1,32 @@
+// All icons as string paths (SVGs and PNGs)
+export const ICONS = {
+    // SVGs
+    Blender: "/icons/BlenderIcon.svg",
+    Csharp: "/icons/CsharpIcon.svg",
+    SupaBase: "/icons/SupaBaseIcon.svg",
+    FireBase: "/icons/FireBaseIcon.svg",
+    // PNGs
+    Nest: "/icons/NestIcon.png",
+    JavaScript: "/icons/JavaScriptIcon.png",
+    TypeScript: "/icons/TypeScriptIcon.png",
+    React: "/icons/ReactIcon.png",
+    HTML: "/icons/HTMLIcon.png",
+    CSS: "/icons/CSSIcon.png",
+    Next: "/icons/NextIcon.png",
+    Vite: "/icons/ViteIcon.png",
+    Tailwind: "/icons/TailwindIcon.png",
+    Redux: "/icons/ReduxIcon.png",
+    NodeJS: "/icons/NodeJSIcon.png",
+    Express: "/icons/ExpressIcon.png",
+    Prisma: "/icons/PrismaIcon.png",
+    PostgreSQL: "/icons/PostgreSQLIcon.png",
+    Git: "/icons/GitIcon.png",
+    GitHub: "/icons/GitHubIcon.png",
+    VSCode: "/icons/VSCodeIcon.png",
+    NPM: "/icons/NPMIcon.png",
+    YARN: "/icons/YARNIcon.png",
+    Unity: "/icons/UnityIcon.png",
+    Neon: "/icons/NeonIcon.png",
+    PNPM: "/icons/PNPMIcon.png",
+    Trae: "/icons/TraeIcon.svg",
+};

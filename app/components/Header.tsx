@@ -169,7 +169,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                             </h2>
                         </div>
                         <div>
-                            <div className="text-right text-sm text-white leading-snug mb-4 mr-4 lg:absolute lg:bottom-0 lg:right-6 lg:mb-0 lg:mr-0 lg:w-64">
+                            <div className="text-right text-sm text-white leading-snug mb-4 mr-4 lg:mb-0 lg:mr-0 lg:w-64 lg:ml-auto">
                                 <p className="text-xl sm:text-2xl mb-2 text-gray-300">
                                     「基礎が大事だ！」
                                 </p>

@@ -7,8 +7,9 @@ import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
 import bastardos from "../assets/bastardos.jpg";
 import eco from "../assets/eco.jpg";
-import { ArrowD, ArrowU } from "../assets/icons";
+import { ArrowD, ArrowU } from "./Icons";
 import { useLang } from "../context/LangContext";
+import { ICONS } from "../data/icons";
 
 const projectsTranslations = {
     es: {
@@ -87,27 +88,28 @@ const projectsTranslations = {
 
 // Map of technology name to icon file name (for PNGs)
 const techIconMap: Record<string, string> = {
-    JavaScriptIcon: "/icons/JavaScriptIcon.png",
-    TypeScriptIcon: "/icons/TypeScriptIcon.png",
-    PostgreSQLIcon: "/icons/PostgreSQLIcon.png",
-    ExpressIcon: "/icons/ExpressIcon.png",
-    ReactIcon: "/icons/ReactIcon.png",
-    ReduxIcon: "/icons/ReduxIcon.png",
-    HTMLIcon: "/icons/HTMLIcon.png",
-    CSSIcon: "/icons/CSSIcon.png",
-    VSCodeIcon: "/icons/VSCodeIcon.png",
-    NodeJSIcon: "/icons/NodeJSIcon.png",
-    GitIcon: "/icons/GitIcon.png",
-    GitHubIcon: "/icons/GitHubIcon.png",
-    NPMIcon: "/icons/NPMIcon.png",
-    PNPMIcon: "/icons/PNPMIcon.png",
-    PrismaIcon: "/icons/PrismaIcon.png",
-    NextIcon: "/icons/NextIcon.png",
-    TailwindIcon: "/icons/TailwindIcon.png",
-    ViteIcon: "/icons/ViteIcon.png",
-    SupaBaseIcon: "/icons/SupaBaseIcon.svg", // SVG, handled below
-    BlenderIcon: "/icons/BlenderIcon.svg", // handled below
-    NeonIcon: "/icons/NeonIcon.png",
+    JavaScriptIcon: ICONS.JavaScript,
+    TypeScriptIcon: ICONS.TypeScript,
+    PostgreSQLIcon: ICONS.PostgreSQL,
+    ExpressIcon: ICONS.Express,
+    ReactIcon: ICONS.React,
+    ReduxIcon: ICONS.Redux,
+    HTMLIcon: ICONS.HTML,
+    CSSIcon: ICONS.CSS,
+    VSCodeIcon: ICONS.VSCode,
+    NodeJSIcon: ICONS.NodeJS,
+    GitIcon: ICONS.Git,
+    GitHubIcon: ICONS.GitHub,
+    NPMIcon: ICONS.NPM,
+    PNPMIcon: ICONS.PNPM,
+    PrismaIcon: ICONS.Prisma,
+    NextIcon: ICONS.Next,
+    TailwindIcon: ICONS.Tailwind,
+    ViteIcon: ICONS.Vite,
+    SupaBaseIcon: ICONS.SupaBase,
+    BlenderIcon: ICONS.Blender,
+    NeonIcon: ICONS.Neon,
+    TraeIcon: ICONS.Trae,
 };
 
 interface ProjectData {
@@ -256,8 +258,12 @@ const Project = ({
             <div className="flex flex-wrap gap-2 mt-2 mb-2">
                 {project.technologies.map((techRaw) => {
                     const tech = String(techRaw);
-                    // Special case: BlenderIcon or SupaBaseIcon as React component
-                    if (tech === "BlenderIcon" || tech === "SupaBaseIcon") {
+                    // Special case: BlenderIcon, SupaBaseIcon, or TraeIcon as React component (or SVG path that needs explicit sizing/handling if distinct from PNGs)
+                    if (
+                        tech === "BlenderIcon" ||
+                        tech === "SupaBaseIcon" ||
+                        tech === "TraeIcon"
+                    ) {
                         return (
                             <Image
                                 key={tech}
