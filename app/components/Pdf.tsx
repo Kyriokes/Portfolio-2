@@ -69,20 +69,24 @@ const Pdf: React.FC = () => {
                 </Document>
             )}
             <div className="flex flex-wrap my-4 w-full justify-center gap-2">
-                <button
-                    className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
-                    onClick={goToPreviousPage}
-                    disabled={pageNumber <= 1}
-                >
-                    <ArrowL />
-                </button>
-                <button
-                    className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
-                    onClick={goToNextPage}
-                    disabled={pageNumber >= (numPages || 1)}
-                >
-                    <ArrowR />
-                </button>
+                {numPages && numPages > 1 && (
+                    <>
+                        <button
+                            className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
+                            onClick={goToPreviousPage}
+                            disabled={pageNumber <= 1}
+                        >
+                            <ArrowL />
+                        </button>
+                        <button
+                            className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded disabled:opacity-50"
+                            onClick={goToNextPage}
+                            disabled={pageNumber >= (numPages || 1)}
+                        >
+                            <ArrowR />
+                        </button>
+                    </>
+                )}
                 <button
                     className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
                     onClick={openPdfInNewWindow}
