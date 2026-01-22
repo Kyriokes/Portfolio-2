@@ -5,7 +5,7 @@ import About from "./About";
 import Header from "./Header";
 import ContactForm from "./ContactForm";
 import Pdf from "./Pdf";
-import Skills from "../assets/skills";
+import Skills from "./Skills";
 import { Proyects } from "./Proyects";
 import Footer from "./Footer";
 import { ToastContainer } from "react-toastify";

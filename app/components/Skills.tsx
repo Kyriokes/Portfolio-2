@@ -36,7 +36,7 @@ const PNPMIcon = "/icons/PNPMIcon.png";
 
 import { useLang } from "../context/LangContext";
 import Image from "next/image";
-import expertBadge from "./expert.png";
+import expertBadge from "../assets/expert.png";
 
 type IconType = React.ComponentType<{ className?: string }> | string;
 
