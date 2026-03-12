@@ -52,11 +52,9 @@ const projectsTranslations = {
 
         ecoShop: {
             description: `
-            EcoShop es una plataforma de ecommerce fullstack que estoy desarrollando actualmente como proyecto personal. Utiliza React con TypeScript y Tailwind CSS para el frontend, y Node.js con Express, Prisma y PostgreSQL para el backend.
-
-            Ya se encuentran funcionando partes clave como el registro e inicio de sesión de usuarios con JWT, la visualización de productos y la gestión del carrito de compras. Próximamente, migraré el sistema de autenticación a Auth0 para mejorar la seguridad y escalabilidad. También estoy trabajando en la integración con Stripe para permitir pagos reales en la plataforma.
-        
-            Cuenta con un panel administrativo en desarrollo para la gestión de productos y usuarios. Es un proyecto en progreso que refleja mi capacidad para diseñar arquitecturas modernas, trabajar con tecnologías de backend y frontend, e incorporar servicios de terceros como Auth0 y Stripe.
+            EcoShop es un proyecto de arquitectura fullstack de comercio electrónico construido con React, TypeScript, Node.js, Express, Prisma y PostgreSQL.
+            El proyecto implementa características clave como autenticación de usuarios con JWT, exploración del catálogo de productos y gestión del carrito de compras.
+            Fue diseñado para explorar patrones de arquitectura fullstack modernos e integraciones comúnmente utilizadas en sistemas de producción.
             `,
         },
     },
@@ -99,11 +97,9 @@ const projectsTranslations = {
 
         ecoShop: {
             description: `
-            EcoShop is a fullstack ecommerce platform I'm currently developing as a personal project. It uses React with TypeScript and Tailwind CSS for the frontend, and Node.js with Express, Prisma, and PostgreSQL for the backend.
-        
-            Key features are already working, including user registration and login with JWT, product browsing, and shopping cart management. I'm currently transitioning the authentication system to Auth0 for improved security and scalability, and working on integrating Stripe to enable real payment processing.
-        
-            The admin panel is under development for managing products and users. This is a work-in-progress project that showcases my ability to design modern architectures, work across the full stack, and integrate third-party services like Auth0 and Stripe.
+            EcoShop is a fullstack ecommerce architecture project built with React, TypeScript, Node.js, Express, Prisma, and PostgreSQL. 
+            The project implements core ecommerce features such as user authentication with JWT, product catalog browsing, and shopping cart management. 
+            It was designed to explore modern fullstack architecture patterns and integrations commonly used in production systems.
             `,
         },
     },
@@ -188,7 +184,7 @@ const projectsData: ProjectData[] = [
         id: "prode",
     },
     {
-        title: "EcoShop (WIP)",
+        title: "EcoShop",
         image: eco,
         description: "",
         url: "https://ecommerce-front-ten-olive.vercel.app/",

@@ -24,8 +24,12 @@ const aboutTranslations = {
             "Analicé código generado por IA, asegurando calidad y precisión técnica.",
             "Revisé respuestas relacionadas con desarrollo web.",
         ],
-        experience3Title: "Asistente de Enseñanza - Henry Bootcamp",
+        experience3Title: "Desafío Técnico – Servidor de Herramientas de IA",
         experience3Description: [
+            "Desarrollé un servidor backend con MCP para agentes de IA, diseñando herramientas y respuestas estructuradas compatibles con un agente externo.",
+        ],
+        experience4Title: "Asistente de Enseñanza - Henry Bootcamp",
+        experience4Description: [
             "Guié a estudiantes en ejercicios técnicos y promoví la colaboración grupal.",
             "Propuse mejoras en los procesos educativos del bootcamp.",
         ],
@@ -63,8 +67,12 @@ const aboutTranslations = {
             "Analyzed AI-generated code, ensuring quality and technical accuracy.",
             "Reviewed web development-related responses.",
         ],
-        experience3Title: "Teaching Assistant - Henry Bootcamp",
+        experience3Title: "Technical Challenge – AI Tools Server",
         experience3Description: [
+            "Developed a backend server with MCP for AI agents, designing tools and structured responses compatible with an external agent.",
+        ],
+        experience4Title: "Teaching Assistant - Henry Bootcamp",
+        experience4Description: [
             "Guided students in technical exercises and promoted group collaboration.",
             "Proposed improvements to the bootcamp's educational processes.",
         ],
@@ -105,7 +113,7 @@ const About: React.FC = () => {
                     </h3>
 
                     <ul className="space-y-4">
-                        {[1, 2, 3].map((i) => {
+                        {[1, 2, 3, 4].map((i) => {
                             const title =
                                 translation[
                                     `experience${i}Title` as keyof typeof translation
