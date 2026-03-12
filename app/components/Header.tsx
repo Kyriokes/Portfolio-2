@@ -46,14 +46,14 @@ const tabsTranslations = {
 
 const presentation = {
     es: {
-        text: "Desarrollador Full Stack.",
-        text1: "Creo soluciones",
-        text2: "ágiles, modernas y escalables.",
+        text: "Desarrollador Full Stack",
+        text1: "Construyo sitios web, APIs",
+        text2: "y herramientas con IA usando tecnologías modernas de JavaScript.",
     },
     en: {
-        text: "Full Stack Developer.",
-        text1: "I build",
-        text2: "agile, modern, and scalable solutions.",
+        text: "Full Stack Developer",
+        text1: "I build Websites, APIs,",
+        text2: "and AI-driven tools using modern JavaScript technologies.",
     },
 };
 
