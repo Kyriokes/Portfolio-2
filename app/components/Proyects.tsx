@@ -6,6 +6,7 @@ import pokemon from "../assets/pokemon.jpg";
 import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
 import bastardos from "../assets/bastardos.jpg";
+import prode from "../assets/prode.png";
 import eco from "../assets/eco.jpg";
 import { ArrowD, ArrowU } from "./Icons";
 import { useLang } from "../context/LangContext";
@@ -32,10 +33,21 @@ const projectsTranslations = {
         },
         bastardos2: {
             description: `
-        En 2025, el mismo cliente volvió a contratarme para desarrollar una nueva versión completa de la plataforma. Esta vez, el proyecto incluyó funcionalidades de e-commerce, un panel administrativo avanzado y autenticación con Steam.
+        Plataforma completamente rediseñada con e-commerce, panel de administración y autenticación con Steam. Rehice el sitio desde cero utilizando Next.js y Neon como base de datos. Además de replicar las funcionalidades anteriores, integré pagos a través de PayPal, herramientas de gestión y personalización para el administrador, y una interfaz más robusta.
 
-        Rehice el sitio desde cero utilizando Next.js y Neon como base de datos. Además de replicar las funcionalidades anteriores, integré pagos a través de PayPal, herramientas de gestión y personalización para el administrador, y una interfaz más robusta. También implementé un sistema para que los jugadores pudieran consultar su historial de compras y sus estadísticas del juego de forma personalizada.
+        • Autenticación con Steam
+        • Pagos con PayPal
+        • Panel de administración para gestión de productos
+        • Integración con API de CFTools
+        • Construido con Next.js, TypeScript y PostgreSQL
     `,
+        },
+        prode: {
+            description: `
+        Desarrollé un simulador interactivo del Mundial 2026 porque las opciones existentes no me convencían. Permite elegir selecciones no clasificadas, aplica reglas oficiales de la FIFA para mejores terceros y desempates, e integra el ranking FIFA para simulaciones aleatorias realistas.
+
+        Todo el estado se guarda en la URL, lo que permite compartir predicciones y desafiar amigos fácilmente. Es una herramienta simple pero completa, construida con tecnologías modernas para ofrecer una experiencia de usuario fluida.
+            `,
         },
 
         ecoShop: {
@@ -68,10 +80,21 @@ const projectsTranslations = {
         },
         bastardos2: {
             description: `
-        In 2025, the same client rehired me to develop a fully redesigned version of the platform. This time, the project included e-commerce features, a comprehensive admin panel, and Steam-based authentication.
+        Fully redesigned platform with e-commerce, admin panel, and Steam authentication. I rebuilt the entire site from scratch using Next.js and Neon as the database. In addition to reimplementing previous functionalities, I integrated PayPal payments, management and customization tools for the admin, and a more robust interface.
 
-        I rebuilt the entire site from scratch using Next.js and Neon as the database. In addition to reimplementing previous functionalities, I integrated PayPal payments, management and customization tools for the admin, and a more robust interface. I also added features that allow players to view their purchase history and in-game statistics in a personalized way.
+        • Steam authentication
+        • PayPal payments
+        • Admin panel for product management
+        • Integration with CFTools API
+        • Built with Next.js, TypeScript and PostgreSQL
     `,
+        },
+        prode: {
+            description: `
+        I developed an interactive World Cup 2026 simulator because existing options didn't satisfy me. It allows choosing unclassified teams, applies official FIFA rules for best third-place teams and tie-breakers, and integrates FIFA rankings for realistic random simulations.
+
+        The entire state is saved in the URL, allowing easy sharing of predictions and challenging friends. It's a simple yet complete tool, built with modern technologies to offer a smooth user experience.
+            `,
         },
 
         ecoShop: {
@@ -119,6 +142,7 @@ interface ProjectData {
     url: string;
     technologies: string[];
     id: string;
+    repoUrl?: string;
 }
 
 const projectsData: ProjectData[] = [
@@ -127,6 +151,7 @@ const projectsData: ProjectData[] = [
         image: bastar2,
         description: "",
         url: "https://bastardos-e-commerce.vercel.app/",
+        repoUrl: "https://github.com/Kyriokes/Bastardos-E-Commerce",
         technologies: [
             "TypeScriptIcon",
             "PostgreSQLIcon",
@@ -144,10 +169,30 @@ const projectsData: ProjectData[] = [
         id: "bastardos2",
     },
     {
+        title: "Prode Mundial 2026",
+        image: prode,
+        description: "",
+        url: "https://prode-mundial2026.vercel.app/qualifiers",
+        repoUrl: "https://github.com/Kyriokes/ProdeMundial2026",
+        technologies: [
+            "TypeScriptIcon",
+            "ReactIcon",
+            "ViteIcon",
+            "TailwindIcon",
+            "HTMLIcon",
+            "VSCodeIcon",
+            "GitIcon",
+            "GitHubIcon",
+            "NPMIcon",
+        ],
+        id: "prode",
+    },
+    {
         title: "EcoShop (WIP)",
         image: eco,
         description: "",
         url: "https://ecommerce-front-ten-olive.vercel.app/",
+        repoUrl: "https://github.com/Kyriokes/ecommerce-crud",
         technologies: [
             "TypeScriptIcon",
             "PostgreSQLIcon",
@@ -170,6 +215,7 @@ const projectsData: ProjectData[] = [
         image: bastardos,
         description: "",
         url: "https://bastar2.vercel.app/",
+        repoUrl: "https://github.com/Kyriokes/Bastardos",
         technologies: [
             "JavaScriptIcon",
             "ReactIcon",
@@ -208,6 +254,7 @@ const projectsData: ProjectData[] = [
         image: pokemon,
         description: "",
         url: "https://pokemonappbysfb-omega.vercel.app/",
+        repoUrl: "https://github.com/Kyriokes/PokeFront",
         technologies: [
             "JavaScriptIcon",
             "PostgreSQLIcon",
@@ -320,6 +367,18 @@ const Project = ({
                     <p className="text-sm font-medium text-gray-300 text-center whitespace-pre-line">
                         {projectTranslation.description}
                     </p>
+                    {project.repoUrl && (
+                        <div className="text-center mt-2">
+                            <a
+                                href={project.repoUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-sky-400 hover:text-sky-300 underline text-sm transition-colors"
+                            >
+                                {lang === "es" ? "Ver código en GitHub" : "View code on GitHub"}
+                            </a>
+                        </div>
+                    )}
                 </article>
             )}
         </div>
