@@ -10,46 +10,48 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Image from "next/image";
 
-const ContactForm: React.FC = () => {
-    const formRef = useRef<HTMLFormElement>(null);
-    const { lang } = useLang();
+const formTexts = {
+    es: {
+        contactTitle: "Contáctame",
+        email: "ferrari8986@gmail.com",
+        nameLabel: "Nombre y Apellido",
+        emailLabel: "E-mail",
+        messageLabel: "Motivo de contacto",
+        submitButton: "Enviar",
+        socialTitle: "Mis Redes",
+        emailSuccessText: "Pronto estaremos en contacto",
+        user_name: "Nombre muy corto",
+        user_email: "Email inválido",
+        message: "El mensaje es muy corto",
+    },
+    en: {
+        contactTitle: "Contact Me",
+        email: "ferrari8986@gmail.com",
+        nameLabel: "Full Name",
+        emailLabel: "E-mail",
+        messageLabel: "Reason for Contact",
+        submitButton: "Send",
+        socialTitle: "My Social Networks",
+        emailSuccessText: "I will contact you soon",
+        user_name: "Name too short",
+        user_email: "Invalid Email",
+        message: "The message is too short",
+    },
+};
 
-    const formTexts = {
-        es: {
-            contactTitle: "Contáctame",
-            email: "ferrari8986@gmail.com",
-            nameLabel: "Nombre y Apellido",
-            emailLabel: "E-mail",
-            messageLabel: "Motivo de contacto",
-            submitButton: "Enviar",
-            socialTitle: "Mis Redes",
-            emailSuccessText: "Pronto estaremos en contacto",
-            user_name: "Nombre muy corto",
-            user_email: "Email inválido",
-            message: "El mensaje es muy corto",
-        },
-        en: {
-            contactTitle: "Contact Me",
-            email: "ferrari8986@gmail.com",
-            nameLabel: "Full Name",
-            emailLabel: "E-mail",
-            messageLabel: "Reason for Contact",
-            submitButton: "Send",
-            socialTitle: "My Social Networks",
-            emailSuccessText: "I will contact you soon",
-            user_name: "Name too short",
-            user_email: "Invalid Email",
-            message: "The message is too short",
-        },
-    };
-
-    const ContactSchema = z.object({
+const createContactSchema = (lang: keyof typeof formTexts) =>
+    z.object({
         user_name: z.string().min(2, formTexts[lang].user_name),
         user_email: z.string().email(formTexts[lang].user_email),
         message: z.string().min(10, formTexts[lang].message),
     });
 
-    type ContactFormData = z.infer<typeof ContactSchema>;
+type ContactFormData = z.infer<ReturnType<typeof createContactSchema>>;
+
+const ContactForm: React.FC = () => {
+    const formRef = useRef<HTMLFormElement>(null);
+    const { lang } = useLang();
+    const ContactSchema = createContactSchema(lang);
 
     const {
         register,
@@ -62,9 +64,12 @@ const ContactForm: React.FC = () => {
 
     const onSubmit = async (data: ContactFormData) => {
         try {
-            await emailjs.send("service_ybkx9o9", "template_ov8bcak", data, {
-                publicKey: "HPOdzduDO6Ab5e_Ro",
-            });
+            await emailjs.send(
+                process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+                process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+                data,
+                { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! }
+            );
 
             toast.success(formTexts[lang].emailSuccessText, {
                 position: "bottom-right",

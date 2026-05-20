@@ -3,6 +3,11 @@
 import React from "react";
 import { useLang } from "../context/LangContext";
 
+type Experience = {
+    title: string;
+    description: string[];
+};
+
 const aboutTranslations = {
     es: {
         title: "Soy Full Stack Developer con experiencia Freelance en proyectos desarrollados con JavaScript",
@@ -14,25 +19,35 @@ const aboutTranslations = {
     Me interesa crecer dentro de un equipo de trabajo estable, con buenas prácticas y espacio para aportar mis habilidades. 
     `,
         experienceTitle: "Experiencia Laboral",
-        experience1Title: "Desarrollador Full Stack Freelance - Comunidad DayZ",
-        experience1Description: [
-            "Diseñé y desarrollé una plataforma web desde cero usando React.js y Node.js.",
-            "Implementé bases de datos para gestionar información en tiempo real del juego.",
-        ],
-        experience2Title: "Evaluador de Código - RemoteTasks",
-        experience2Description: [
-            "Analicé código generado por IA, asegurando calidad y precisión técnica.",
-            "Revisé respuestas relacionadas con desarrollo web.",
-        ],
-        experience3Title: "Desafío Técnico – Servidor de Herramientas de IA",
-        experience3Description: [
-            "Desarrollé un servidor backend con MCP para agentes de IA, diseñando herramientas y respuestas estructuradas compatibles con un agente externo.",
-        ],
-        experience4Title: "Asistente de Enseñanza - Henry Bootcamp",
-        experience4Description: [
-            "Guié a estudiantes en ejercicios técnicos y promoví la colaboración grupal.",
-            "Propuse mejoras en los procesos educativos del bootcamp.",
-        ],
+        experiences: [
+            {
+                title: "Desarrollador Full Stack Freelance - Comunidad DayZ",
+                description: [
+                    "Diseñé y desarrollé una plataforma web desde cero usando React.js y Node.js.",
+                    "Implementé bases de datos para gestionar información en tiempo real del juego.",
+                ],
+            },
+            {
+                title: "Evaluador de Código - RemoteTasks",
+                description: [
+                    "Analicé código generado por IA, asegurando calidad y precisión técnica.",
+                    "Revisé respuestas relacionadas con desarrollo web.",
+                ],
+            },
+            {
+                title: "Desafío Técnico – Servidor de Herramientas de IA",
+                description: [
+                    "Desarrollé un servidor backend con MCP para agentes de IA, diseñando herramientas y respuestas estructuradas compatibles con un agente externo.",
+                ],
+            },
+            {
+                title: "Asistente de Enseñanza - Henry Bootcamp",
+                description: [
+                    "Guié a estudiantes en ejercicios técnicos y promoví la colaboración grupal.",
+                    "Propuse mejoras en los procesos educativos del bootcamp.",
+                ],
+            },
+        ] satisfies Experience[],
         technologiesTitle: "Tecnologías",
         technologies: [
             "Frontend: React, Next.js, HTML, CSS, JavaScript, TypeScript",
@@ -57,25 +72,35 @@ const aboutTranslations = {
     I am interested in growing within a stable team, with good practices and space to contribute my skills. 
     `,
         experienceTitle: "Professional Experience",
-        experience1Title: "Freelance Full Stack Developer - DayZ Community",
-        experience1Description: [
-            "Designed and developed a web platform from scratch using React.js and Node.js.",
-            "Implemented databases to manage real-time game information.",
-        ],
-        experience2Title: "Code Reviewer - RemoteTasks",
-        experience2Description: [
-            "Analyzed AI-generated code, ensuring quality and technical accuracy.",
-            "Reviewed web development-related responses.",
-        ],
-        experience3Title: "Technical Challenge – AI Tools Server",
-        experience3Description: [
-            "Developed a backend server with MCP for AI agents, designing tools and structured responses compatible with an external agent.",
-        ],
-        experience4Title: "Teaching Assistant - Henry Bootcamp",
-        experience4Description: [
-            "Guided students in technical exercises and promoted group collaboration.",
-            "Proposed improvements to the bootcamp's educational processes.",
-        ],
+        experiences: [
+            {
+                title: "Freelance Full Stack Developer - DayZ Community",
+                description: [
+                    "Designed and developed a web platform from scratch using React.js and Node.js.",
+                    "Implemented databases to manage real-time game information.",
+                ],
+            },
+            {
+                title: "Code Reviewer - RemoteTasks",
+                description: [
+                    "Analyzed AI-generated code, ensuring quality and technical accuracy.",
+                    "Reviewed web development-related responses.",
+                ],
+            },
+            {
+                title: "Technical Challenge – AI Tools Server",
+                description: [
+                    "Developed a backend server with MCP for AI agents, designing tools and structured responses compatible with an external agent.",
+                ],
+            },
+            {
+                title: "Teaching Assistant - Henry Bootcamp",
+                description: [
+                    "Guided students in technical exercises and promoted group collaboration.",
+                    "Proposed improvements to the bootcamp's educational processes.",
+                ],
+            },
+        ] satisfies Experience[],
         technologiesTitle: "Technologies",
         technologies: [
             "Frontend: React, Next.js, HTML, CSS, JavaScript, TypeScript",
@@ -113,27 +138,18 @@ const About: React.FC = () => {
                     </h3>
 
                     <ul className="space-y-4">
-                        {[1, 2, 3, 4].map((i) => {
-                            const title =
-                                translation[
-                                    `experience${i}Title` as keyof typeof translation
-                                ];
-                            const descs = translation[
-                                `experience${i}Description` as keyof typeof translation
-                            ] as string[];
-                            return (
-                                <li key={i}>
-                                    <h4 className="text-xl font-semibold text-white">
-                                        {title}
-                                    </h4>
-                                    <ul className="ml-6 list-disc text-gray-300 text-lg mt-2">
-                                        {descs.map((desc, idx) => (
-                                            <li key={idx}>{desc}</li>
-                                        ))}
-                                    </ul>
-                                </li>
-                            );
-                        })}
+                        {translation.experiences.map((experience, idx) => (
+                            <li key={idx}>
+                                <h4 className="text-xl font-semibold text-white">
+                                    {experience.title}
+                                </h4>
+                                <ul className="ml-6 list-disc text-gray-300 text-lg mt-2">
+                                    {experience.description.map((desc, descIdx) => (
+                                        <li key={descIdx}>{desc}</li>
+                                    ))}
+                                </ul>
+                            </li>
+                        ))}
                     </ul>
                 </section>
 

@@ -5,7 +5,7 @@ import { LangProvider } from "./context/LangContext";
 export const metadata: Metadata = {
     title: "Sergio Ferrari Bryce",
     description:
-        "Este es mi Porfolio, donde podras ver todos mis proyectos y aptitudes",
+        "Este es mi Portfolio, donde podras ver todos mis proyectos y aptitudes",
 };
 
 export default function RootLayout({
@@ -14,12 +14,12 @@ export default function RootLayout({
     children: React.ReactNode;
 }) {
     return (
-        <html lang="en">
+        <html lang="es">
             <head>
                 <script
                     defer
                     src="https://cloud.umami.is/script.js"
-                    data-website-id="68aa0307-f752-4a9e-8fc6-0e2ec3e3cd37"
+                    data-website-id={process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID}
                 ></script>
             </head>
             <body>

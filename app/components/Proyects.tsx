@@ -6,6 +6,7 @@ import pokemon from "../assets/pokemon.jpg";
 import ctime from "../assets/ctime.jpg";
 import bastar2 from "../assets/bastar2.jpg";
 import bastardos from "../assets/bastardos.jpg";
+import keywords from "../assets/keywords.jpg";
 import prode from "../assets/prode.png";
 import eco from "../assets/eco.jpg";
 import { ArrowD, ArrowU } from "./Icons";
@@ -41,6 +42,11 @@ const projectsTranslations = {
         • Integración con API de CFTools
         • Construido con Next.js, TypeScript y PostgreSQL
     `,
+        },
+        keywords: {
+            description: `
+            Plataforma con IA para optimizar la búsqueda laboral. Analiza CVs y ofertas laborales, genera keywords relevantes y permite hacer seguimiento de postulaciones. Integra múltiples modelos de IA (Gemini, Mistral, Groq, Cohere). Construida con Next.js 16, React 19, Prisma y PostgreSQL.
+            `,
         },
         prode: {
             description: `
@@ -86,6 +92,11 @@ const projectsTranslations = {
         • Integration with CFTools API
         • Built with Next.js, TypeScript and PostgreSQL
     `,
+        },
+        keywords: {
+            description: `
+            AI-powered platform to optimize job searching. Analyzes CVs and job listings, generates relevant keywords, and tracks applications. Integrates multiple AI models (Gemini, Mistral, Groq, Cohere). Built with Next.js 16, React 19, Prisma and PostgreSQL.
+            `,
         },
         prode: {
             description: `
@@ -134,7 +145,6 @@ const techIconMap: Record<string, string> = {
 interface ProjectData {
     title: string;
     image: StaticImageData;
-    description: string;
     url: string;
     technologies: string[];
     id: string;
@@ -143,9 +153,47 @@ interface ProjectData {
 
 const projectsData: ProjectData[] = [
     {
+        title: "KeyWords 2026",
+        image: keywords,
+        url: "https://kwtools.vercel.app/",
+        repoUrl: "https://github.com/Kyriokes/keywords.2",
+        technologies: [
+            "TypeScriptIcon",
+            "PostgreSQLIcon",
+            "PrismaIcon",
+            "NeonIcon",
+            "NextIcon",
+            "ReactIcon",
+            "HTMLIcon",
+            "TailwindIcon",
+            "VSCodeIcon",
+            "GitIcon",
+            "GitHubIcon",
+            "PNPMIcon",
+        ],
+        id: "keywords",
+    },
+    {
+        title: "Prode Mundial 2026",
+        image: prode,
+        url: "https://prode-mundial2026.vercel.app/qualifiers",
+        repoUrl: "https://github.com/Kyriokes/ProdeMundial2026",
+        technologies: [
+            "TypeScriptIcon",
+            "ReactIcon",
+            "ViteIcon",
+            "TailwindIcon",
+            "HTMLIcon",
+            "VSCodeIcon",
+            "GitIcon",
+            "GitHubIcon",
+            "NPMIcon",
+        ],
+        id: "prode",
+    },
+    {
         title: "Bastardos server e-commerce 2025",
         image: bastar2,
-        description: "",
         url: "https://bastardos-e-commerce.vercel.app/",
         repoUrl: "https://github.com/Kyriokes/Bastardos-E-Commerce",
         technologies: [
@@ -165,28 +213,8 @@ const projectsData: ProjectData[] = [
         id: "bastardos2",
     },
     {
-        title: "Prode Mundial 2026",
-        image: prode,
-        description: "",
-        url: "https://prode-mundial2026.vercel.app/qualifiers",
-        repoUrl: "https://github.com/Kyriokes/ProdeMundial2026",
-        technologies: [
-            "TypeScriptIcon",
-            "ReactIcon",
-            "ViteIcon",
-            "TailwindIcon",
-            "HTMLIcon",
-            "VSCodeIcon",
-            "GitIcon",
-            "GitHubIcon",
-            "NPMIcon",
-        ],
-        id: "prode",
-    },
-    {
         title: "EcoShop",
         image: eco,
-        description: "",
         url: "https://ecommerce-front-ten-olive.vercel.app/",
         repoUrl: "https://github.com/Kyriokes/ecommerce-crud",
         technologies: [
@@ -209,7 +237,6 @@ const projectsData: ProjectData[] = [
     {
         title: "Bastardos server web page 2024",
         image: bastardos,
-        description: "",
         url: "https://bastar2.vercel.app/",
         repoUrl: "https://github.com/Kyriokes/Bastardos",
         technologies: [
@@ -228,7 +255,6 @@ const projectsData: ProjectData[] = [
     {
         title: "ChillingTime",
         image: ctime,
-        description: "",
         url: "https://chillingtime.co/",
         technologies: [
             "JavaScriptIcon",
@@ -248,7 +274,6 @@ const projectsData: ProjectData[] = [
     {
         title: "Pokemon",
         image: pokemon,
-        description: "",
         url: "https://pokemonappbysfb-omega.vercel.app/",
         repoUrl: "https://github.com/Kyriokes/PokeFront",
         technologies: [
@@ -396,8 +421,8 @@ export const Proyects = () => {
                 <Project
                     key={project.title}
                     project={project}
-                    isVisible={selectedProjectId === project.title}
-                    onToggle={() => toggleProjectVisibility(project.title)}
+                    isVisible={selectedProjectId === project.id}
+                    onToggle={() => toggleProjectVisibility(project.id)}
                 />
             ))}
         </div>
