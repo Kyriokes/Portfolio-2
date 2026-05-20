@@ -95,12 +95,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
             {
                 "bg-sky-700": isActive,
                 "rounded-tl-2xl": isFirstTab,
-                "rounded-tr-2xl":
-                    windowWidth <= 320
-                        ? index === 2
-                        : windowWidth <= 385
-                        ? index === 3
-                        : isLastTab,
+                "rounded-tr-2xl": isLastTab,
             }
         );
     };
@@ -193,7 +188,7 @@ const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
                 </div>
             </div>
             <nav className="flex flex-wrap justify-start items-start w-full mt-5">
-                <div className="flex flex-wrap justify-center lg:justify-start w-full max-w-3xl mx-auto lg:mx-0">
+                <div className="flex flex-nowrap justify-start lg:justify-start w-full max-w-3xl mx-auto lg:mx-0 overflow-x-auto whitespace-nowrap">
                     {tabs.map((item, index) => (
                         <button
                             key={item.tab}
