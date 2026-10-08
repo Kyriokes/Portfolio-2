@@ -44,23 +44,6 @@ export default function Experience() {
                     </li>
                 ))}
             </ul>
-
-            <figure className="mt-16">
-                <p lang="ja" className="font-display text-3xl md:text-4xl">
-                    「基礎が大事だ！」
-                </p>
-                <figcaption className="mt-3 text-muted">
-                    {ui.experience.quote[lang]}{" "}
-                    <a
-                        href="https://wikipedia.org/wiki/Takehiko_Inoue"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="underline decoration-line underline-offset-4 hover:decoration-ink"
-                    >
-                        {ui.experience.quoteBy[lang]}
-                    </a>
-                </figcaption>
-            </figure>
         </section>
     );
 }

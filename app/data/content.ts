@@ -228,6 +228,7 @@ export const skillGroups: {
             { name: "JavaScript", icon: "JavaScript", strong: true },
             { name: "TypeScript", icon: "TypeScript" },
             { name: "C#", icon: "Csharp" },
+            { name: "VB.NET", icon: "Placeholder" },
         ],
     },
     {
