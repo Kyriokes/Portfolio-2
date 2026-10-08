@@ -29,4 +29,6 @@ export const ICONS = {
     Neon: "/icons/NeonIcon.png",
     PNPM: "/icons/PNPMIcon.png",
     Trae: "/icons/TraeIcon.svg",
+    // Placeholder until the real icon is added
+    Placeholder: "/icons/PlaceholderIcon.svg",
 };

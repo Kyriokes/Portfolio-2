@@ -240,6 +240,7 @@ export const skillGroups: {
             { name: "Vite", icon: "Vite" },
             { name: "Tailwind CSS", icon: "Tailwind" },
             { name: "Redux", icon: "Redux" },
+            { name: "Zustand", icon: "Placeholder" },
         ],
     },
     {
@@ -253,6 +254,10 @@ export const skillGroups: {
             { name: "Supabase", icon: "SupaBase", strong: true },
             { name: "NestJS", icon: "Nest" },
             { name: "Firebase", icon: "FireBase" },
+            { name: "NextAuth", icon: "Placeholder" },
+            { name: "JWT", icon: "Placeholder" },
+            { name: "MySQL", icon: "Placeholder" },
+            { name: "SQLite", icon: "Placeholder" },
         ],
     },
     {
@@ -265,6 +270,11 @@ export const skillGroups: {
             { name: "PNPM", icon: "PNPM" },
             { name: "Yarn", icon: "YARN" },
             { name: "Trae", icon: "Trae", strong: true },
+            { name: "Claude Code", icon: "Placeholder", strong: true },
+            { name: "Docker", icon: "Placeholder" },
+            { name: "Postman", icon: "Placeholder" },
+            { name: "Vercel", icon: "Placeholder" },
+            { name: "Scrum", icon: "Placeholder" },
         ],
     },
 ];
