@@ -29,6 +29,16 @@ export const ICONS = {
     Neon: "/icons/NeonIcon.png",
     PNPM: "/icons/PNPMIcon.png",
     Trae: "/icons/TraeIcon.svg",
+    VBNet: "/icons/VBNetIcon.png",
+    Zustand: "/icons/ZustandIcon.png",
+    NextAuth: "/icons/NextAuthIcon.png",
+    JWT: "/icons/JWTIcon.svg",
+    MySQL: "/icons/MySQLIcon.png",
+    SQLite: "/icons/SQLiteIcon.png",
+    ClaudeCode: "/icons/ClaudeCodeIcon.svg",
+    Docker: "/icons/DockerIcon.png",
+    Postman: "/icons/PostmanIcon.png",
+    Vercel: "/icons/VercelIcon.svg",
     // Placeholder until the real icon is added
     Placeholder: "/icons/PlaceholderIcon.svg",
 };
