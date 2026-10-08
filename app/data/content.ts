@@ -275,7 +275,7 @@ export const skillGroups: {
             { name: "Docker", icon: "Docker" },
             { name: "Postman", icon: "Postman" },
             { name: "Vercel", icon: "Vercel" },
-            { name: "Scrum", icon: "Placeholder" },
+            { name: "Scrum", icon: "Scrum" },
         ],
     },
 ];

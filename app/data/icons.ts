@@ -39,6 +39,7 @@ export const ICONS = {
     Docker: "/icons/DockerIcon.png",
     Postman: "/icons/PostmanIcon.png",
     Vercel: "/icons/VercelIcon.svg",
+    Scrum: "/icons/ScrumIcon.png",
     // Placeholder until the real icon is added
     Placeholder: "/icons/PlaceholderIcon.svg",
 };
