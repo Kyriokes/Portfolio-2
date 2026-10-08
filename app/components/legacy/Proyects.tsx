@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
-import pokemon from "../assets/pokemon.jpg";
-import ctime from "../assets/ctime.jpg";
-import bastar2 from "../assets/bastar2.jpg";
-import bastardos from "../assets/bastardos.jpg";
-import keywords from "../assets/keywords.jpg";
-import prode from "../assets/prode.jpg";
-import eco from "../assets/eco.jpg";
-import { ArrowD, ArrowU } from "./Icons";
-import { useLang } from "../context/LangContext";
-import { ICONS } from "../data/icons";
+import pokemon from "../../assets/pokemon.jpg";
+import ctime from "../../assets/ctime.jpg";
+import bastar2 from "../../assets/bastar2.jpg";
+import bastardos from "../../assets/bastardos.jpg";
+import keywords from "../../assets/keywords.jpg";
+import prode from "../../assets/prode.jpg";
+import eco from "../../assets/eco.jpg";
+import { ArrowD, ArrowU } from "../Icons";
+import { useLang } from "../../context/LangContext";
+import { ICONS } from "../../data/icons";
 
 const projectsTranslations = {
     es: {

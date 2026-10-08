@@ -1,65 +1,35 @@
 "use client";
 
-import { useRef } from "react";
-import emailjs from "@emailjs/browser";
-import { useLang } from "../context/LangContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Image from "next/image";
+import { Lang, useLang } from "../context/LangContext";
+import { SOCIAL, ui } from "../data/content";
 
-const formTexts = {
-    es: {
-        contactTitle: "Contáctame",
-        email: "ferrari8986@gmail.com",
-        nameLabel: "Nombre y Apellido",
-        emailLabel: "E-mail",
-        messageLabel: "Motivo de contacto",
-        submitButton: "Enviar",
-        socialTitle: "Mis Redes",
-        emailSuccessText: "Pronto estaremos en contacto",
-        user_name: "Nombre muy corto",
-        user_email: "Email inválido",
-        message: "El mensaje es muy corto",
-    },
-    en: {
-        contactTitle: "Contact Me",
-        email: "ferrari8986@gmail.com",
-        nameLabel: "Full Name",
-        emailLabel: "E-mail",
-        messageLabel: "Reason for Contact",
-        submitButton: "Send",
-        socialTitle: "My Social Networks",
-        emailSuccessText: "I will contact you soon",
-        user_name: "Name too short",
-        user_email: "Invalid Email",
-        message: "The message is too short",
-    },
-};
-
-const createContactSchema = (lang: keyof typeof formTexts) =>
+const createContactSchema = (lang: Lang) =>
     z.object({
-        user_name: z.string().min(2, formTexts[lang].user_name),
-        user_email: z.string().email(formTexts[lang].user_email),
-        message: z.string().min(10, formTexts[lang].message),
+        user_name: z.string().min(2, ui.contact.errName[lang]),
+        user_email: z.string().email(ui.contact.errEmail[lang]),
+        message: z.string().min(10, ui.contact.errMessage[lang]),
     });
 
 type ContactFormData = z.infer<ReturnType<typeof createContactSchema>>;
 
+const fieldClass =
+    "w-full rounded-lg border border-line bg-surface px-4 py-3 text-ink placeholder:text-muted";
+
 const ContactForm: React.FC = () => {
-    const formRef = useRef<HTMLFormElement>(null);
     const { lang } = useLang();
-    const ContactSchema = createContactSchema(lang);
 
     const {
         register,
         handleSubmit,
         reset,
-        formState: { errors },
+        formState: { errors, isSubmitting },
     } = useForm<ContactFormData>({
-        resolver: zodResolver(ContactSchema),
+        resolver: zodResolver(createContactSchema(lang)),
     });
 
     const onSubmit = async (data: ContactFormData) => {
@@ -70,144 +40,137 @@ const ContactForm: React.FC = () => {
                 data,
                 { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! }
             );
-
-            toast.success(formTexts[lang].emailSuccessText, {
-                position: "bottom-right",
-                theme: "dark",
-            });
-
+            toast.success(ui.contact.success[lang]);
             reset();
         } catch {
-            toast.error("Hubo un error al enviar el mensaje", {
-                position: "bottom-right",
-                theme: "dark",
-            });
+            toast.error(ui.contact.error[lang]);
         }
     };
 
+    const errorText = (message?: string) =>
+        message ? (
+            <p
+                role="alert"
+                className="mt-1 text-sm text-red-700 dark:text-red-400"
+            >
+                {message}
+            </p>
+        ) : null;
+
     return (
-        <div className="p-5 bg-gray-800 bg-opacity-80 text-white text-center overflow-x-hidden overflow-y-auto box-border rounded-xl">
-            <div className="w-full my-10">
-                <h1 className="text-4xl text-center mb-4 font-bold lg:text-6xl">
-                    {formTexts[lang].contactTitle}
-                </h1>
-                <p className="text-center text-2xl my-6 text-gray-300">
-                    {formTexts[lang].email}
-                </p>
-
-                <div className="w-full flex justify-center">
-                    <form
-                        ref={formRef}
-                        onSubmit={handleSubmit(onSubmit)}
-                        className="w-full max-w-lg"
-                    >
-                        <div className="mb-6 text-left">
-                            <label className="block text-sm font-semibold mb-2">
-                                {formTexts[lang].nameLabel}
-                            </label>
-                            <input
-                                {...register("user_name")}
-                                className="text-black w-full bg-gray-100 border border-gray-300 rounded py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                                type="text"
-                            />
-                            {errors.user_name && (
-                                <p className="text-red-500 text-sm mt-1">
-                                    {errors.user_name.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="mb-6 text-left">
-                            <label className="block text-sm font-semibold mb-2">
-                                {formTexts[lang].emailLabel}
-                            </label>
-                            <input
-                                {...register("user_email")}
-                                className="text-black w-full bg-gray-100 border border-gray-300 rounded py-3 px-4 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                                type="email"
-                            />
-                            {errors.user_email && (
-                                <p className="text-red-500 text-sm mt-1">
-                                    {errors.user_email.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="mb-6 text-left">
-                            <label className="block text-sm font-semibold mb-2">
-                                {formTexts[lang].messageLabel}
-                            </label>
-                            <textarea
-                                {...register("message")}
-                                className="text-black w-full bg-gray-100 border border-gray-300 rounded py-3 px-4 h-48 resize-none focus:outline-none focus:ring-2 focus:ring-blue-600"
-                            />
-                            {errors.message && (
-                                <p className="text-red-500 text-sm mt-1">
-                                    {errors.message.message}
-                                </p>
-                            )}
-                        </div>
-
-                        <div className="flex justify-end">
-                            <button
-                                className="bg-blue-700 hover:bg-blue-600 text-white font-semibold py-2 px-6 rounded"
-                                type="submit"
-                            >
-                                {formTexts[lang].submitButton}
-                            </button>
-                        </div>
-                    </form>
+        <section id="contact" className="section">
+            <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+                <div>
+                    <h2 className="section-title">{ui.contact.title[lang]}</h2>
+                    <p className="mt-4 max-w-md text-lg leading-relaxed text-muted">
+                        {ui.contact.lead[lang]}
+                    </p>
+                    <p className="mt-6">
+                        <a
+                            href={`mailto:${SOCIAL.email}`}
+                            className="font-display text-xl font-medium underline decoration-line underline-offset-4 transition-colors hover:decoration-ink md:text-2xl"
+                        >
+                            {SOCIAL.email}
+                        </a>
+                    </p>
+                    <p className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-base font-medium">
+                        <a
+                            href={SOCIAL.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+                        >
+                            {ui.contact.github[lang]}
+                        </a>
+                        <a
+                            href={SOCIAL.linkedin}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+                        >
+                            {ui.contact.linkedin[lang]}
+                        </a>
+                        <a
+                            href={SOCIAL.whatsapp}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+                        >
+                            {ui.contact.whatsapp[lang]}
+                        </a>
+                    </p>
                 </div>
 
-                <h2 className="text-xl font-bold text-center mt-10">
-                    {formTexts[lang].socialTitle}
-                </h2>
-                <div className="mx-auto p-3 gap-x-20 gap-y-6 flex flex-wrap justify-center">
-                    <a
-                        className="flex items-center w-20 h-20"
-                        href="https://github.com/Kyriokes"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            src="/icons/GitHubIcon.png"
-                            alt="GitHub"
-                            width={80}
-                            height={80}
-                            className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"
+                <form
+                    onSubmit={handleSubmit(onSubmit)}
+                    noValidate
+                    className="space-y-5"
+                >
+                    <div>
+                        <label
+                            htmlFor="user_name"
+                            className="mb-2 block text-sm font-medium"
+                        >
+                            {ui.contact.name[lang]}
+                        </label>
+                        <input
+                            id="user_name"
+                            type="text"
+                            autoComplete="name"
+                            aria-invalid={!!errors.user_name}
+                            className={fieldClass}
+                            {...register("user_name")}
                         />
-                    </a>
-                    <a
-                        className="flex items-center w-20 h-20"
-                        href="https://www.linkedin.com/in/sergiofb/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            src="/icons/Linkedin.svg"
-                            alt="LinkedIn"
-                            width={80}
-                            height={80}
-                            className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"
+                        {errorText(errors.user_name?.message)}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="user_email"
+                            className="mb-2 block text-sm font-medium"
+                        >
+                            {ui.contact.email[lang]}
+                        </label>
+                        <input
+                            id="user_email"
+                            type="email"
+                            autoComplete="email"
+                            aria-invalid={!!errors.user_email}
+                            className={fieldClass}
+                            {...register("user_email")}
                         />
-                    </a>
-                    <a
-                        className="flex items-center w-20 h-20"
-                        href={`https://wa.me/5491535040982?text=%C2%A1Hola%20Sergio,%20me%20contacto%20con%20vos%20desde%20tu%20porfolio!%0AMe%20llamo:%0ATe%20contacto%20respecto%20a%20...`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        <Image
-                            src="/icons/WhatsApp.svg"
-                            alt="WhatsApp"
-                            width={80}
-                            height={80}
-                            className="bg-gray-800 bg-opacity-80 rounded-xl hover:bg-sky-700"
+                        {errorText(errors.user_email?.message)}
+                    </div>
+
+                    <div>
+                        <label
+                            htmlFor="message"
+                            className="mb-2 block text-sm font-medium"
+                        >
+                            {ui.contact.message[lang]}
+                        </label>
+                        <textarea
+                            id="message"
+                            rows={6}
+                            aria-invalid={!!errors.message}
+                            className={`${fieldClass} resize-none`}
+                            {...register("message")}
                         />
-                    </a>
-                </div>
+                        {errorText(errors.message?.message)}
+                    </div>
+
+                    <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="btn-primary disabled:opacity-60"
+                    >
+                        {isSubmitting
+                            ? ui.contact.sending[lang]
+                            : ui.contact.send[lang]}
+                    </button>
+                </form>
             </div>
-        </div>
+        </section>
     );
 };
 

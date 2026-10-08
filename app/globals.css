@@ -2,20 +2,101 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --bg: #eae6e5;
+    --surface: #f6f4f3;
+    --ink: #1c2321;
+    --muted: #55605c;
+    --line: rgba(28, 35, 33, 0.16);
+    --accent: #17606f;
+    --accent-ink: #ffffff;
+    --sage: #90a955;
+    --focus: #1f7a8c;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #141a18;
+        --surface: #1c2321;
+        --ink: #eae6e5;
+        --muted: #a3aeaa;
+        --line: rgba(234, 230, 229, 0.18);
+        --accent: #6cc0d1;
+        --accent-ink: #0f1513;
+        --sage: #a5be6b;
+        --focus: #6cc0d1;
+    }
+}
+
 @layer base {
-  body {
-    @apply relative m-0 p-4 box-border bg-[url('/Background.jpg')] bg-no-repeat bg-cover bg-center bg-fixed;
-  }
+    html {
+        scroll-padding-top: 5rem;
+    }
 
-  ul {
-    @apply list-none p-0;
-  }
+    @media (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
 
-  button {
-    @apply cursor-pointer;
-  }
+    body {
+        @apply m-0 bg-bg font-sans text-ink antialiased;
+    }
 
-  img {
-    @apply max-w-full h-auto;
-  }
+    button {
+        @apply cursor-pointer;
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--focus);
+        outline-offset: 3px;
+        border-radius: 4px;
+    }
+
+    ::selection {
+        background: var(--sage);
+        color: #1c2321;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold transition;
+    }
+
+    .btn-primary {
+        @apply btn bg-accent text-accent-ink hover:opacity-90;
+    }
+
+    .btn-secondary {
+        @apply btn border border-line text-ink hover:border-ink;
+    }
+
+    .chip {
+        @apply inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-sm text-muted;
+    }
+
+    .chip-strong {
+        border-color: var(--accent);
+        color: var(--ink);
+        font-weight: 500;
+        background: color-mix(in srgb, var(--accent) 12%, transparent);
+    }
+
+    .section {
+        @apply mx-auto w-full max-w-6xl px-5 py-20 sm:px-8 md:py-28;
+    }
+
+    .section-title {
+        @apply font-display text-4xl font-bold tracking-tight md:text-5xl;
+    }
 }

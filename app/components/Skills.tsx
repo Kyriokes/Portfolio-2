@@ -1,360 +1,54 @@
 "use client";
 
-import React from "react";
-import useEmblaCarousel from "embla-carousel-react";
-import Autoplay from "embla-carousel-autoplay";
-import { ICONS } from "../data/icons";
-import { useLang } from "../context/LangContext";
 import Image from "next/image";
-import expertBadge from "../assets/expert.png";
+import { useLang } from "../context/LangContext";
+import { skillGroups, ui } from "../data/content";
+import { ICONS } from "../data/icons";
 
-type IconType = React.ComponentType<{ className?: string }> | string;
-
-interface IconWithTooltipProps {
-    Icon: IconType;
-    name: string;
-    expert?: boolean;
-}
-
-const IconWithTooltip: React.FC<IconWithTooltipProps> = ({
-    Icon,
-    name,
-    expert,
-}) => (
-    <div className="group relative inline-block">
-        <div className="w-16 h-16 flex justify-center items-center">
-            {typeof Icon === "string" ? (
-                <Image src={Icon} alt={name} width={48} height={48} />
-            ) : (
-                <Icon className="w-12 h-12" />
-            )}
-            {expert && (
-                <Image
-                    src={expertBadge}
-                    alt="Expert"
-                    className="absolute top-0 right-0 w-5 h-5"
-                />
-            )}
-        </div>
-        <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            {name}
-        </div>
-    </div>
-);
-
-interface TechnologyItemProps {
-    icon: IconType;
-    name: string;
-    description: string;
-    expert?: boolean;
-}
-
-const TechnologyItem: React.FC<TechnologyItemProps> = ({
-    icon,
-    name,
-    description,
-    expert,
-}) => (
-    <div className="flex-1 bg-gray-800 bg-opacity-80 rounded-lg p-2">
-        <IconWithTooltip Icon={icon} name={name} expert={expert} />
-        <div className="flex-1 mt-2">
-            <h2 className="text-white text-base font-semibold">{name}</h2>
-            <p className="text-sm text-gray-300">{description}</p>
-        </div>
-    </div>
-);
-
-const Skills: React.FC = () => {
-    const [emblaRef] = useEmblaCarousel(
-        { loop: true, dragFree: true, containScroll: "trimSnaps" },
-        [Autoplay({ delay: 2000, stopOnInteraction: false })]
-    );
+export default function Skills() {
     const { lang } = useLang();
 
-    const sectionTitles = {
-        es: {
-            languages: "Lenguajes de programación",
-            frontend: "Frontend",
-            backend: "Backend",
-            tools: "Herramientas",
-            technologies: "Tecnologías",
-        },
-        en: {
-            languages: "Programming Languages",
-            frontend: "Frontend",
-            backend: "Backend",
-            tools: "Tools",
-            technologies: "Technologies",
-        },
-    };
-
-    const expertTexts = {
-        es: "Iconos con esta insignia marcan tecnologías donde tengo mayor dominio.",
-        en: "Icons with this badge indicate technologies I'm most proficient in.",
-    };
-
-    const techDescriptions = {
-        JavaScript: {
-            es: "Lenguaje de programación que permite añadir interactividad en sitios web.",
-            en: "Programming language for adding interactivity to websites.",
-        },
-        TypeScript: {
-            es: "Superset de JavaScript que agrega tipos estáticos para un código más robusto.",
-            en: "JavaScript superset that adds static typing for more robust code.",
-        },
-        "C#": {
-            es: "Lenguaje de programación orientado a objetos desarrollado por Microsoft.",
-            en: "Object-oriented programming language developed by Microsoft.",
-        },
-        React: {
-            es: "Biblioteca de JavaScript para construir interfaces de usuario interactivas.",
-            en: "JavaScript library for building interactive UIs.",
-        },
-        HTML: {
-            es: "Lenguaje de marcado para estructurar páginas web.",
-            en: "Markup language for structuring web pages.",
-        },
-        CSS: {
-            es: "Lenguaje de estilos para diseñar páginas web.",
-            en: "Style language for designing web pages.",
-        },
-        NextJS: {
-            es: "Framework de React para renderizado del lado del servidor.",
-            en: "React framework for server-side rendering.",
-        },
-        Vite: {
-            es: "Herramienta de desarrollo rápida para aplicaciones modernas.",
-            en: "Fast development tool for modern applications.",
-        },
-        TailwindCSS: {
-            es: "Framework de CSS basado en utilidades.",
-            en: "Utility-first CSS framework.",
-        },
-        NodeJS: {
-            es: "Entorno de ejecución de JavaScript para el backend.",
-            en: "JavaScript runtime environment for backend.",
-        },
-        Express: {
-            es: "Framework minimalista de Node.js para crear APIs.",
-            en: "Minimalist Node.js framework for building APIs.",
-        },
-        NestJS: {
-            es: "Framework progresivo para construir aplicaciones eficientes en Node.js.",
-            en: "Progressive Node.js framework for building efficient apps.",
-        },
-        Prisma: {
-            es: "ORM moderno y fácil de usar.",
-            en: "Modern and easy-to-use ORM.",
-        },
-        PostgreSQL: {
-            es: "Sistema de gestión de bases de datos relacional open-source.",
-            en: "Open-source relational database system.",
-        },
-        Redux: {
-            es: "Biblioteca de JavaScript para manejo del estado en aplicaciones.",
-            en: "JavaScript library for state management in applications.",
-        },
-        Neon: {
-            es: "Base de datos en la nube basada en PostgreSQL.",
-            en: "Cloud database based on PostgreSQL.",
-        },
-        Git: {
-            es: "Sistema de control de versiones distribuido.",
-            en: "Distributed version control system.",
-        },
-        GitHub: {
-            es: "Plataforma de alojamiento para proyectos Git.",
-            en: "Hosting platform for Git projects.",
-        },
-        VSCode: {
-            es: "Editor de código fuente extensible y configurable.",
-            en: "Extensible and configurable code editor.",
-        },
-        NPM: {
-            es: "Gestor de paquetes para JavaScript, el más utilizado por defecto con Node.js.",
-            en: "JavaScript package manager, the default used with Node.js.",
-        },
-        PNPM: {
-            es: "Gestor de paquetes para JavaScript, enfocado en eficiencia y almacenamiento compartido.",
-            en: "JavaScript package manager focused on speed and shared storage.",
-        },
-        Yarn: {
-            es: "Gestor de paquetes rápido y seguro.",
-            en: "Fast and secure package manager.",
-        },
-        Unity: {
-            es: "Motor de desarrollo de videojuegos en 2D y 3D.",
-            en: "2D and 3D game development engine.",
-        },
-        Blender: {
-            es: "Software libre para modelado, animación y renderizado 3D.",
-            en: "Open-source 3D modeling, animation, and rendering software.",
-        },
-        Firebase: {
-            es: "Plataforma de desarrollo de aplicaciones móviles y web de Google, que ofrece servicios como bases de datos en tiempo real, autenticación y hosting.",
-            en: "Google's mobile and web app development platform, offering services like real-time databases, authentication, and hosting.",
-        },
-        Supabase: {
-            es: "Plataforma de código abierto que proporciona una alternativa a Firebase, con bases de datos PostgreSQL, autenticación y almacenamiento de archivos.",
-            en: "An open-source platform providing an alternative to Firebase, with PostgreSQL databases, authentication, and file storage.",
-        },
-        Trae: {
-            es: "IDE potenciado por IA que agiliza el desarrollo de software.",
-            en: "AI-powered IDE that streamlines software development.",
-        },
-    };
-
-    const sections = {
-        languages: [
-            { icon: ICONS.JavaScript, name: "JavaScript", expert: true },
-            { icon: ICONS.TypeScript, name: "TypeScript", expert: false },
-            { icon: ICONS.Csharp, name: "C#", expert: false },
-        ],
-        frontend: [
-            { icon: ICONS.React, name: "React", expert: false },
-            { icon: ICONS.HTML, name: "HTML", expert: true },
-            { icon: ICONS.CSS, name: "CSS", expert: true },
-            { icon: ICONS.Next, name: "NextJS", expert: false },
-            { icon: ICONS.Vite, name: "Vite", expert: false },
-            { icon: ICONS.Tailwind, name: "TailwindCSS", expert: false },
-            { icon: ICONS.Redux, name: "Redux", expert: false },
-        ],
-        backend: [
-            { icon: ICONS.NodeJS, name: "NodeJS", expert: true },
-            { icon: ICONS.Express, name: "Express", expert: true },
-            { icon: ICONS.Prisma, name: "Prisma", expert: true },
-            { icon: ICONS.Neon, name: "Neon", expert: true },
-            { icon: ICONS.SupaBase, name: "Supabase", expert: true },
-            { icon: ICONS.PostgreSQL, name: "PostgreSQL", expert: true },
-            { icon: ICONS.Nest, name: "NestJS", expert: false },
-            { icon: ICONS.FireBase, name: "Firebase", expert: false },
-        ],
-        tools: [
-            { icon: ICONS.Git, name: "Git", expert: true },
-            { icon: ICONS.GitHub, name: "GitHub", expert: true },
-            { icon: ICONS.VSCode, name: "VSCode", expert: true },
-            { icon: ICONS.NPM, name: "NPM", expert: true },
-            { icon: ICONS.PNPM, name: "PNPM", expert: false },
-            { icon: ICONS.YARN, name: "Yarn", expert: false },
-            { icon: ICONS.Unity, name: "Unity", expert: false },
-            { icon: ICONS.Blender, name: "Blender", expert: false },
-            { icon: ICONS.Trae, name: "Trae", expert: true },
-        ],
-    };
-
     return (
-        <div className="space-y-8 text-white bg-gray-800 bg-opacity-80 rounded-xl p-4">
-            <div className="embla overflow-hidden" ref={emblaRef}>
-                <div className="embla__container flex">
-                    {Object.values(sections)
-                        .flat()
-                        .concat(Object.values(sections).flat())
-                        .map((tech, index) => (
-                            <div
-                                key={index}
-                                className="embla__slide flex-[0_0_auto] mr-4"
-                            >
-                                <IconWithTooltip
-                                    Icon={tech.icon}
-                                    name={tech.name}
-                                />
-                            </div>
-                        ))}
-                </div>
+        <section id="skills" className="section">
+            <h2 className="section-title">{ui.skills.title[lang]}</h2>
+            <p className="mt-3 flex items-center gap-3 text-muted">
+                <span
+                    aria-hidden="true"
+                    className="chip chip-strong !h-5 !w-8 !p-0"
+                />
+                {ui.skills.legend[lang]}
+            </p>
+
+            <div className="mt-12 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+                {skillGroups.map((group) => (
+                    <div key={group.id}>
+                        <h3 className="font-display text-xl font-bold">
+                            {ui.skills[group.id][lang]}
+                        </h3>
+                        <ul className="mt-4 flex flex-wrap gap-2">
+                            {group.items.map((skill) => (
+                                <li
+                                    key={skill.name}
+                                    className={`chip ${
+                                        skill.strong ? "chip-strong" : ""
+                                    }`}
+                                >
+                                    <span className="grid h-5 w-5 place-items-center rounded-full bg-white">
+                                        <Image
+                                            src={ICONS[skill.icon]}
+                                            alt=""
+                                            width={14}
+                                            height={14}
+                                            className="h-3.5 w-3.5 object-contain"
+                                        />
+                                    </span>
+                                    {skill.name}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                ))}
             </div>
-
-            <div className="text-center px-4">
-                <h2 className="text-2xl font-bold mb-4">
-                    {sectionTitles[lang].technologies}
-                </h2>
-
-                <div className="flex items-center justify-center gap-2 text-sm text-gray-300 mb-6">
-                    <Image
-                        src={expertBadge}
-                        alt="Expert badge"
-                        width={20}
-                        height={20}
-                    />
-                    <span>{expertTexts[lang]}</span>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-start">
-                    <div className="space-y-2">
-                        <h3 className="text-xl font-semibold text-white mb-4">
-                            {sectionTitles[lang].frontend}
-                        </h3>
-                        {sections.frontend.map((tech) => (
-                            <TechnologyItem
-                                key={tech.name}
-                                icon={tech.icon}
-                                name={tech.name}
-                                expert={tech.expert}
-                                description={
-                                    techDescriptions[
-                                        tech.name as keyof typeof techDescriptions
-                                    ][lang]
-                                }
-                            />
-                        ))}
-                    </div>
-                    <div className="space-y-2">
-                        <h3 className="text-xl font-semibold text-white mb-4">
-                            {sectionTitles[lang].languages}
-                        </h3>
-                        {sections.languages.map((tech) => (
-                            <TechnologyItem
-                                key={tech.name}
-                                icon={tech.icon}
-                                name={tech.name}
-                                expert={tech.expert}
-                                description={
-                                    techDescriptions[
-                                        tech.name as keyof typeof techDescriptions
-                                    ][lang]
-                                }
-                            />
-                        ))}
-                    </div>
-                    <div className="space-y-2">
-                        <h3 className="text-xl font-semibold text-white mb-4">
-                            {sectionTitles[lang].backend}
-                        </h3>
-                        {sections.backend.map((tech) => (
-                            <TechnologyItem
-                                key={tech.name}
-                                icon={tech.icon}
-                                name={tech.name}
-                                expert={tech.expert}
-                                description={
-                                    techDescriptions[
-                                        tech.name as keyof typeof techDescriptions
-                                    ][lang]
-                                }
-                            />
-                        ))}
-                    </div>
-                    <div className="space-y-2 lg:col-span-1">
-                        <h3 className="text-xl font-semibold text-white mb-4">
-                            {sectionTitles[lang].tools}
-                        </h3>
-                        {sections.tools.map((tech) => (
-                            <TechnologyItem
-                                key={tech.name}
-                                icon={tech.icon}
-                                name={tech.name}
-                                expert={tech.expert}
-                                description={
-                                    techDescriptions[
-                                        tech.name as keyof typeof techDescriptions
-                                    ][lang]
-                                }
-                            />
-                        ))}
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     );
-};
-
-export default Skills;
+}

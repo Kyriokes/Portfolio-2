@@ -1,208 +1,126 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import Image from "next/image";
-import clsx from "clsx";
-import { useLang } from "../context/LangContext";
-import esp from "../assets/spn.png";
-import eng from "../assets/uk.png";
+import { useState } from "react";
+import { useLang, Lang } from "../context/LangContext";
+import { CV, ui } from "../data/content";
 
-interface HeaderProps {
-    activeTab: string;
-    setActiveTab: (tab: string) => void;
-}
+const links = [
+    { href: "#projects", key: "projects" },
+    { href: "#experience", key: "experience" },
+    { href: "#skills", key: "skills" },
+    { href: "#contact", key: "contact" },
+] as const;
 
-const useWindowWidth = () => {
-    const [windowWidth, setWindowWidth] = useState(0);
-
-    useEffect(() => {
-        const handleResize = () => setWindowWidth(window.innerWidth);
-
-        handleResize();
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-    return windowWidth;
-};
-
-const tabsTranslations = {
-    es: {
-        about: "Sobre mí",
-        proyects: "Proyectos",
-        skills: "Skills",
-        pdf: "Curriculum",
-        contact: "Contacto",
-    },
-    en: {
-        about: "About Me",
-        proyects: "Projects",
-        skills: "Skills",
-        pdf: "Resume",
-        contact: "Contact",
-    },
-};
-
-const presentation = {
-    es: {
-        text: "Desarrollador Full Stack",
-        text1: "Construyo sitios web, APIs",
-        text2: "y herramientas con IA usando tecnologías modernas de JavaScript.",
-    },
-    en: {
-        text: "Full Stack Developer",
-        text1: "I build Websites, APIs,",
-        text2: "and AI-driven tools using modern JavaScript technologies.",
-    },
-};
-
-const phrases = {
-    es: {
-        text: "¡Lo básico es lo más importante!",
-        author: "autor de",
-    },
-    en: {
-        text: "The basics are the most important!",
-        author: "author of",
-    },
-};
-
-const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab }) => {
-    const windowWidth = useWindowWidth();
+export default function Header() {
     const { lang, setLang } = useLang();
+    const [open, setOpen] = useState(false);
 
-    if (windowWidth === 0) {
-        return null;
-    }
-
-    const tabs = [
-        { label: tabsTranslations[lang].about, tab: "about" },
-        { label: tabsTranslations[lang].proyects, tab: "proyects" },
-        { label: tabsTranslations[lang].skills, tab: "skills" },
-        { label: tabsTranslations[lang].pdf, tab: "pdf" },
-        { label: tabsTranslations[lang].contact, tab: "contact" },
-    ];
-
-    const getButtonClass = (index: number) => {
-        const tab = tabs[index].tab;
-        const isActive = tab === activeTab;
-        const isFirstTab = index === 0;
-        const isLastTab = index === tabs.length - 1;
-
-        return clsx(
-            "py-2 px-2 bg-gray-900 bg-opacity-90 text-white border border-gray-700 cursor-pointer hover:bg-gray-700 text-xs sm:text-sm md:text-base flex-grow lg:flex-grow-0 transition-all duration-300 ease-in-out",
-            {
-                "bg-sky-700": isActive,
-                "rounded-tl-2xl": isFirstTab,
-                "rounded-tr-2xl": isLastTab,
-            }
-        );
-    };
+    const langButton = (code: Lang) => (
+        <button
+            type="button"
+            onClick={() => setLang(code)}
+            aria-pressed={lang === code}
+            className={`rounded-md px-2 py-1 text-sm font-medium transition-colors ${
+                lang === code
+                    ? "bg-ink text-bg"
+                    : "text-muted hover:text-ink"
+            }`}
+        >
+            {code.toUpperCase()}
+        </button>
+    );
 
     return (
-        <header className="flex flex-col rounded-t-[5%] text-white">
-            <div className="flex justify-end">
-                <button
-                    onClick={() => setLang("es")}
-                    className={clsx(
-                        "m-0.5 px-3 py-1 rounded-md text-xs transition-colors",
-                        {
-                            "bg-gray-700 text-white hover:bg-gray-600":
-                                lang === "es",
-                            "bg-gray-800 text-gray-400 hover:bg-gray-700":
-                                lang !== "es",
-                        }
-                    )}
-                    aria-label="Cambiar a Castellano"
+        <header className="sticky top-0 z-40 border-b border-line bg-[color-mix(in_srgb,var(--bg)_90%,transparent)] backdrop-blur">
+            <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:rounded-md focus:bg-ink focus:px-3 focus:py-2 focus:text-bg"
+            >
+                {lang === "es" ? "Saltar al contenido" : "Skip to content"}
+            </a>
+            <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-5 sm:px-8">
+                <a
+                    href="#top"
+                    className="font-display text-lg font-bold tracking-tight"
                 >
-                    <Image src={esp} alt="Español" width={24} height={24} />
-                </button>
-                <button
-                    onClick={() => setLang("en")}
-                    className={clsx(
-                        "m-0.5 px-3 py-1 rounded-md text-xs transition-colors",
-                        {
-                            "bg-gray-700 text-white hover:bg-gray-600":
-                                lang === "en",
-                            "bg-gray-800 text-gray-400 hover:bg-gray-700":
-                                lang !== "en",
-                        }
-                    )}
-                    aria-label="Change to English"
+                    Sergio Ferrari Bryce
+                </a>
+
+                <nav
+                    aria-label="Main"
+                    className="hidden items-center gap-7 md:flex"
                 >
-                    <Image src={eng} alt="English" width={24} height={24} />
-                </button>
-            </div>
-            <div className="flex flex-col items-center lg:flex-row  w-full">
-                <Image
-                    src="/profile.jpg"
-                    alt="Profile Picture"
-                    width={1080}
-                    height={720}
-                    className="rounded-full w-64 h-64 mb-4 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-[23em] lg:h-[23em] lg:mr-4"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-                <div className="relative w-full">
-                    <div className="flex flex-col justify-between flex-grow h-full">
-                        <div className="font-['Segoe_UI',Tahoma,Geneva,Verdana,sans-serif] text-center lg:text-left text-xl m-4 sm:text-2xl md:text-3xl lg:text-2xl p-4">
-                            <h1 className="uppercase text-4xl sm:text-5xl md:text-6xl lg:text-4xl p-2">
-                                <span className="block">Sergio</span>
-                                <span className="block">Ferrari</span>
-                                <span className="block">Bryce</span>
-                            </h1>
-                            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-3xl p-2">
-                                <span className="block lg:ml-0">
-                                    {presentation[lang].text}
-                                </span>
-                                <span className="block lg:ml-4">
-                                    {presentation[lang].text1}
-                                </span>
-                                <span className="block lg:ml-8">
-                                    {presentation[lang].text2}
-                                </span>
-                            </h2>
-                        </div>
-                        <div>
-                            <div className="text-right text-sm text-white leading-snug mb-4 mr-4 lg:mb-0 lg:mr-0 lg:w-64 lg:ml-auto">
-                                <p className="text-xl sm:text-2xl mb-2 text-gray-300">
-                                    「基礎が大事だ！」
-                                </p>
-                                <p className="text-gray-300 mb-1">
-                                    {phrases[lang].text}
-                                </p>
-                                <p className="text-xs sm:text-sm text-gray-400">
-                                    <a
-                                        href="https://wikipedia.org/wiki/Takehiko_Inoue"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-sky-400 underline hover:text-sky-300 transition-colors"
-                                    >
-                                        Takehiko Inoue
-                                    </a>
-                                    , {phrases[lang].author} <em>Slam Dunk</em>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <nav className="flex flex-wrap justify-start items-start w-full mt-5">
-                <div className="flex flex-nowrap justify-start lg:justify-start w-full max-w-3xl mx-auto lg:mx-0 overflow-x-auto whitespace-nowrap">
-                    {tabs.map((item, index) => (
-                        <button
-                            key={item.tab}
-                            onClick={() => setActiveTab(item.tab)}
-                            className={getButtonClass(index)}
-                            aria-label={`Go to ${item.label}`}
+                    {links.map((link) => (
+                        <a
+                            key={link.href}
+                            href={link.href}
+                            className="text-sm text-muted transition-colors hover:text-ink"
                         >
-                            {item.label}
-                        </button>
+                            {ui.nav[link.key][lang]}
+                        </a>
                     ))}
+                    <a
+                        href={CV[lang]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-full border border-line px-4 py-1.5 text-sm font-medium transition-colors hover:border-ink"
+                    >
+                        {ui.nav.cv[lang]}
+                    </a>
+                </nav>
+
+                <div className="flex items-center gap-1">
+                    <div
+                        role="group"
+                        aria-label={ui.nav.language[lang]}
+                        className="flex items-center"
+                    >
+                        {langButton("en")}
+                        {langButton("es")}
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => setOpen((value) => !value)}
+                        aria-expanded={open}
+                        aria-controls="mobile-menu"
+                        className="ml-2 rounded-md border border-line px-3 py-1 text-sm md:hidden"
+                    >
+                        {open ? ui.nav.close[lang] : ui.nav.menu[lang]}
+                    </button>
                 </div>
-            </nav>
+            </div>
+
+            {open && (
+                <nav
+                    id="mobile-menu"
+                    aria-label="Mobile"
+                    className="border-t border-line px-5 pb-4 pt-2 md:hidden"
+                >
+                    <ul>
+                        {links.map((link) => (
+                            <li key={link.href}>
+                                <a
+                                    href={link.href}
+                                    onClick={() => setOpen(false)}
+                                    className="block py-3 text-lg"
+                                >
+                                    {ui.nav[link.key][lang]}
+                                </a>
+                            </li>
+                        ))}
+                        <li>
+                            <a
+                                href={CV[lang]}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block py-3 text-lg"
+                            >
+                                {ui.nav.cv[lang]}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            )}
         </header>
     );
-};
-
-export default Header;
+}

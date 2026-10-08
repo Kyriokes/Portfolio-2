@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useLang } from "../context/LangContext";
+import { useLang } from "../../context/LangContext";
 
 type Experience = {
     title: string;
