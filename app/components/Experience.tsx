@@ -26,6 +26,9 @@ export default function Experience() {
                                 {item.role[lang]}
                             </h3>
                             <p className="mt-1 text-muted">{item.org[lang]}</p>
+                            <p className="mt-1 text-sm text-muted">
+                                {item.period[lang]}
+                            </p>
                         </div>
                         <ul className="space-y-2">
                             {item.points[lang].map((point) => (

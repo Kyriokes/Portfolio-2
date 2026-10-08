@@ -67,8 +67,8 @@ export const ui = {
     experience: {
         title: { en: "Experience", es: "Experiencia" },
         about1: {
-            en: "I am a Full Stack Developer with freelance experience in projects developed with JavaScript. I work with React, Next.js, Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite and Prisma.",
-            es: "Soy Full Stack Developer con experiencia freelance en proyectos desarrollados con JavaScript. Trabajo con React, Next.js, Node.js, Express, Nest.js, Sequelize, PostgreSQL, SQLite y Prisma.",
+            en: "I am a Full Stack Developer working with React, TypeScript, Next.js, Node.js and PostgreSQL. I built KeyWords, my own platform with multiple AI APIs, a feedback-based ranking system and ATS analysis of CVs against job postings. I handle the full cycle: architecture, backend, frontend, authentication and deploy. English C1.",
+            es: "Soy Desarrollador Full Stack con stack en React, TypeScript, Next.js, Node.js y PostgreSQL. Construí KeyWords, una plataforma propia con múltiples APIs de IA, sistema de ranking por feedback y análisis ATS de CVs contra ofertas laborales. Manejo el ciclo completo: arquitectura, backend, frontend, autenticación y deploy. Inglés C1.",
         },
         about2: {
             en: "My multidisciplinary background and taste for logic, planning and organization enhance my performance as a developer. I am interested in growing within a stable team, with good practices and space to contribute my skills.",
@@ -133,64 +133,76 @@ export const ui = {
 export interface Experience {
     role: L<string>;
     org: L<string>;
+    period: L<string>;
     points: L<string[]>;
 }
 
 export const experiences: Experience[] = [
     {
         role: {
-            en: "Freelance Full Stack Developer",
-            es: "Desarrollador Full Stack Freelance",
+            en: "Full Stack Developer (Backoffice)",
+            es: "Desarrollador Full Stack (Backoffice)",
         },
-        org: { en: "DayZ Community", es: "Comunidad DayZ" },
+        org: {
+            en: "Instituto de Ayuda Financiera (IAF), on-site",
+            es: "Instituto de Ayuda Financiera (IAF), presencial",
+        },
+        period: { en: "07/2026 - Present", es: "07/2026 - Presente" },
         points: {
             en: [
-                "Designed and developed a web platform from scratch using React.js and Node.js.",
-                "Implemented databases to manage real-time game information.",
+                "Modernizing a legacy payroll system (.NET, VB.NET, ASPX, SQL), manually validating each function against the current system.",
+                "Fixing bugs and providing backoffice support on an undocumented codebase.",
             ],
             es: [
-                "Diseñé y desarrollé una plataforma web desde cero usando React.js y Node.js.",
-                "Implementé bases de datos para gestionar información en tiempo real del juego.",
-            ],
-        },
-    },
-    {
-        role: { en: "Code Reviewer", es: "Evaluador de Código" },
-        org: { en: "RemoteTasks", es: "RemoteTasks" },
-        points: {
-            en: [
-                "Analyzed AI-generated code, ensuring quality and technical accuracy.",
-                "Reviewed web development-related responses.",
-            ],
-            es: [
-                "Analicé código generado por IA, asegurando calidad y precisión técnica.",
-                "Revisé respuestas relacionadas con desarrollo web.",
+                "Modernización de un sistema legacy de liquidación de sueldos (.NET, VB.NET, ASPX, SQL), validando manualmente cada función contra el sistema actual.",
+                "Corrección de bugs y soporte de backoffice en una base de código sin documentación.",
             ],
         },
     },
     {
-        role: { en: "Technical Challenge", es: "Desafío Técnico" },
-        org: { en: "AI Tools Server", es: "Servidor de Herramientas de IA" },
+        role: {
+            en: "Full Stack Developer",
+            es: "Desarrollador Full Stack",
+        },
+        org: { en: "Freelance, remote", es: "Freelance, remoto" },
+        period: { en: "06/2023 - Present", es: "06/2023 - Presente" },
         points: {
             en: [
-                "Developed a backend server with MCP for AI agents, designing tools and structured responses compatible with an external agent.",
+                "Web platforms with React, Next.js, Node.js, Express, TypeScript and PostgreSQL. RESTful APIs, admin panels, OAuth (Google, Steam) and PayPal payments.",
+                "Relational databases with Prisma and Sequelize. End-to-end management: planning, documentation and delivery.",
             ],
             es: [
-                "Desarrollé un servidor backend con MCP para agentes de IA, diseñando herramientas y respuestas estructuradas compatibles con un agente externo.",
+                "Plataformas web con React, Next.js, Node.js, Express, TypeScript y PostgreSQL. APIs RESTful, paneles admin, OAuth (Google, Steam) y pagos con PayPal.",
+                "Bases de datos relacionales con Prisma y Sequelize. Gestión end-to-end: planificación, documentación y entregas.",
             ],
         },
     },
     {
-        role: { en: "Teaching Assistant", es: "Asistente de Enseñanza" },
-        org: { en: "Henry Bootcamp", es: "Henry Bootcamp" },
+        role: { en: "AI Code Analyst", es: "Analista de Código - IA" },
+        org: { en: "Remotasks, remote", es: "Remotasks, remoto" },
+        period: { en: "12/2023 - 03/2026", es: "12/2023 - 03/2026" },
         points: {
             en: [
-                "Guided students in technical exercises and promoted group collaboration.",
-                "Proposed improvements to the bootcamp's educational processes.",
+                "Analysis and correction of AI-generated code in JavaScript, HTML and CSS. Best practices, readability and quality standards.",
             ],
             es: [
-                "Guié a estudiantes en ejercicios técnicos y promoví la colaboración grupal.",
-                "Propuse mejoras en los procesos educativos del bootcamp.",
+                "Análisis y corrección de código generado por IA en JavaScript, HTML y CSS. Buenas prácticas, legibilidad y estándares de calidad.",
+            ],
+        },
+    },
+    {
+        role: {
+            en: "Technical Mentor, Full Stack",
+            es: "Mentor Técnico, Full Stack",
+        },
+        org: { en: "Henry Bootcamp, remote", es: "Henry Bootcamp, remoto" },
+        period: { en: "03/2023 - 07/2023", es: "03/2023 - 07/2023" },
+        points: {
+            en: [
+                "Selected among 300+ candidates. Mentored 18 students in JS, React, Node.js and databases. 90% graduation rate.",
+            ],
+            es: [
+                "Seleccionado entre más de 300 candidatos. Mentoría a 18 estudiantes en JS, React, Node.js y bases de datos. Graduación del 90%.",
             ],
         },
     },
@@ -252,8 +264,6 @@ export const skillGroups: {
             { name: "NPM", icon: "NPM", strong: true },
             { name: "PNPM", icon: "PNPM" },
             { name: "Yarn", icon: "YARN" },
-            { name: "Unity", icon: "Unity" },
-            { name: "Blender", icon: "Blender" },
             { name: "Trae", icon: "Trae", strong: true },
         ],
     },
