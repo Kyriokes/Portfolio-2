@@ -31,6 +31,9 @@ yarn-error.log*
 # trae
 .trae
 
+# claude code
+.claude
+
 # vercel
 .vercel
 
