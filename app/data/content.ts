@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import keywords from "../assets/keywords.jpg";
+import nutricion from "../assets/nutricion.jpg";
 import prode from "../assets/prode.jpg";
 import bastardos2 from "../assets/bastar2.jpg";
 import eco from "../assets/eco.jpg";
@@ -333,6 +334,40 @@ export const projects: Project[] = [
                 "Genera keywords relevantes",
                 "Hace seguimiento de postulaciones",
                 "Integra varios modelos de IA: Gemini, Mistral, Groq y Cohere",
+            ],
+        },
+    },
+    {
+        id: "nutricion",
+        title: "Nutrición Animal",
+        year: "2026",
+        image: nutricion,
+        demo: "https://nutricion-animal.vercel.app/",
+        repo: "https://github.com/Kyriokes/nutricion-animal",
+        stack: [
+            s("TypeScript", "TypeScript"),
+            s("Next.js 16", "Next"),
+            s("React", "React"),
+            s("Tailwind CSS", "Tailwind"),
+            s("Supabase", "SupaBase"),
+            s("PostgreSQL", "PostgreSQL"),
+        ],
+        summary: {
+            en: "An e-commerce for natural pet food that connects customers, animal nutritionists and suppliers. Customers buy food and see the diet a nutritionist assigned to each pet. The catalog and cart work without an account.",
+            es: "Un e-commerce de comida natural para mascotas que conecta clientes, nutricionistas animales y proveedores. El cliente compra alimentos y ve la dieta que un nutricionista le asignó a cada mascota. El catálogo y el carrito funcionan sin cuenta.",
+        },
+        highlights: {
+            en: [
+                "Mercado Pago payments (Checkout Pro, in test mode) with webhook",
+                "5 roles with permissions and Google sign-in",
+                "Stock reservation, order tracking, claims and refunds",
+                "Admin panel with sales, orders and editable content",
+            ],
+            es: [
+                "Pagos con Mercado Pago (Checkout Pro, en modo de prueba) con webhook",
+                "5 roles con permisos e ingreso con Google",
+                "Reserva de stock, seguimiento de pedidos, reclamos y reembolsos",
+                "Panel de administración con ventas, pedidos y contenido editable",
             ],
         },
     },
