@@ -448,7 +448,6 @@ export const projects: Project[] = [
         year: "2025",
         image: bastardos2,
         demo: "https://bastardos-e-commerce.vercel.app/",
-        repo: "https://github.com/Kyriokes/Bastardos-E-Commerce",
         stack: [
             s("TypeScript", "TypeScript"),
             s("Next.js", "Next"),
