@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio
 
-## Getting Started
+Sitio personal de Sergio Ferrari Bryce: proyectos, experiencia, skills y contacto, en inglés y
+español. En línea en [portfoliosergiofb.vercel.app](https://portfoliosergiofb.vercel.app).
 
-First, run the development server:
+Hecho con Next.js 14 (App Router), React 18, TypeScript y Tailwind CSS. El formulario de
+contacto manda el mail con EmailJS y las visitas se miden con Umami.
+
+## Desarrollo
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abre en [http://localhost:3000](http://localhost:3000). `npm run lint` corre ESLint y
+`npm run build` arma la versión de producción.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Variables de entorno
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Van en `.env.local` (no se versiona). Sin ellas el sitio funciona igual, solo que el formulario
+de contacto no manda mails y no se registran visitas.
 
-## Learn More
+| Variable | Para qué |
+|---|---|
+| `NEXT_PUBLIC_EMAILJS_SERVICE_ID` | Servicio de EmailJS |
+| `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` | Plantilla del mail de contacto |
+| `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` | Clave pública de EmailJS |
+| `NEXT_PUBLIC_UMAMI_WEBSITE_ID` | Sitio en Umami |
 
-To learn more about Next.js, take a look at the following resources:
+## Dónde está cada cosa
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `app/data/content.ts`: todos los textos (EN/ES), la experiencia, los skills y los proyectos.
+- `app/data/icons.ts`: los iconos de los chips, que viven en `public/icons/`.
+- `app/components/`: una sección por componente (`Hero`, `Projects`, `Experience`, `Skills`,
+  `ContactForm`) más `Header`, `Footer` y `BrowserFrame` (la captura con marco de navegador).
+- `public/`: la foto, los CV en PDF y los iconos.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Agregar un proyecto
 
-## Deploy on Vercel
+1. Guardar una captura de la demo en `app/assets/<id>.jpg`, en JPG de 1900×917 (relación 2:1).
+2. Importarla en `app/data/content.ts` y agregar un objeto al array `projects` con `id`,
+   `title`, `year`, `image`, `demo`, `repo`, `stack` (con el helper `s(nombre, icono)`),
+   `summary` en los dos idiomas y, si va destacado, `highlights`.
+3. El orden del array es el orden en la página: los primeros `FEATURED_COUNT` van con layout
+   grande y highlights, el resto en la grilla compacta.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Se despliega en Vercel desde la rama `main`. Node 24 (`engines` en `package.json`).

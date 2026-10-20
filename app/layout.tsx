@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Bricolage_Grotesque, Instrument_Sans } from "next/font/google";
 import "./globals.css";
 import { LangProvider } from "./context/LangContext";
+import { SITE_URL } from "./data/content";
 
 const display = Bricolage_Grotesque({
     subsets: ["latin"],
@@ -15,13 +16,12 @@ const body = Instrument_Sans({
     display: "swap",
 });
 
-const siteUrl = "https://portfoliosergiofb.vercel.app";
 const title = "Sergio Ferrari Bryce | Full Stack Developer";
 const description =
-    "Full Stack Developer building websites, APIs and AI-driven tools with React, Next.js, Node.js, Prisma and PostgreSQL. Projects, experience and contact.";
+    "Full Stack Developer building websites, APIs, desktop tools and AI-driven products with React, Next.js, Node.js, PostgreSQL and .NET. Projects, experience and contact.";
 
 export const metadata: Metadata = {
-    metadataBase: new URL(siteUrl),
+    metadataBase: new URL(SITE_URL),
     title,
     description,
     keywords: [
@@ -33,13 +33,15 @@ export const metadata: Metadata = {
         "Node.js",
         "Prisma",
         "PostgreSQL",
+        ".NET",
+        "C#",
         "Sergio Ferrari Bryce",
     ],
     authors: [{ name: "Sergio Ferrari Bryce" }],
     openGraph: {
         title,
         description,
-        url: siteUrl,
+        url: SITE_URL,
         siteName: "Sergio Ferrari Bryce",
         images: [
             {

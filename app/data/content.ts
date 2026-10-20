@@ -13,6 +13,8 @@ import { ICONS } from "./icons";
 export type Lang = "en" | "es";
 export type L<T> = Record<Lang, T>;
 
+export const SITE_URL = "https://portfoliosergiofb.vercel.app";
+
 export const SOCIAL = {
     github: "https://github.com/Kyriokes",
     linkedin: "https://www.linkedin.com/in/sergiofb/",
@@ -42,8 +44,8 @@ export const ui = {
     hero: {
         role: { en: "Full Stack Developer", es: "Desarrollador Full Stack" },
         statement: {
-            en: "I build websites, APIs and AI-driven tools using modern JavaScript technologies.",
-            es: "Construyo sitios web, APIs y herramientas con IA usando tecnologías modernas de JavaScript.",
+            en: "I build websites, APIs, desktop tools and AI-driven products with TypeScript, Next.js, Node.js and .NET.",
+            es: "Construyo sitios web, APIs, herramientas de escritorio y productos con IA usando TypeScript, Next.js, Node.js y .NET.",
         },
         viewProjects: { en: "View projects", es: "Ver proyectos" },
         downloadCv: { en: "Download CV", es: "Descargar CV" },
