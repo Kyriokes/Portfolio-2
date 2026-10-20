@@ -1,4 +1,5 @@
 import type { StaticImageData } from "next/image";
+import aoe2 from "../assets/aoe2.jpg";
 import keywords from "../assets/keywords.jpg";
 import nutricion from "../assets/nutricion.jpg";
 import prode from "../assets/prode.jpg";
@@ -302,6 +303,42 @@ const s = (name: string, icon: IconKey): Skill => ({ name, icon });
 export const FEATURED_COUNT = 3;
 
 export const projects: Project[] = [
+    {
+        id: "aoe2-bo-coach",
+        title: "AoE2 BO Coach",
+        year: "2026",
+        image: aoe2,
+        demo: "https://aoe2-bo-coach.vercel.app/",
+        repo: "https://github.com/Kyriokes/aoe2-bo-coach",
+        stack: [
+            s("C#.NET", "Csharp"),
+            s("TypeScript", "TypeScript"),
+            s("Next.js 16", "Next"),
+            s("React 19", "React"),
+            s("Tailwind CSS", "Tailwind"),
+            s("Supabase", "SupaBase"),
+            s("PostgreSQL", "PostgreSQL"),
+            s("Vercel", "Vercel"),
+        ],
+        summary: {
+            en: "An open-source overlay for Age of Empires II: Definitive Edition that reads the screen with OCR, follows a build order step by step, adapts when the player deviates and tells you where to put each villager. It comes with a public web library to share build orders.",
+            es: "Un overlay de código abierto para Age of Empires II: Definitive Edition que lee la pantalla con OCR, sigue una build order paso a paso, se adapta cuando el jugador se desvía y te dice dónde poner cada aldeano. Viene con una biblioteca web pública para compartir build orders.",
+        },
+        highlights: {
+            en: [
+                "Windows desktop app in C# .NET 10 and WPF: screen capture, Windows OCR and custom digit templates for the game HUD",
+                "Pure C# engine (planner, tracker and economy) with 300+ tests, compiled to WebAssembly so the web simulates with the same engine as the app",
+                "Web library with Next.js 16 and Supabase: row-level security, Discord and Google sign-in, votes and one-click import into the app",
+                "Fair play: it only reads the screen. It never reads game memory, injects code or sends inputs",
+            ],
+            es: [
+                "App de escritorio para Windows en C# .NET 10 y WPF: captura de pantalla, OCR de Windows y plantillas propias para los números del HUD",
+                "Motor en C# puro (planificador, seguimiento y economía) con más de 300 tests, compilado a WebAssembly para que la web simule con el mismo motor que la app",
+                "Biblioteca web con Next.js 16 y Supabase: permisos por fila, cuentas con Discord y Google, votos e importación a la app con un clic",
+                "Sin trampas: solo lee la pantalla. Nunca lee memoria del juego, inyecta código ni manda inputs",
+            ],
+        },
+    },
     {
         id: "keywords",
         title: "KeyWords",
