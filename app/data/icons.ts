@@ -1,7 +1,6 @@
 // All icons as string paths (SVGs and PNGs)
 export const ICONS = {
     // SVGs
-    Blender: "/icons/BlenderIcon.svg",
     Csharp: "/icons/CsharpIcon.svg",
     SupaBase: "/icons/SupaBaseIcon.svg",
     FireBase: "/icons/FireBaseIcon.svg",
@@ -25,7 +24,6 @@ export const ICONS = {
     VSCode: "/icons/VSCodeIcon.png",
     NPM: "/icons/NPMIcon.png",
     YARN: "/icons/YARNIcon.png",
-    Unity: "/icons/UnityIcon.png",
     Neon: "/icons/NeonIcon.png",
     PNPM: "/icons/PNPMIcon.png",
     Trae: "/icons/TraeIcon.svg",
@@ -40,6 +38,4 @@ export const ICONS = {
     Postman: "/icons/PostmanIcon.png",
     Vercel: "/icons/VercelIcon.svg",
     Scrum: "/icons/ScrumIcon.png",
-    // Placeholder until the real icon is added
-    Placeholder: "/icons/PlaceholderIcon.svg",
 };
