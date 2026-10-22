@@ -3,19 +3,19 @@ import Image, { StaticImageData } from "next/image";
 interface BrowserFrameProps {
     href: string;
     image: StaticImageData;
-    label: string;
+    alt: string;
     sizes: string;
-    priority?: boolean;
 }
 
 // A screenshot inside a browser window that shows the real address.
-// The whole frame is a link to the live demo.
+// The whole frame is a link to the live demo for mouse and touch. Keyboard and
+// screen reader users get the same link from the "Live demo" button below, so
+// this one stays out of the tab order and the accessibility tree.
 export default function BrowserFrame({
     href,
     image,
-    label,
+    alt,
     sizes,
-    priority,
 }: BrowserFrameProps) {
     const host = new URL(href).host;
 
@@ -24,7 +24,8 @@ export default function BrowserFrame({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label={label}
+            tabIndex={-1}
+            aria-hidden="true"
             className="group block overflow-hidden rounded-xl border border-line bg-surface transition-transform duration-200 hover:-translate-y-1"
         >
             <div className="flex items-center gap-3 border-b border-line px-3 py-2.5">
@@ -41,10 +42,9 @@ export default function BrowserFrame({
             <div className="relative aspect-[2/1] overflow-hidden">
                 <Image
                     src={image}
-                    alt=""
+                    alt={alt}
                     fill
                     sizes={sizes}
-                    priority={priority}
                     className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
                 />
             </div>

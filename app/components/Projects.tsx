@@ -1,8 +1,12 @@
-"use client";
-
 import Image from "next/image";
-import { useLang, Lang } from "../context/LangContext";
-import { FEATURED_COUNT, projects, ui, Project, Skill } from "../data/content";
+import {
+    FEATURED_COUNT,
+    Lang,
+    projects,
+    ui,
+    Project,
+    Skill,
+} from "../data/content";
 import { ICONS } from "../data/icons";
 import BrowserFrame from "./BrowserFrame";
 
@@ -34,7 +38,7 @@ function Actions({ project, lang }: { project: Project; lang: Lang }) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary !px-5 !py-2.5 !text-sm"
+                className="btn-primary px-5 py-2.5 text-sm"
                 aria-label={`${project.title}: ${ui.projects.demo[lang]} (${ui.projects.opensIn[lang]})`}
             >
                 {ui.projects.demo[lang]}
@@ -44,7 +48,7 @@ function Actions({ project, lang }: { project: Project; lang: Lang }) {
                     href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-secondary !px-5 !py-2.5 !text-sm"
+                    className="btn-secondary px-5 py-2.5 text-sm"
                     aria-label={`${project.title}: ${ui.projects.code[lang]} (${ui.projects.opensIn[lang]})`}
                 >
                     {ui.projects.code[lang]}
@@ -72,7 +76,7 @@ function Featured({
                 <BrowserFrame
                     href={project.demo}
                     image={project.image}
-                    label={`${project.title}: ${ui.projects.demo[lang]} (${ui.projects.opensIn[lang]})`}
+                    alt={`${ui.projects.screenshot[lang]} ${project.title}`}
                     sizes="(min-width: 768px) 672px, 100vw"
                 />
             </div>
@@ -114,7 +118,7 @@ function Compact({ project, lang }: { project: Project; lang: Lang }) {
             <BrowserFrame
                 href={project.demo}
                 image={project.image}
-                label={`${project.title}: ${ui.projects.demo[lang]} (${ui.projects.opensIn[lang]})`}
+                alt={`${ui.projects.screenshot[lang]} ${project.title}`}
                 sizes="(min-width: 640px) 560px, 100vw"
             />
             <h3 className="mt-6 font-display text-2xl font-bold tracking-tight">
@@ -136,8 +140,7 @@ function Compact({ project, lang }: { project: Project; lang: Lang }) {
     );
 }
 
-export default function Projects() {
-    const { lang } = useLang();
+export default function Projects({ lang }: { lang: Lang }) {
     const featured = projects.slice(0, FEATURED_COUNT);
     const rest = projects.slice(FEATURED_COUNT);
 

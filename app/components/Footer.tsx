@@ -1,12 +1,6 @@
-"use client";
+import { Lang, ui } from "../data/content";
 
-import React from "react";
-import { useLang } from "../context/LangContext";
-import { ui } from "../data/content";
-
-const Footer: React.FC = () => {
-    const { lang } = useLang();
-
+export default function Footer({ lang }: { lang: Lang }) {
     return (
         <footer className="border-t border-line">
             <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-8 text-sm text-muted sm:px-8">
@@ -24,6 +18,4 @@ const Footer: React.FC = () => {
             </div>
         </footer>
     );
-};
-
-export default Footer;
+}

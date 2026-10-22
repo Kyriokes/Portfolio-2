@@ -1,10 +1,6 @@
-"use client";
+import { experiences, Lang, ui } from "../data/content";
 
-import { useLang } from "../context/LangContext";
-import { experiences, ui } from "../data/content";
-
-export default function Experience() {
-    const { lang } = useLang();
+export default function Experience({ lang }: { lang: Lang }) {
 
     return (
         <section id="experience" className="section">

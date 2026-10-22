@@ -1,12 +1,7 @@
-"use client";
-
 import Image from "next/image";
-import { useLang } from "../context/LangContext";
-import { CV, SOCIAL, ui } from "../data/content";
+import { CV, Lang, SOCIAL, ui } from "../data/content";
 
-export default function Hero() {
-    const { lang } = useLang();
-
+export default function Hero({ lang }: { lang: Lang }) {
     return (
         <section
             id="top"
@@ -21,7 +16,7 @@ export default function Hero() {
                 <p className="mt-6 font-display text-2xl font-medium text-accent md:text-3xl">
                     {ui.hero.role[lang]}
                 </p>
-                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted md:text-xl">
+                <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted md:text-xl md:leading-7">
                     {ui.hero.statement[lang]}
                 </p>
 
@@ -29,11 +24,7 @@ export default function Hero() {
                     <a href="#projects" className="btn-primary">
                         {ui.hero.viewProjects[lang]}
                     </a>
-                    <a
-                        href={CV[lang]}
-                        download
-                        className="btn-secondary"
-                    >
+                    <a href={CV[lang]} download className="btn-secondary">
                         {ui.hero.downloadCv[lang]}
                     </a>
                 </div>
@@ -42,7 +33,7 @@ export default function Hero() {
                     <a
                         href={SOCIAL.github}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer me"
                         className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
                     >
                         GitHub
@@ -50,7 +41,7 @@ export default function Hero() {
                     <a
                         href={SOCIAL.linkedin}
                         target="_blank"
-                        rel="noopener noreferrer"
+                        rel="noopener noreferrer me"
                         className="underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
                     >
                         LinkedIn
@@ -63,7 +54,8 @@ export default function Hero() {
                     src="/profile.jpg"
                     alt={ui.hero.photoAlt[lang]}
                     fill
-                    priority
+                    loading="eager"
+                    fetchPriority="high"
                     sizes="(min-width: 768px) 24rem, 90vw"
                     className="object-cover object-center"
                 />

@@ -1,11 +1,10 @@
 import type { Config } from "tailwindcss";
 
+// Loaded from app/globals.css with @config (Tailwind v4 reads it there).
+// The font variables come from app/fonts.ts. The .mts extension tells Node
+// it is an ES module, so it is not parsed twice.
 const config: Config = {
-    content: [
-        "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-        "./components/**/*.{js,ts,jsx,tsx,mdx}",
-        "./app/**/*.{js,ts,jsx,tsx,mdx}",
-    ],
+    content: ["./app/**/*.{js,ts,jsx,tsx,mdx}"],
     theme: {
         extend: {
             colors: {
@@ -19,8 +18,8 @@ const config: Config = {
                 sage: "var(--sage)",
             },
             fontFamily: {
-                display: ["var(--font-display)", "system-ui", "sans-serif"],
-                sans: ["var(--font-body)", "system-ui", "sans-serif"],
+                display: ["var(--font-bricolage)", "system-ui", "sans-serif"],
+                sans: ["var(--font-instrument)", "system-ui", "sans-serif"],
             },
         },
     },

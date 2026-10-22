@@ -31,7 +31,27 @@ export const CV: L<string> = {
 // ---------------------------------------------------------------- UI text
 
 export const ui = {
+    // Title and description for search results and link previews.
+    meta: {
+        title: {
+            en: "Sergio Ferrari Bryce | Full Stack Developer",
+            es: "Sergio Ferrari Bryce | Desarrollador Full Stack",
+        },
+        description: {
+            en: "Full Stack Developer in Buenos Aires building websites, APIs, desktop tools and AI products with React, Next.js, Node.js, PostgreSQL and .NET.",
+            es: "Desarrollador Full Stack en Buenos Aires. Sitios web, APIs, herramientas de escritorio y productos con IA con React, Next.js, Node.js, PostgreSQL y .NET.",
+        },
+    },
+    notFound: {
+        title: { en: "Page not found", es: "Página no encontrada" },
+        text: {
+            en: "This page does not exist.",
+            es: "Esta página no existe.",
+        },
+        home: { en: "Go to the portfolio", es: "Ir al portfolio" },
+    },
     nav: {
+        skip: { en: "Skip to content", es: "Saltar al contenido" },
         projects: { en: "Projects", es: "Proyectos" },
         experience: { en: "Experience", es: "Experiencia" },
         skills: { en: "Skills", es: "Skills" },
@@ -63,6 +83,7 @@ export const ui = {
         more: { en: "More projects", es: "Más proyectos" },
         demo: { en: "Live demo", es: "Ver demo" },
         code: { en: "Code", es: "Código" },
+        screenshot: { en: "Screenshot of", es: "Captura de" },
         opensIn: {
             en: "opens in a new tab",
             es: "se abre en una pestaña nueva",
@@ -122,6 +143,10 @@ export const ui = {
         errMessage: {
             en: "The message is too short",
             es: "El mensaje es muy corto",
+        },
+        errLong: {
+            en: "This field is too long",
+            es: "Este campo es demasiado largo",
         },
         github: { en: "GitHub", es: "GitHub" },
         linkedin: { en: "LinkedIn", es: "LinkedIn" },

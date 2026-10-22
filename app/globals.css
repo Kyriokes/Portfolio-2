@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.mts";
 
 :root {
     --bg: #eae6e5;
@@ -44,7 +43,7 @@
     }
 
     button {
-        @apply cursor-pointer;
+        cursor: pointer;
     }
 
     :focus-visible {
@@ -68,17 +67,20 @@
     }
 }
 
+/* Components sit in a lower layer than utilities, so a utility class
+   (px-5, text-sm...) on the same element overrides them without "!". */
 @layer components {
-    .btn {
+    .btn-primary,
+    .btn-secondary {
         @apply inline-flex items-center justify-center rounded-full px-6 py-3 text-base font-semibold transition;
     }
 
     .btn-primary {
-        @apply btn bg-accent text-accent-ink hover:opacity-90;
+        @apply bg-accent text-accent-ink hover:opacity-90;
     }
 
     .btn-secondary {
-        @apply btn border border-line text-ink hover:border-ink;
+        @apply border border-line text-ink hover:border-ink;
     }
 
     .chip {

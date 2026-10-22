@@ -1,12 +1,8 @@
-"use client";
-
 import Image from "next/image";
-import { useLang } from "../context/LangContext";
-import { skillGroups, ui } from "../data/content";
+import { Lang, skillGroups, ui } from "../data/content";
 import { ICONS } from "../data/icons";
 
-export default function Skills() {
-    const { lang } = useLang();
+export default function Skills({ lang }: { lang: Lang }) {
 
     return (
         <section id="skills" className="section">
@@ -14,7 +10,7 @@ export default function Skills() {
             <p className="mt-3 flex items-center gap-3 text-muted">
                 <span
                     aria-hidden="true"
-                    className="chip chip-strong !h-5 !w-8 !p-0"
+                    className="chip chip-strong h-5 w-8 p-0"
                 />
                 {ui.skills.legend[lang]}
             </p>
