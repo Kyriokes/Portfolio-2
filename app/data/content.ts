@@ -23,6 +23,9 @@ export const SOCIAL = {
     email: "ferrari8986@gmail.com",
 };
 
+// The file name carries the name for image search. /profile.jpg redirects here.
+export const PROFILE_PHOTO = "/sergio-ferrari-bryce.jpg";
+
 export const CV: L<string> = {
     en: "/CV_SERGIO_FERRARI_BRYCE_EN.pdf",
     es: "/CV_SERGIO_FERRARI_BRYCE.pdf",
@@ -38,8 +41,8 @@ export const ui = {
             es: "Sergio Ferrari Bryce | Desarrollador Full Stack",
         },
         description: {
-            en: "Full Stack Developer in Buenos Aires building websites, APIs, desktop tools and AI products with React, Next.js, Node.js, PostgreSQL and .NET.",
-            es: "Desarrollador Full Stack en Buenos Aires. Sitios web, APIs, herramientas de escritorio y productos con IA con React, Next.js, Node.js, PostgreSQL y .NET.",
+            en: "Sergio Ferrari Bryce, Full Stack Developer in Buenos Aires. Websites, APIs and AI products with React, Next.js, Node.js, PostgreSQL and .NET.",
+            es: "Sergio Ferrari Bryce, Desarrollador Full Stack en Buenos Aires. Sitios web, APIs y productos con IA con React, Next.js, Node.js, PostgreSQL y .NET.",
         },
     },
     notFound: {
@@ -92,8 +95,8 @@ export const ui = {
     experience: {
         title: { en: "Experience", es: "Experiencia" },
         about1: {
-            en: "I am a Full Stack Developer working with React, TypeScript, Next.js, Node.js and PostgreSQL. I built KeyWords, my own platform with multiple AI APIs, a feedback-based ranking system and ATS analysis of CVs against job postings. I handle the full cycle: architecture, backend, frontend, authentication and deploy. English C1.",
-            es: "Soy Desarrollador Full Stack con stack en React, TypeScript, Next.js, Node.js y PostgreSQL. Construí KeyWords, una plataforma propia con múltiples APIs de IA, sistema de ranking por feedback y análisis ATS de CVs contra ofertas laborales. Manejo el ciclo completo: arquitectura, backend, frontend, autenticación y deploy. Inglés C1.",
+            en: "I'm Sergio Ferrari Bryce, a Full Stack Developer from Buenos Aires, Argentina, working with React, TypeScript, Next.js, Node.js and PostgreSQL. I built KeyWords, my own platform with multiple AI APIs, a feedback-based ranking system and ATS analysis of CVs against job postings. I handle the full cycle: architecture, backend, frontend, authentication and deploy. English C1.",
+            es: "Soy Sergio Ferrari Bryce, Desarrollador Full Stack de Buenos Aires, Argentina, con stack en React, TypeScript, Next.js, Node.js y PostgreSQL. Construí KeyWords, una plataforma propia con múltiples APIs de IA, sistema de ranking por feedback y análisis ATS de CVs contra ofertas laborales. Manejo el ciclo completo: arquitectura, backend, frontend, autenticación y deploy. Inglés C1.",
         },
         about2: {
             en: "My multidisciplinary background and taste for logic, planning and organization enhance my performance as a developer. I am interested in growing within a stable team, with good practices and space to contribute my skills.",

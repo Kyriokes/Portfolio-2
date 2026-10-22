@@ -39,6 +39,16 @@ const nextConfig = {
     async headers() {
         return [{ source: "/:path*", headers: securityHeaders }];
     },
+    async redirects() {
+        return [
+            // Old photo URL, still cached in link previews shared before.
+            {
+                source: "/profile.jpg",
+                destination: "/sergio-ferrari-bryce.jpg",
+                permanent: true,
+            },
+        ];
+    },
 };
 
 export default nextConfig;

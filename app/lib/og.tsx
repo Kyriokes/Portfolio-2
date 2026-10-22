@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
-import { Lang, SITE_URL, ui } from "../data/content";
+import { Lang, PROFILE_PHOTO, SITE_URL, ui } from "../data/content";
 
 // Link preview image (LinkedIn, WhatsApp, X...). Rendered once at build time.
 
@@ -32,7 +32,7 @@ export async function renderOgImage(lang: Lang) {
     const host = new URL(SITE_URL).host;
 
     const [photo, display, body] = await Promise.all([
-        readFile(join(process.cwd(), "public", "profile.jpg")),
+        readFile(join(process.cwd(), "public", PROFILE_PHOTO)),
         loadFont("Bricolage+Grotesque", 700, `SergioFerariBryc${role}`),
         loadFont("Instrument+Sans", 400, `${statement}${host}`),
     ]);

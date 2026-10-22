@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { CV, Lang, SOCIAL, ui } from "../data/content";
+import { CV, Lang, PROFILE_PHOTO, SOCIAL, ui } from "../data/content";
 
 export default function Hero({ lang }: { lang: Lang }) {
     return (
@@ -9,8 +9,10 @@ export default function Hero({ lang }: { lang: Lang }) {
         >
             <div>
                 <h1 className="font-display text-[clamp(3rem,8.5vw,6rem)] font-bold leading-[0.95] tracking-tight">
-                    <span className="block">Sergio</span>
-                    <span className="block">Ferrari</span>
+                    {/* The spaces keep the name as three words in the HTML text
+                        that search engines read, not "SergioFerrariBryce". */}
+                    <span className="block">Sergio</span>{" "}
+                    <span className="block">Ferrari</span>{" "}
                     <span className="block">Bryce</span>
                 </h1>
                 <p className="mt-6 font-display text-2xl font-medium text-accent md:text-3xl">
@@ -51,7 +53,7 @@ export default function Hero({ lang }: { lang: Lang }) {
 
             <div className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl border border-line md:ml-auto md:mr-0">
                 <Image
-                    src="/profile.jpg"
+                    src={PROFILE_PHOTO}
                     alt={ui.hero.photoAlt[lang]}
                     fill
                     loading="eager"
